@@ -1,0 +1,8 @@
+﻿  deriv.cpp
+  filter.cpp
+  opencl_kernels_imgproc.cpp
+  opencv_imgproc_pch.cpp
+  sumpixels.cpp
+  templmatch.cpp
+MSVCRT.lib(exe_main.obj) : error LNK2001: 无法解析的外部符号 main
+C:\Users\zwq\Desktop\B\x64\Release\Sobel.exe : fatal error LNK1120: 1 个无法解析的外部命令
