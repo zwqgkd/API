@@ -35,9 +35,6 @@
     </Object>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\deriv.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="src\filter.cpp">
       <Filter>Src</Filter>
     </ClCompile>
@@ -51,6 +48,9 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\opencl_kernels_imgproc.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sobel.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

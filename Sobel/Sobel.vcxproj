@@ -148,7 +148,7 @@
     <Object Include="obj\undistort.avx2.obj" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\deriv.cpp" />
+    <ClCompile Include="src\sobel.cpp" />
     <ClCompile Include="src\filter.cpp" />
     <ClCompile Include="src\opencl_kernels_imgproc.cpp" />
     <ClCompile Include="src\opencv_imgproc_pch.cpp" />
