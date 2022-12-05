@@ -1,0 +1,10 @@
+﻿C:\MyProgram\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+  filter.cpp
+  opencl_kernels_imgproc.cpp
+  opencv_imgproc_pch.cpp
+  sumpixels.cpp
+  templmatch.cpp
+  laplacian.cpp
+  正在生成代码...
+    正在创建库 target\laplacian.lib 和对象 target\laplacian.exp
+  Laplacian.vcxproj -> C:\Users\zwq\Desktop\API\Laplacian\target\laplacian.dll

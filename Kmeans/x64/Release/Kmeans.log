@@ -1,6 +1,8 @@
 ﻿  kmeans.cpp
-    正在创建库 D:\Documents\API\x64\Release\Kmeans.lib 和对象 D:\Documents\API\x64\Release\Kmeans.exp
+    正在创建库 C:\Users\zwq\Desktop\API\x64\Release\Kmeans.lib 和对象 C:\Users\zwq\Desktop\API\x64\Release\Kmeans.exp
   正在生成代码
-  All 113 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  113 of 113 functions (100.0%) were compiled.
+    1 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
-  Kmeans.vcxproj -> D:\Documents\API\x64\Release\Kmeans.dll
+  Kmeans.vcxproj -> C:\Users\zwq\Desktop\API\x64\Release\Kmeans.dll

@@ -45,10 +45,10 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -69,7 +69,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>target</OutDir>
+    <TargetName>laplacian</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -78,6 +82,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\Include\3rdparty\ippicv\ippicv_win\include;..\Include\3rdparty\ippicv\ippiw_win\include;..\Include\modules\core\include;..\Include\modules\imgproc\include;..\Include\modules\imgproc\src;..\Sobel\include;..\Sobel\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,9 +142,9 @@
     <ClCompile Include="..\Sobel\src\filter.cpp" />
     <ClCompile Include="..\Sobel\src\opencl_kernels_imgproc.cpp" />
     <ClCompile Include="..\Sobel\src\opencv_imgproc_pch.cpp" />
-    <ClCompile Include="..\Sobel\src\laplacian.cpp" />
     <ClCompile Include="..\Sobel\src\sumpixels.cpp" />
     <ClCompile Include="..\Sobel\src\templmatch.cpp" />
+    <ClCompile Include="src\laplacian.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Sobel\src\filter.hpp" />

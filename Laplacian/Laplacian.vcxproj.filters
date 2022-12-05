@@ -50,7 +50,7 @@
     <ClCompile Include="..\Sobel\src\templmatch.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Sobel\src\laplacian.cpp">
+    <ClCompile Include="src\laplacian.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

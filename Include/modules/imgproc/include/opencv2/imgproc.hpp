@@ -4843,3 +4843,14 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
+
+
+#if defined(__cplusplus)//
+	extern "C" {
+#endif
+		__declspec(dllexport) void myLaplacian(cv::InputArray _src, cv::OutputArray _dst, int ddepth, int ksize,
+			double scale, double delta, int borderType);
+#ifdef __cplusplus
+}
+#endif
