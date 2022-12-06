@@ -1,11 +1,11 @@
-﻿C:\MyWorkSW\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+﻿C:\MyProgram\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
   affine_feature2d.cpp
   daisy.cpp
   ellipticKeyPoint.cpp
   opencl_kernels_xfeatures2d.cpp
   surf.cpp
-c:\myworkdata\gitcode\api\surf\src\surf.cpp(675): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-c:\myworkdata\gitcode\api\surf\src\surf.cpp(1049): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\zwq\desktop\api\surf\src\surf.cpp(675): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\users\zwq\desktop\api\surf\src\surf.cpp(1049): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   surf.cuda.cpp
   surf.ocl.cpp
   xfeatures2d_init.cpp
@@ -13,4 +13,4 @@ c:\myworkdata\gitcode\api\surf\src\surf.cpp(1049): warning C4267: “初始化�
   正在生成代码
   All 772 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   已完成代码的生成
-  Surf.vcxproj -> C:\MyWorkData\gitcode\API\Surf\target\surf.dll
+  Surf.vcxproj -> C:\Users\zwq\Desktop\API\Surf\target\surf.dll
