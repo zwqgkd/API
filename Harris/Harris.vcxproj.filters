@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{cccf4980-8d19-4ac7-a2ac-ea4ecaefddd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{cc4a18e1-4676-4155-a2cb-7e3eb237d1de}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\color.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\color_hsv.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\color_lab.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\color_rgb.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\color_yuv.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\corner.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\demosaicing.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\deriv.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\filter.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\opencl_kernels_imgproc.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\smooth.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\sumpixels.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\tables.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\templmatch.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\color.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\corner.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\filter.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\filterengine.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\opencl_kernels_imgproc.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="..\Include\harris_obj\accum.avx.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="..\Include\harris_obj\corner.avx.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="..\Include\harris_obj\filter.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="..\Include\harris_obj\imgwarp.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="..\Include\harris_obj\imgwarp.sse4_1.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="..\Include\harris_obj\resize.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="..\Include\harris_obj\resize.sse4_1.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="..\Include\harris_obj\undistort.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+</Project>
