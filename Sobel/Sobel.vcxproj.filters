@@ -38,9 +38,6 @@
     <ClCompile Include="src\filter.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="src\opencv_imgproc_pch.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="src\sumpixels.cpp">
       <Filter>Src</Filter>
     </ClCompile>

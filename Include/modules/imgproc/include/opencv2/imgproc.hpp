@@ -4840,17 +4840,14 @@ extern "C" {
 #endif
 	__declspec(dllexport) void mySobel(cv::InputArray _src, cv::OutputArray _dst, int ddepth, int dx, int dy,
 		int ksize, double scale, double delta, int borderType);
+	__declspec(dllexport) void myLaplacian(cv::InputArray _src, cv::OutputArray _dst, int ddepth, int ksize,
+		double scale, double delta, int borderType);
+	__declspec(dllexport) double myThreshold(cv::InputArray _src, cv::OutputArray _dst, double thresh, double maxval, int type);
+	__declspec(dllexport) void myAdaptiveThreshold(cv::InputArray _src, cv::OutputArray _dst, double maxValue,
+		int method, int type, int blockSize, double delta);
 #ifdef __cplusplus
 }
 #endif
 
 
 
-#if defined(__cplusplus)//
-	extern "C" {
-#endif
-		__declspec(dllexport) void myLaplacian(cv::InputArray _src, cv::OutputArray _dst, int ddepth, int ksize,
-			double scale, double delta, int borderType);
-#ifdef __cplusplus
-}
-#endif

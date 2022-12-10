@@ -151,7 +151,6 @@
     <ClCompile Include="src\sobel.cpp" />
     <ClCompile Include="src\filter.cpp" />
     <ClCompile Include="src\opencl_kernels_imgproc.cpp" />
-    <ClCompile Include="src\opencv_imgproc_pch.cpp" />
     <ClCompile Include="src\sumpixels.cpp" />
     <ClCompile Include="src\templmatch.cpp" />
   </ItemGroup>
