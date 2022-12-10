@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Threshold\src\filter.avx2.cpp" />
     <ClCompile Include="..\Threshold\src\filter.cpp" />
     <ClCompile Include="..\Threshold\src\smooth.cpp" />
     <ClCompile Include="..\Threshold\src\sumpixels.cpp" />
@@ -140,16 +141,6 @@
   <ItemGroup>
     <ClInclude Include="..\Threshold\src\filter.hpp" />
     <ClInclude Include="src\opencl_kernels_imgproc.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="..\Sobel\obj\accum.avx.obj" />
-    <Object Include="..\Sobel\obj\corner.avx.obj" />
-    <Object Include="..\Sobel\obj\filter.avx2.obj" />
-    <Object Include="..\Sobel\obj\imgwarp.avx2.obj" />
-    <Object Include="..\Sobel\obj\imgwarp.sse4_1.obj" />
-    <Object Include="..\Sobel\obj\resize.avx2.obj" />
-    <Object Include="..\Sobel\obj\resize.sse4_1.obj" />
-    <Object Include="..\Sobel\obj\undistort.avx2.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,35 +4,6 @@
     <Filter Include="Src">
       <UniqueIdentifier>{dac129ab-db4b-43f2-8999-abce9c2ca185}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object Libraries">
-      <UniqueIdentifier>{c812d2a7-27e8-4c65-a1c2-6c3cc55ab5cc}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="obj\accum.avx.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="obj\corner.avx.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="obj\filter.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="obj\imgwarp.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="obj\imgwarp.sse4_1.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="obj\resize.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="obj\resize.sse4_1.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="obj\undistort.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\filter.cpp">
@@ -48,6 +19,9 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\sobel.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filter.avx2.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,44 +4,9 @@
     <Filter Include="Src">
       <UniqueIdentifier>{44c8b9bf-ab11-44e9-934d-95cbb08567c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object Libraries">
-      <UniqueIdentifier>{e258587a-d67b-4b13-bd46-a14743e352be}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="..\Sobel\obj\accum.avx.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\corner.avx.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\filter.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\imgwarp.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\imgwarp.sse4_1.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\resize.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\resize.sse4_1.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\undistort.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Sobel\src\filter.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Sobel\src\opencl_kernels_imgproc.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Sobel\src\opencv_imgproc_pch.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="..\Sobel\src\sumpixels.cpp">
@@ -53,12 +18,18 @@
     <ClCompile Include="src\laplacian.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sobel\src\filter.avx2.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opencl_kernels_imgproc.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Sobel\src\filter.hpp">
       <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Sobel\src\opencl_kernels_imgproc.hpp">
+    <ClInclude Include="src\opencl_kernels_imgproc.hpp">
       <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>

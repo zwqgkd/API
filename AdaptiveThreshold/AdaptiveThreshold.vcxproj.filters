@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Object Libraries">
-      <UniqueIdentifier>{3d1179b1-d262-494a-af2c-b51fc7104048}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src">
       <UniqueIdentifier>{b762925a-8e21-47d3-af6d-e53c40f919f9}</UniqueIdentifier>
     </Filter>
@@ -30,6 +27,9 @@
     <ClCompile Include="src\opencl_kernels_imgproc.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Threshold\src\filter.avx2.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Threshold\src\filter.hpp">
@@ -38,31 +38,5 @@
     <ClInclude Include="src\opencl_kernels_imgproc.hpp">
       <Filter>Src</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="..\Sobel\obj\accum.avx.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\corner.avx.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\filter.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\imgwarp.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\imgwarp.sse4_1.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\resize.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\resize.sse4_1.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="..\Sobel\obj\undistort.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
   </ItemGroup>
 </Project>

@@ -82,7 +82,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\3rdparty\ippicv\ippicv_win\include;..\Include\3rdparty\ippicv\ippiw_win\include;..\Include\modules\core\include;..\Include\modules\imgproc\include;..\Include\modules\imgproc\src;..\Sobel\include;..\Sobel\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\3rdparty\ippicv\ippicv_win\include;..\Include\3rdparty\ippicv\ippiw_win\include;..\Include\modules\core\include;..\Include\modules\imgproc\include;..\Include\modules\imgproc\src;..\Sobel\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,26 +129,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Object Include="..\Sobel\obj\accum.avx.obj" />
-    <Object Include="..\Sobel\obj\corner.avx.obj" />
-    <Object Include="..\Sobel\obj\filter.avx2.obj" />
-    <Object Include="..\Sobel\obj\imgwarp.avx2.obj" />
-    <Object Include="..\Sobel\obj\imgwarp.sse4_1.obj" />
-    <Object Include="..\Sobel\obj\resize.avx2.obj" />
-    <Object Include="..\Sobel\obj\resize.sse4_1.obj" />
-    <Object Include="..\Sobel\obj\undistort.avx2.obj" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="..\Sobel\src\filter.avx2.cpp" />
     <ClCompile Include="..\Sobel\src\filter.cpp" />
-    <ClCompile Include="..\Sobel\src\opencl_kernels_imgproc.cpp" />
-    <ClCompile Include="..\Sobel\src\opencv_imgproc_pch.cpp" />
     <ClCompile Include="..\Sobel\src\sumpixels.cpp" />
     <ClCompile Include="..\Sobel\src\templmatch.cpp" />
     <ClCompile Include="src\laplacian.cpp" />
+    <ClCompile Include="src\opencl_kernels_imgproc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Sobel\src\filter.hpp" />
-    <ClInclude Include="..\Sobel\src\opencl_kernels_imgproc.hpp" />
+    <ClInclude Include="src\opencl_kernels_imgproc.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -129,16 +129,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Object Include="..\Sobel\obj\accum.avx.obj" />
-    <Object Include="..\Sobel\obj\corner.avx.obj" />
-    <Object Include="..\Sobel\obj\filter.avx2.obj" />
-    <Object Include="..\Sobel\obj\imgwarp.avx2.obj" />
-    <Object Include="..\Sobel\obj\imgwarp.sse4_1.obj" />
-    <Object Include="..\Sobel\obj\resize.avx2.obj" />
-    <Object Include="..\Sobel\obj\resize.sse4_1.obj" />
-    <Object Include="..\Sobel\obj\undistort.avx2.obj" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\grabcut.cpp" />
     <ClCompile Include="src\opencl_kernels_imgproc.cpp" />
   </ItemGroup>
