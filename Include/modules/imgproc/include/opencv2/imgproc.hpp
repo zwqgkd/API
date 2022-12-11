@@ -4840,17 +4840,16 @@ extern "C" {
 #endif
 	__declspec(dllexport) void mySobel(cv::InputArray _src, cv::OutputArray _dst, int ddepth, int dx, int dy,
 		int ksize, double scale, double delta, int borderType);
+	__declspec(dllexport) void myLaplacian(cv::InputArray _src, cv::OutputArray _dst, int ddepth, int ksize,
+		double scale, double delta, int borderType);
+	__declspec(dllexport) double myThreshold(cv::InputArray _src, cv::OutputArray _dst, double thresh, double maxval, int type);
+	__declspec(dllexport) void myAdaptiveThreshold(cv::InputArray _src, cv::OutputArray _dst, double maxValue,
+		int method, int type, int blockSize, double delta);
+	__declspec(dllexport) void myGrabCut(cv::InputArray _img, cv::InputOutputArray _mask, cv::Rect rect,
+		cv::InputOutputArray _bgdModel, cv::InputOutputArray _fgdModel,int iterCount, int mode);
 #ifdef __cplusplus
 }
 #endif
 
 
 
-#if defined(__cplusplus)//
-	extern "C" {
-#endif
-		__declspec(dllexport) void myLaplacian(cv::InputArray _src, cv::OutputArray _dst, int ddepth, int ksize,
-			double scale, double delta, int borderType);
-#ifdef __cplusplus
-}
-#endif

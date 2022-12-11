@@ -1136,4 +1136,9 @@ void cvCanny( const CvArr* image, CvArr* edges, double threshold1,
               (aperture_size & CV_CANNY_L2_GRADIENT) != 0);
 }
 
+extern "C" __declspec(dllexport) void CannyI(cv::InputArray image, cv::OutputArray edges,
+	double threshold1, double threshold2,
+	int apertureSize = 3, bool L2gradient = false) {
+	cv::Canny(image, edges, threshold1, threshold2, apertureSize, L2gradient);
+}
 /* End of file. */
