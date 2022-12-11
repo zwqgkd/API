@@ -17,9 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Canny", "Canny\Canny.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{375B6386-66E1-4109-9C1F-9A8D96CEF35E}"
 EndProject
-<<<<<<< HEAD
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Harris", "Harris\Harris.vcxproj", "{228F43D3-7ED9-4236-8BC8-E7A31B69EAC9}"
-=======
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GuassianBlur", "GuassianBlur\GuassianBlur.vcxproj", "{E952619E-08F3-402D-AAF6-EC05006EB14E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Threshold", "Threshold\Threshold.vcxproj", "{A3F36374-85A8-4A3A-9D07-4F31FB7E7E6F}"
@@ -33,7 +32,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Resize", "Resize\Resize.vcxproj", "{45E3FFDF-3E72-4A4B-9B5A-F19F4469A607}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FillPoly", "FillPoly\FillPoly.vcxproj", "{D27B5182-8C58-45BD-BC7B-41C7C15121D2}"
->>>>>>> 18f83df47f56c7db40f982e4f17e57f0c11d38d8
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,7 +97,6 @@ Global
 		{375B6386-66E1-4109-9C1F-9A8D96CEF35E}.Release|x64.Build.0 = Release|x64
 		{375B6386-66E1-4109-9C1F-9A8D96CEF35E}.Release|x86.ActiveCfg = Release|Win32
 		{375B6386-66E1-4109-9C1F-9A8D96CEF35E}.Release|x86.Build.0 = Release|Win32
-<<<<<<< HEAD
 		{228F43D3-7ED9-4236-8BC8-E7A31B69EAC9}.Debug|x64.ActiveCfg = Debug|x64
 		{228F43D3-7ED9-4236-8BC8-E7A31B69EAC9}.Debug|x64.Build.0 = Debug|x64
 		{228F43D3-7ED9-4236-8BC8-E7A31B69EAC9}.Debug|x86.ActiveCfg = Debug|Win32
@@ -108,7 +105,6 @@ Global
 		{228F43D3-7ED9-4236-8BC8-E7A31B69EAC9}.Release|x64.Build.0 = Release|x64
 		{228F43D3-7ED9-4236-8BC8-E7A31B69EAC9}.Release|x86.ActiveCfg = Release|Win32
 		{228F43D3-7ED9-4236-8BC8-E7A31B69EAC9}.Release|x86.Build.0 = Release|Win32
-=======
 		{E952619E-08F3-402D-AAF6-EC05006EB14E}.Debug|x64.ActiveCfg = Debug|x64
 		{E952619E-08F3-402D-AAF6-EC05006EB14E}.Debug|x64.Build.0 = Debug|x64
 		{E952619E-08F3-402D-AAF6-EC05006EB14E}.Debug|x86.ActiveCfg = Debug|Win32
@@ -165,7 +161,6 @@ Global
 		{D27B5182-8C58-45BD-BC7B-41C7C15121D2}.Release|x64.Build.0 = Release|x64
 		{D27B5182-8C58-45BD-BC7B-41C7C15121D2}.Release|x86.ActiveCfg = Release|Win32
 		{D27B5182-8C58-45BD-BC7B-41C7C15121D2}.Release|x86.Build.0 = Release|Win32
->>>>>>> 18f83df47f56c7db40f982e4f17e57f0c11d38d8
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

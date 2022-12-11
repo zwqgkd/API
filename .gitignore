@@ -50,10 +50,7 @@ artifacts/
 *_i.h
 *.ilk
 *.meta
-<<<<<<< HEAD
-=======
-#*.obj
->>>>>>> 18f83df47f56c7db40f982e4f17e57f0c11d38d8
+*.obj
 *.pch
 *.pdb
 *.pgc
