@@ -51,43 +51,7 @@
     </Object>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\_geom.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\accum.simd.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\color.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\corner.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\filter.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\filterengine.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\fixedpoint.inl.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\gcgraph.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\hal_replacement.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\imgwarp.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
     <ClInclude Include="Src\precomp.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\resize.hpp">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\undistort.hpp">
       <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\modules\imgproc\include\cvconfig.h">
@@ -126,204 +90,36 @@
     <ClInclude Include="..\Include\modules\imgproc\include\custom_hal.hpp">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Src\accum.simd_declarations.hpp">
+    <ClInclude Include="Src\hal_replacement.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\_geom.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\filterengine.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\filter.hpp">
       <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\accum.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\accum.dispatch.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\approx.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\blend.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="Src\canny.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\clahe.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\color.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\color_hsv.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\color_lab.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\color_rgb.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\color_yuv.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\colormap.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\connectedcomponents.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\contours.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\convhull.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\corner.avx.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\corner.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\cornersubpix.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\demosaicing.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\deriv.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\distransform.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\drawing.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\emd.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\featureselect.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\filter.avx2.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\filter.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\floodfill.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\gabor.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\generalized_hough.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\geometry.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\grabcut.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\hershey_fonts.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\histogram.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\hough.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\imgwarp.avx2.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\imgwarp.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\imgwarp.sse4_1.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\intersection.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\linefit.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\lsd.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\main.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\matchcontours.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\min_enclosing_triangle.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\moments.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\morph.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\phasecorr.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\pyramids.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\resize.avx2.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\resize.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\resize.sse4_1.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\rotcalipers.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\samplers.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\segmentation.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\shapedescr.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\smooth.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\spatialgradient.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\subdivision2d.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="Src\sumpixels.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\tables.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\templmatch.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\thresh.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\undistort.avx2.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\undistort.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\utils.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="Src\opencl_kernels_imgproc.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\filter.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
