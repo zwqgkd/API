@@ -3,6 +3,6 @@
   opencl_kernels_imgproc.cpp
     正在创建库 target\Hough.lib 和对象 target\Hough.exp
   正在生成代码
-  All 667 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 984 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   已完成代码的生成
   Hough.vcxproj -> D:\Documents\API\Hough\target\Hough.dll
