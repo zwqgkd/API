@@ -1,0 +1,7 @@
+﻿D:\VS2017Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+  lapack.cpp
+    正在创建库 target\LeastSquares.lib 和对象 target\LeastSquares.exp
+  正在生成代码
+  All 110 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  LeastSquares.vcxproj -> D:\Documents\API\LeastSquares\target\LeastSquares.dll
