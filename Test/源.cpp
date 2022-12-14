@@ -468,6 +468,31 @@ void testTophat() {
 
 }
 
+//测试基于区域增长的图像分割
+void testRegionGrow() {
+
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+
+	HINSTANCE hintRegionGrow = LoadLibraryA("../RegionGrow/target/regionGrow.dll");
+	typedef cv::Mat(*func) (cv::Mat src, cv::Point2i pt, int th);
+	func reginGrow = (func)GetProcAddress(hintRegionGrow, "RegionGrow");
+
+	cv::Mat src, result;
+	cv::Point point(200, 200);
+	int th = 10;
+	src = myread("C:\\Users\\zwq\\Desktop\\s.jpg", 0);
+
+	result = reginGrow(src, point, th);
+	mywrite("C:\\Users\\zwq\\Desktop\\s_regionGrow.jpg", result);
+
+}
+
 int main() {
 	testFillPoly();
 	testResizeFlipCrop();
