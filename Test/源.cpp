@@ -213,10 +213,272 @@ void testEdgeDetection() {
 	mywrite("C:/Users/zwq/Desktop/4.png", resultLaplacian);
 }
 
+//形态学腐蚀操作
+void testErode() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	typedef void(*erode)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations,
+		int borderType, const cv::Scalar& borderValue);
+	HINSTANCE erodeDll = LoadLibraryA("../Erode/target/erode.dll");
+	//HINSTANCE erodeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/erode/bin/Release/opencv_imgproc343.dll");
+	if (erodeDll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	erode myErode = (erode)GetProcAddress(erodeDll, "myErode");
+
+	if (myErode == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+	//typedef cv::Mat(*getStructuringElement)(int shape, cv::Size ksize, cv::Point anchor);
+	//getStructuringElement myGetStructuringElement=(getStructuringElement)GetProcAddress(erodeDll, "getStructuringElement");
+	//cv::Mat element = myGetStructuringElement(cv::MORPH_RECT, cv::Size(25, 25), cv::Point(-1, -1));
+
+	cv::Mat kernels = cv::Mat::ones(5, 5, CV_8UC1);
+	myErode(src, result, kernels, cv::Point(-1, -1),1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+	mywrite("C:/Users/14839/Desktop/erodeRes.png", result);
+
+}
+
+//形态学膨胀操作
+void testDilate() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	typedef void(*erode)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations,
+		int borderType, const cv::Scalar& borderValue);
+	HINSTANCE erodeDll = LoadLibraryA("../Dilate/target/dilate.dll");
+	//HINSTANCE erodeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/dilate/bin/Release/opencv_imgproc343.dll");
+	if (erodeDll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	erode myDilate = (erode)GetProcAddress(erodeDll, "myDilate");
+
+	if (myDilate == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+
+	cv::Mat kernels = cv::Mat::ones(5, 5, CV_8UC1);
+	myDilate(src, result, kernels, cv::Point(-1, -1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+	mywrite("C:/Users/14839/Desktop/dilateRes.png", result);
+
+}
+
+//形态学开运算
+void testOpen() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/open.PNG", 0);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	typedef void(*open)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations,
+		int borderType, const cv::Scalar& borderValue);
+	HINSTANCE openDll = LoadLibraryA("../Open/target/open.dll");
+	//HINSTANCE openDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
+	if (openDll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	open myOpen = (open)GetProcAddress(openDll, "myOpen");
+
+	if (myOpen == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+
+	cv::Mat kernels = cv::Mat::ones(5, 5, CV_8UC1);
+	myOpen(src, result, kernels, cv::Point(-1, -1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+	mywrite("C:/Users/14839/Desktop/openRes.png", result);
+
+}
+
+//形态学闭运算
+void testClose() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/close.PNG", 0);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	typedef void(*close)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations,
+		int borderType, const cv::Scalar& borderValue);
+	HINSTANCE closeDll = LoadLibraryA("../Close/target/close.dll");
+	//HINSTANCE closeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
+	if (closeDll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	close myClose = (close)GetProcAddress(closeDll, "myClose");
+
+	if (myClose == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+
+	cv::Mat kernels = cv::Mat::ones(5, 5, CV_8UC1);
+	myClose(src, result, kernels, cv::Point(-1, -1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+	mywrite("C:/Users/14839/Desktop/closeRes.png", result);
+
+}
+
+//形态学梯度运算
+void testGradient() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	typedef void(*gradient)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations,
+		int borderType, const cv::Scalar& borderValue);
+	HINSTANCE Dll = LoadLibraryA("../Gradient/target/gradient.dll");
+	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
+	if (Dll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	gradient myGradient = (gradient)GetProcAddress(Dll, "myGradient");
+
+	if (myGradient == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+
+	cv::Mat kernels = cv::Mat::ones(5, 5, CV_8UC1);
+	myGradient(src, result, kernels, cv::Point(-1, -1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+	mywrite("C:/Users/14839/Desktop/gradientRes.png", result);
+
+}
+
+//形态学黑帽操作
+void testBlackhat() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/open.PNG", 0);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	typedef void(*blackhat)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations,
+		int borderType, const cv::Scalar& borderValue);
+	HINSTANCE Dll = LoadLibraryA("../Blackhat/target/blackhat.dll");
+	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
+	if (Dll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	blackhat myBlackhat = (blackhat)GetProcAddress(Dll, "myBlackhat");
+
+	if (myBlackhat == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+
+	cv::Mat kernels = cv::Mat::ones(5, 5, CV_8UC1);
+	myBlackhat(src, result, kernels, cv::Point(-1, -1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+	mywrite("C:/Users/14839/Desktop/blackhatRes.png", result);
+
+}
+
+//形态学顶帽操作
+void testTophat() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/close.PNG", 0);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	typedef void(*tophat)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations,
+		int borderType, const cv::Scalar& borderValue);
+	HINSTANCE Dll = LoadLibraryA("../Tophat/target/tophat.dll");
+	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
+	if (Dll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	tophat myTophat = (tophat)GetProcAddress(Dll, "myTophat");
+
+	if (myTophat == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+
+	cv::Mat kernels = cv::Mat::ones(5, 5, CV_8UC1);
+	myTophat(src, result, kernels, cv::Point(-1, -1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+	mywrite("C:/Users/14839/Desktop/tophatRes.png", result);
+
+}
+
 int main() {
 	testFillPoly();
 	testResizeFlipCrop();
 	testAffineTransform();
+	testErode();
+	testDilate();
+	testOpen();
+	testClose();
+	testGradient();
+	testBlackhat();
+	testTophat();
 }
 
 

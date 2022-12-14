@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{533e065e-d175-41cb-98da-39fd5e14152b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{ab8bf477-87fe-4ec8-aeaa-04aee621a926}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\filter.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opencl_kernels_imgproc.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sumpixels.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tables.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\templmatch.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\morph.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\filter.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filterengine.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opencl_kernels_imgproc.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="obj\accum.avx.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="obj\corner.avx.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="obj\filter.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="obj\imgwarp.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="obj\imgwarp.sse4_1.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="obj\resize.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="obj\resize.sse4_1.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+    <Object Include="obj\undistort.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+</Project>

@@ -4847,6 +4847,20 @@ extern "C" {
 		int method, int type, int blockSize, double delta);
 	__declspec(dllexport) void myGrabCut(cv::InputArray _img, cv::InputOutputArray _mask, cv::Rect rect,
 		cv::InputOutputArray _bgdModel, cv::InputOutputArray _fgdModel,int iterCount, int mode);
+    __declspec(dllexport) void myErode(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations,int borderType, const cv::Scalar& borderValue);
+    __declspec(dllexport) void myDilate(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
+    __declspec(dllexport) void myOpen(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
+    __declspec(dllexport) void myClose(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
+    __declspec(dllexport) void myGradient(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
+    __declspec(dllexport) void myBlackhat(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
+	__declspec(dllexport) void myTophat(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
+		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
 #ifdef __cplusplus
 }
 #endif
