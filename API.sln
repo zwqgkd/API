@@ -47,6 +47,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Blackhat", "Blackhat\Blackh
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tophat", "Tophat\Tophat.vcxproj", "{C0ABEC2E-3C92-4F48-8244-A383AAE64A2F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RegionGrow", "RegionGrow\RegionGrow.vcxproj", "{0B510312-BB42-46A1-98ED-E2EF7B7276BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -231,6 +233,14 @@ Global
 		{C0ABEC2E-3C92-4F48-8244-A383AAE64A2F}.Release|x64.Build.0 = Release|x64
 		{C0ABEC2E-3C92-4F48-8244-A383AAE64A2F}.Release|x86.ActiveCfg = Release|Win32
 		{C0ABEC2E-3C92-4F48-8244-A383AAE64A2F}.Release|x86.Build.0 = Release|Win32
+		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Debug|x64.ActiveCfg = Debug|x64
+		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Debug|x64.Build.0 = Debug|x64
+		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Debug|x86.ActiveCfg = Debug|Win32
+		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Debug|x86.Build.0 = Debug|Win32
+		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Release|x64.ActiveCfg = Release|x64
+		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Release|x64.Build.0 = Release|x64
+		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Release|x86.ActiveCfg = Release|Win32
+		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
