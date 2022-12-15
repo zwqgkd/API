@@ -124,7 +124,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>../Lib/opencv_core343.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../Lib/opencv_core343.lib;../Lib/opencv_imgproc343.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -3,27 +3,9 @@
 #include<iostream>
 #include<opencv2/imgproc.hpp>
 #include<vector>
+using namespace cv;
 
-enum ThresholdTypes {
-	THRESH_BINARY = 0, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{maxval}}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{0}{otherwise}\f]
-	THRESH_BINARY_INV = 1, //!< \f[\texttt{dst} (x,y) =  \fork{0}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{maxval}}{otherwise}\f]
-	THRESH_TRUNC = 2, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{threshold}}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{src}(x,y)}{otherwise}\f]
-	THRESH_TOZERO = 3, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{src}(x,y)}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{0}{otherwise}\f]
-	THRESH_TOZERO_INV = 4, //!< \f[\texttt{dst} (x,y) =  \fork{0}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{src}(x,y)}{otherwise}\f]
-	THRESH_MASK = 7,
-	THRESH_OTSU = 8, //!< flag, use Otsu algorithm to choose the optimal threshold value
-	THRESH_TRIANGLE = 16 //!< flag, use Triangle algorithm to choose the optimal threshold value
-};
-enum AdaptiveThresholdTypes {
-	/** the threshold value \f$T(x,y)\f$ is a mean of the \f$\texttt{blockSize} \times
-	\texttt{blockSize}\f$ neighborhood of \f$(x, y)\f$ minus C */
-	ADAPTIVE_THRESH_MEAN_C = 0,
-	/** the threshold value \f$T(x, y)\f$ is a weighted sum (cross-correlation with a Gaussian
-	window) of the \f$\texttt{blockSize} \times \texttt{blockSize}\f$ neighborhood of \f$(x, y)\f$
-	minus C . The default sigma (standard deviation) is used for the specified blockSize . See
-	#getGaussianKernel*/
-	ADAPTIVE_THRESH_GAUSSIAN_C = 1
-};
+
 
 class EdgeDetection {
 public:
@@ -169,6 +151,16 @@ void testFillPoly() {
 }
 
 void testEdgeDetection() {
+	enum ThresholdTypes {
+		THRESH_BINARY = 0, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{maxval}}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{0}{otherwise}\f]
+		THRESH_BINARY_INV = 1, //!< \f[\texttt{dst} (x,y) =  \fork{0}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{maxval}}{otherwise}\f]
+		THRESH_TRUNC = 2, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{threshold}}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{src}(x,y)}{otherwise}\f]
+		THRESH_TOZERO = 3, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{src}(x,y)}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{0}{otherwise}\f]
+		THRESH_TOZERO_INV = 4, //!< \f[\texttt{dst} (x,y) =  \fork{0}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{src}(x,y)}{otherwise}\f]
+		THRESH_MASK = 7,
+		THRESH_OTSU = 8, //!< flag, use Otsu algorithm to choose the optimal threshold value
+		THRESH_TRIANGLE = 16 //!< flag, use Triangle algorithm to choose the optimal threshold value
+	};
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
@@ -493,6 +485,57 @@ void testRegionGrow() {
 
 }
 
+
+void testGrabcCut() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	HINSTANCE hintGrabCut = LoadLibraryA("../GrabCut/target/grabCut.dll");
+	typedef void(*func) (cv::InputArray _img, cv::InputOutputArray _mask, cv::Rect rect,cv::InputOutputArray _bgdModel, cv::InputOutputArray _fgdModel, int iterCount, int mode);
+	func myGrabCut = (func)GetProcAddress(hintGrabCut, "myGrabCut");
+
+	Mat src = myread("img/grabcut.png", 1);
+	Mat mask, bgModel, fgModel, result;
+	mask.create(src.size(),CV_8U);
+	Point p1(50,10), p2(410,630);
+	Rect rect = Rect(p1, p2);
+
+	mask.setTo(Scalar::all(GC_BGD));//背景
+	mask(rect).setTo(Scalar(GC_PR_FGD));//前景	
+
+
+	bool init = false;
+	int count = 4;
+	while (count--)
+	{
+		if (init)//鼠标按下，init变为false
+			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_EVAL);//第二次迭代，用mask初始化grabcut
+		else
+		{
+			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_INIT_WITH_RECT);//用矩形窗初始化GrabCut
+			init = true;
+		}
+
+		Mat binmask;
+		binmask = mask & 1;				//进一步掩膜
+		if (init)						//进一步抠出无效区域。鼠标按下，init变为false
+		{
+			src.copyTo(result, binmask);
+		}
+		else
+		{
+			result = src.clone();
+		}
+		rectangle(result, rect, Scalar(0, 0, 255), 2, 8);
+
+	}
+	mywrite("img/grabcut_result.png",result);
+}
+
 int main() {
 	testFillPoly();
 	testResizeFlipCrop();
@@ -504,6 +547,9 @@ int main() {
 	testGradient();
 	testBlackhat();
 	testTophat();
+	testGrabcCut();
 }
+
+
 
 
