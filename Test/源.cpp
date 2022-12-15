@@ -3,6 +3,7 @@
 #include<iostream>
 #include<opencv2/imgproc.hpp>
 #include<vector>
+#include"../ImgOperation/ImgOperator.h"
 using namespace cv;
 
 
@@ -536,6 +537,119 @@ void testGrabcCut() {
 	mywrite("img/grabcut_result.png",result);
 }
 
+//Harris角点检测
+void testHarris() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+
+	Mat img = myread("img/lena.jpg", 1);
+	if (!img.data)
+	{
+		//cout << "读取图像错误，请确认图像文件是否正确" << endl;
+	}
+
+	Mat gray = myread("1.jpg", 0);
+
+	HINSTANCE Dll = LoadLibraryA("../Harris/target/Harris.dll");
+	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
+	if (Dll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	typedef void(*myCornerHarrisPointer)(cv::InputArray src, cv::OutputArray dst, int blockSize, int ksize, double k,int borderType);
+	myCornerHarrisPointer myCornerHarris = (myCornerHarrisPointer)GetProcAddress(Dll, "myCornerHarris");
+	//计算Harris系数
+	Mat harris;
+	int blockSize = 2;     // 邻域半径
+	int apertureSize = 3;  // 邻域大小
+	myCornerHarris(gray, harris, blockSize, apertureSize, 0.04,4);
+	//归一化便于进行数值比较和结果显示
+	Mat harrisn;
+	normalize(harris, harrisn, 0, 255, NORM_MINMAX);
+	//将图像的数据类型变成CV_8U
+	convertScaleAbs(harrisn, harrisn);
+	//寻找Harris角点并显示图像
+	Mat resultimg = img.clone();
+	
+	mywrite("img/harris.jpg", harris);
+	mywrite("img/harrisn.jpg", harrisn);
+}
+
+//图像运算
+void testImgOperation() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	ImgOperator imgOperationer;
+
+	Mat img1 = myread("1.jpg", 1);
+	Mat img2 = myread("2.jpg", 1);
+	Mat result;
+	Mat result2;
+	//图像加法
+	imgOperationer.my_Add(img1, img2, result);
+	mywrite("result_add.jpg", result);
+	//图像减法
+	imgOperationer.my_Subtract(result, img1, result2);
+	mywrite("result_substract.jpg", result2);
+	//绝对差
+	Mat img4 = myread("1.jpg", 0);
+	Mat img5 = myread("2.jpg", 0);
+
+	Mat result_absdiff;
+	imgOperationer.my_Absdiff(img4, img5, result_absdiff);
+	mywrite("result_absdiff.jpg", result_absdiff);
+	//图像对应像素的加法
+	Mat result3 = img1 + Scalar(50, 50, 50);
+	mywrite("result_add_light.jpg", result3);
+	//图像位运算
+	//按位非
+	Mat result_bitwise_not;
+	imgOperationer.my_Bitwise_not(img1, result_bitwise_not);
+	mywrite("result_bitwise_not.jpg", result_bitwise_not);
+	//按位与
+	Mat result_bitwise_and;
+	imgOperationer.my_Bitwise_and(img1, img2, result_bitwise_and);
+	mywrite("result_bitwise_and.jpg", result_bitwise_and);
+	//按位异或
+	Mat result_bitwise_xor;
+	imgOperationer.my_Bitwise_xor(img1, img2, result_bitwise_xor);
+	mywrite("result_bitwise_xor.jpg", result_bitwise_xor);
+	//最大值最小值
+	double minVal = 0.0;
+	double maxVal = 0.0;
+	imgOperationer.my_MinMaxLoc(img1, &minVal, &maxVal);
+	std::cout << minVal << "," << maxVal << std::endl;
+	//均值
+	Scalar mean = 0.0;
+	imgOperationer.my_Mean = cv::mean(img1);
+	std::cout << mean[0] << "-" << mean[1] << "-" << mean[2] << std::endl;
+
+	//归一化
+	Mat result_normalize;
+	imgOperationer.my_Normalize(img1, result_normalize);
+	mywrite("result_normalize.jpg", result_normalize);
+
+	//dft
+	Mat result_dft;
+	Mat img3 = myread("1.jpg", 0);
+	Mat tmp;
+	img3.convertTo(tmp, CV_64F);
+
+	imgOperationer.my_Dft(tmp, result_dft);
+	mywrite("result_dft.jpg", result_dft);
+
+}
+
 int main() {
 	testFillPoly();
 	testResizeFlipCrop();
@@ -548,6 +662,8 @@ int main() {
 	testBlackhat();
 	testTophat();
 	testGrabcCut();
+	testHarris();
+	testImgOperation();
 }
 
 
