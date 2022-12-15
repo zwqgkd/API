@@ -2,6 +2,7 @@
 #include<windows.h>
 #include<iostream>
 #include<opencv2/imgproc.hpp>
+#include<opencv2/features2d.hpp>
 #include<vector>
 using namespace cv;
 
@@ -536,6 +537,51 @@ void testGrabcCut() {
 	mywrite("img/grabcut_result.png",result);
 }
 
+void testFAST() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat src = myread("foo.png", 0);
+	HINSTANCE h = LoadLibraryA("Fast.dll");
+	typedef void(*a)(
+		cv::InputArray,
+		std::vector<cv::KeyPoint>&,
+		int,
+		bool,
+		int
+	);
+	a FASTI = (a)GetProcAddress(h, "FASTI");
+
+	cv::Mat src = myread("foo.png", 0);
+	std::vector<cv::KeyPoint> keypoints;
+	FASTI(src, keypoints, 1, true, 1);
+}
+
+void testBRISK() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat src = myread("foo.png", 0);
+	HINSTANCE h = LoadLibrary("Brisk.dll");
+	typedef cv::Ptr<cv::BRISK>(*a)(
+		int,
+		int,
+		float
+	);
+
+	a createBRISK = (a)GetProcAddress(h, "createBRISK");
+	cv::Ptr<cv::BRISK> b = createBRISK(30, 3, 1.0f);
+	std::vector<cv::KeyPoint> keypoints;
+
+	b->detect(src, keypoints);
+}
+
 int main() {
 	testFillPoly();
 	testResizeFlipCrop();
@@ -548,6 +594,8 @@ int main() {
 	testBlackhat();
 	testTophat();
 	testGrabcCut();
+	testFAST();
+	testBRISK();
 }
 
 
