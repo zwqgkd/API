@@ -57,6 +57,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Brisk", "Brisk\Brisk.vcxproj", "{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}"
 >>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatchContourShape", "MatchContourShape\MatchContourShape.vcxproj", "{4C54E07B-B236-49EC-8866-29706979602A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -275,7 +277,18 @@ Global
 		{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}.Release|x64.Build.0 = Release|x64
 		{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}.Release|x86.ActiveCfg = Release|Win32
 		{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}.Release|x86.Build.0 = Release|Win32
+<<<<<<< HEAD
 >>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
+=======
+		{4C54E07B-B236-49EC-8866-29706979602A}.Debug|x64.ActiveCfg = Debug|x64
+		{4C54E07B-B236-49EC-8866-29706979602A}.Debug|x64.Build.0 = Debug|x64
+		{4C54E07B-B236-49EC-8866-29706979602A}.Debug|x86.ActiveCfg = Debug|Win32
+		{4C54E07B-B236-49EC-8866-29706979602A}.Debug|x86.Build.0 = Debug|Win32
+		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x64.ActiveCfg = Release|x64
+		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x64.Build.0 = Release|x64
+		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x86.ActiveCfg = Release|Win32
+		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x86.Build.0 = Release|Win32
+>>>>>>> 4c0a8692af7d1eeb1e402e4a6915a3b248aa5a8e
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 ﻿D:\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
   Sobel.vcxproj -> X:\API\API\Sobel\target\sobel.dll
+=======
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+  Sobel.vcxproj -> C:\Users\高增光\Desktop\submitContourShapes\API\Sobel\target\sobel.dll
+>>>>>>> 4c0a8692af7d1eeb1e402e4a6915a3b248aa5a8e
