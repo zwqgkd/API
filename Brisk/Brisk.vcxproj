@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}</ProjectGuid>
+    <RootNamespace>Fast</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>target</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>Include;../Include/modules/features2d;../Include/modules/core/include;../Include/modules/imgproc/include;../Include/3rdparty/ippicv/ippicv_win/include;../Include/3rdparty/ippicv/ippiw_win/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>../Lib/opencv_core343.lib;../Lib/ippiw.lib;../Lib/ippicvmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="agast.cpp" />
+    <ClCompile Include="agast_score.cpp" />
+    <ClCompile Include="akaze.cpp" />
+    <ClCompile Include="bagofwords.cpp" />
+    <ClCompile Include="blobdetector.cpp" />
+    <ClCompile Include="brisk.cpp" />
+    <ClCompile Include="draw.cpp" />
+    <ClCompile Include="dynamic.cpp" />
+    <ClCompile Include="evaluation.cpp" />
+    <ClCompile Include="fast.avx2.cpp" />
+    <ClCompile Include="fast.cpp" />
+    <ClCompile Include="fast_score.cpp" />
+    <ClCompile Include="feature2d.cpp" />
+    <ClCompile Include="gftt.cpp" />
+    <ClCompile Include="Include\approx.cpp" />
+    <ClCompile Include="Include\color.cpp" />
+    <ClCompile Include="Include\color_hsv.cpp" />
+    <ClCompile Include="Include\color_lab.cpp" />
+    <ClCompile Include="Include\color_rgb.cpp" />
+    <ClCompile Include="Include\color_yuv.cpp" />
+    <ClCompile Include="Include\contours.cpp" />
+    <ClCompile Include="Include\convhull.cpp" />
+    <ClCompile Include="Include\corner.avx.cpp" />
+    <ClCompile Include="Include\corner.cpp" />
+    <ClCompile Include="Include\demosaicing.cpp" />
+    <ClCompile Include="Include\deriv.cpp" />
+    <ClCompile Include="Include\drawing.cpp" />
+    <ClCompile Include="Include\featureselect.cpp" />
+    <ClCompile Include="Include\filter.avx2.cpp" />
+    <ClCompile Include="Include\filter.cpp" />
+    <ClCompile Include="Include\hershey_fonts.cpp" />
+    <ClCompile Include="Include\moments.cpp" />
+    <ClCompile Include="Include\morph.cpp" />
+    <ClCompile Include="Include\resize.avx2.cpp" />
+    <ClCompile Include="Include\resize.cpp" />
+    <ClCompile Include="Include\resize.sse4_1.cpp" />
+    <ClCompile Include="Include\shapedescr.cpp" />
+    <ClCompile Include="Include\smooth.cpp" />
+    <ClCompile Include="Include\sumpixels.cpp" />
+    <ClCompile Include="Include\tables.cpp" />
+    <ClCompile Include="Include\templmatch.cpp" />
+    <ClCompile Include="Include\thresh.cpp" />
+    <ClCompile Include="Include\utils.cpp" />
+    <ClCompile Include="kaze.cpp" />
+    <ClCompile Include="kaze\AKAZEFeatures.cpp" />
+    <ClCompile Include="kaze\fed.cpp" />
+    <ClCompile Include="kaze\KAZEFeatures.cpp" />
+    <ClCompile Include="kaze\nldiffusion_functions.cpp" />
+    <ClCompile Include="keypoint.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="matchers.cpp" />
+    <ClCompile Include="mser.cpp" />
+    <ClCompile Include="opencl_kernels_features2d.cpp" />
+    <ClCompile Include="opencl_kernels_imgproc.cpp" />
+    <ClCompile Include="orb.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="agast_score.hpp" />
+    <ClInclude Include="fast.hpp" />
+    <ClInclude Include="fast_score.hpp" />
+    <ClInclude Include="hal_replacement.hpp" />
+    <ClInclude Include="kaze\AKAZEConfig.h" />
+    <ClInclude Include="kaze\AKAZEFeatures.h" />
+    <ClInclude Include="kaze\fed.h" />
+    <ClInclude Include="kaze\KAZEConfig.h" />
+    <ClInclude Include="kaze\KAZEFeatures.h" />
+    <ClInclude Include="kaze\nldiffusion_functions.h" />
+    <ClInclude Include="kaze\TEvolution.h" />
+    <ClInclude Include="kaze\utils.h" />
+    <ClInclude Include="precomp.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="opencl\akaze.cl" />
+    <None Include="opencl\brute_force_match.cl" />
+    <None Include="opencl\fast.cl" />
+    <None Include="opencl\orb.cl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

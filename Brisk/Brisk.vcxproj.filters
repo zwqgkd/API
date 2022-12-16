@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Src\kaze">
+      <UniqueIdentifier>{e4a1c1c2-3556-4868-8421-91a7bdc26c78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\opencl">
+      <UniqueIdentifier>{74d5a50f-837b-46c9-af87-17a46358dd43}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="agast.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="agast_score.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="akaze.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="bagofwords.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="blobdetector.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="brisk.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="draw.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="evaluation.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="fast.avx2.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="fast.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="fast_score.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="feature2d.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="gftt.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="kaze.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="keypoint.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="matchers.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="mser.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="orb.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\approx.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\color.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\color_hsv.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\color_lab.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\color_rgb.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\color_yuv.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\contours.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\convhull.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\corner.avx.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\corner.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\demosaicing.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\deriv.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\drawing.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\featureselect.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\filter.avx2.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\filter.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\hershey_fonts.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\moments.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\morph.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\resize.avx2.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\resize.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\resize.sse4_1.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\shapedescr.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\smooth.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\sumpixels.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\tables.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\templmatch.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\thresh.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\utils.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="opencl_kernels_features2d.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="opencl_kernels_imgproc.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="kaze\AKAZEFeatures.cpp">
+      <Filter>Src\kaze</Filter>
+    </ClCompile>
+    <ClCompile Include="kaze\fed.cpp">
+      <Filter>Src\kaze</Filter>
+    </ClCompile>
+    <ClCompile Include="kaze\KAZEFeatures.cpp">
+      <Filter>Src\kaze</Filter>
+    </ClCompile>
+    <ClCompile Include="kaze\nldiffusion_functions.cpp">
+      <Filter>Src\kaze</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="agast_score.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="fast.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="fast_score.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="hal_replacement.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="precomp.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="kaze\AKAZEConfig.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="kaze\AKAZEFeatures.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="kaze\fed.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="kaze\KAZEConfig.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="kaze\KAZEFeatures.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="kaze\nldiffusion_functions.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="kaze\TEvolution.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="kaze\utils.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="opencl\akaze.cl">
+      <Filter>Src\opencl</Filter>
+    </None>
+    <None Include="opencl\brute_force_match.cl">
+      <Filter>Src\opencl</Filter>
+    </None>
+    <None Include="opencl\fast.cl">
+      <Filter>Src\opencl</Filter>
+    </None>
+    <None Include="opencl\orb.cl">
+      <Filter>Src\opencl</Filter>
+    </None>
+  </ItemGroup>
+</Project>

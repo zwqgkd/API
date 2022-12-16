@@ -2,6 +2,7 @@
 #include<windows.h>
 #include<iostream>
 #include<opencv2/imgproc.hpp>
+#include<opencv2/features2d.hpp>
 #include<vector>
 #include"../ImgOperation/ImgOperator.h"
 using namespace cv;
@@ -537,15 +538,20 @@ void testGrabcCut() {
 	mywrite("img/grabcut_result.png",result);
 }
 
+<<<<<<< HEAD
 //Harris½Çµã¼ì²â
 void testHarris() {
 	//prepare for read and write
+=======
+void testFAST() {
+>>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
 	typedef void(*w) (const char*filename, cv::Mat result);
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
 
+<<<<<<< HEAD
 
 	Mat img = myread("img/lena.jpg", 1);
 	if (!img.data)
@@ -583,12 +589,32 @@ void testHarris() {
 //Í¼ÏñÔËËã
 void testImgOperation() {
 	//prepare for read and write
+=======
+	cv::Mat src = myread("foo.png", 0);
+	HINSTANCE h = LoadLibraryA("Fast.dll");
+	typedef void(*a)(
+		cv::InputArray,
+		std::vector<cv::KeyPoint>&,
+		int,
+		bool,
+		int
+	);
+	a FASTI = (a)GetProcAddress(h, "FASTI");
+
+	cv::Mat src = myread("foo.png", 0);
+	std::vector<cv::KeyPoint> keypoints;
+	FASTI(src, keypoints, 1, true, 1);
+}
+
+void testBRISK() {
+>>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
 	typedef void(*w) (const char*filename, cv::Mat result);
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
 
+<<<<<<< HEAD
 	ImgOperator imgOperationer;
 
 	Mat img1 = myread("1.jpg", 1);
@@ -648,6 +674,21 @@ void testImgOperation() {
 	imgOperationer.my_Dft(tmp, result_dft);
 	mywrite("result_dft.jpg", result_dft);
 
+=======
+	cv::Mat src = myread("foo.png", 0);
+	HINSTANCE h = LoadLibrary("Brisk.dll");
+	typedef cv::Ptr<cv::BRISK>(*a)(
+		int,
+		int,
+		float
+	);
+
+	a createBRISK = (a)GetProcAddress(h, "createBRISK");
+	cv::Ptr<cv::BRISK> b = createBRISK(30, 3, 1.0f);
+	std::vector<cv::KeyPoint> keypoints;
+
+	b->detect(src, keypoints);
+>>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
 }
 
 int main() {
@@ -662,8 +703,13 @@ int main() {
 	testBlackhat();
 	testTophat();
 	testGrabcCut();
+<<<<<<< HEAD
 	testHarris();
 	testImgOperation();
+=======
+	testFAST();
+	testBRISK();
+>>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
 }
 
 
