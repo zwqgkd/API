@@ -118,11 +118,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-<<<<<<< HEAD
       <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\ImgOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\Include\modules\features2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
+      <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\Include\modules\features2d;..\Include\modules\imgproc\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

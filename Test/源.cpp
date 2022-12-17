@@ -5,9 +5,9 @@
 #include<opencv2/features2d.hpp>
 #include<vector>
 #include"../ImgOperation/ImgOperator.h"
+
 using namespace cv;
-using std::vector;
-using std::cout;
+using namespace std;
 
 
 
@@ -31,6 +31,54 @@ public:
 		HINSTANCE Hint = LoadLibraryA("../Sobel/target/sobel.dll");//load dll path
 		c mySobel = (c)GetProcAddress(Hint, "mySobel");
 		mySobel(_src, _dst, ddepth, dx, dy, ksize, scale, delta, borderType);
+	}
+
+};
+
+
+class Methods {
+public:
+	//kmeans
+	virtual void myKmeans(cv::InputArray _data, int K, cv::InputOutputArray _bestLabels, cv::TermCriteria criteria, int attempts, int flags, cv::OutputArray _centers) {
+		typedef double(*c) (cv::InputArray _data, int K, cv::InputOutputArray _bestLabels, cv::TermCriteria criteria, int attempts, int flags, cv::OutputArray _centers);
+
+		HINSTANCE Hint = LoadLibraryA("../Kmeans/target/Kmeans.dll");
+		c myKmeans = (c)GetProcAddress(Hint, "myKmeans");
+
+		myKmeans(_data, K, _bestLabels, criteria, attempts, flags, _centers);
+	}
+
+	//HoughLines
+	virtual void myHoughLines(cv::InputArray _image, cv::OutputArray lines, double rho, double theta, int threshold, double srn, double stn, double min_theta, double max_theta) {
+		typedef double(*c) (cv::InputArray _image, cv::OutputArray lines, double rho, double theta, int threshold, double srn, double stn, double min_theta, double max_theta);
+
+		HINSTANCE Hint = LoadLibraryA("..\\Hough\\target\\Hough.dll");
+
+		c HoughLines = (c)GetProcAddress(Hint, "myHoughLines");
+
+		HoughLines(_image, lines, rho, theta, threshold, srn, stn, min_theta, max_theta);
+	}
+
+	//HoughCircles
+	virtual void myHoughCircles(cv::InputArray _image, cv::OutputArray _circles, int method, double dp, double minDist, double param1, double param2, int minRadius, int maxRadius, int maxCircles, double param3) {
+		typedef double(*c) (cv::InputArray _image, cv::OutputArray _circles, int method, double dp, double minDist, double param1, double param2, int minRadius, int maxRadius, int maxCircles, double param3);
+
+		HINSTANCE Hint = LoadLibraryA("..\\Hough\\target\\Hough.dll");
+
+		c HoughCircles = (c)GetProcAddress(Hint, "myHoughCircles");
+
+		HoughCircles(_image, _circles, method, dp, minDist, param1, param2, minRadius, maxRadius, maxCircles, param3);
+	}
+
+	//least square
+	virtual void mySolve(cv::InputArray _src, cv::InputArray _src2arg, cv::OutputArray _dst, int method) {
+		typedef double(*c) (cv::InputArray _src, cv::InputArray _src2arg, cv::OutputArray _dst, int method);
+
+		HINSTANCE Hint = LoadLibraryA("../LeastSquares/target/LeastSquares.dll");
+
+		c mySlove = (c)GetProcAddress(Hint, "mySolve");
+
+		mySlove(_src, _src2arg, _dst, method);
 	}
 
 };
@@ -541,20 +589,20 @@ void testGrabcCut() {
 	mywrite("img/grabcut_result.png",result);
 }
 
-<<<<<<< HEAD
+
 //Harris角点检测
 void testHarris() {
 	//prepare for read and write
-=======
+}
+
 void testFAST() {
->>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
+
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
 	typedef void(*w) (const char*filename, cv::Mat result);
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
 
-<<<<<<< HEAD
 
 	Mat img = myread("img/lena.jpg", 1);
 	if (!img.data)
@@ -591,8 +639,14 @@ void testFAST() {
 
 //图像运算
 void testImgOperation() {
+
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
 	//prepare for read and write
-=======
 	cv::Mat src = myread("foo.png", 0);
 	HINSTANCE h = LoadLibraryA("Fast.dll");
 	typedef void(*a)(
@@ -604,20 +658,19 @@ void testImgOperation() {
 	);
 	a FASTI = (a)GetProcAddress(h, "FASTI");
 
-	cv::Mat src = myread("foo.png", 0);
 	std::vector<cv::KeyPoint> keypoints;
 	FASTI(src, keypoints, 1, true, 1);
 }
 
 void testBRISK() {
->>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
+
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
 	typedef void(*w) (const char*filename, cv::Mat result);
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
 
-<<<<<<< HEAD
+
 	ImgOperator imgOperationer;
 
 	Mat img1 = myread("1.jpg", 1);
@@ -659,8 +712,8 @@ void testBRISK() {
 	imgOperationer.my_MinMaxLoc(img1, &minVal, &maxVal);
 	std::cout << minVal << "," << maxVal << std::endl;
 	//均值
-	Scalar mean = 0.0;
-	imgOperationer.my_Mean = cv::mean(img1);
+	Scalar mean;
+	mean = imgOperationer.my_Mean(cv::mean(img1));
 	std::cout << mean[0] << "-" << mean[1] << "-" << mean[2] << std::endl;
 
 	//归一化
@@ -677,7 +730,7 @@ void testBRISK() {
 	imgOperationer.my_Dft(tmp, result_dft);
 	mywrite("result_dft.jpg", result_dft);
 
-=======
+
 	cv::Mat src = myread("foo.png", 0);
 	HINSTANCE h = LoadLibrary("Brisk.dll");
 	typedef cv::Ptr<cv::BRISK>(*a)(
@@ -691,7 +744,7 @@ void testBRISK() {
 	std::vector<cv::KeyPoint> keypoints;
 
 	b->detect(src, keypoints);
->>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
+
 }
 
 //轮廓比对
@@ -783,29 +836,306 @@ void testMatchContourShape() {
 	std::cout << image_coordinates[0].x << std::endl;
 }
 
+
+void testKmeans() {
+
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+
+	cv::Mat src = myread("img/test.jpg", 1);
+
+	cv::Scalar colorTab[] = {
+		cv::Scalar(0,0,255),
+		cv::Scalar(0,255,0),
+		cv::Scalar(255,0,0),
+		cv::Scalar(0,255,255),
+		cv::Scalar(255,0,255),
+		cv::Scalar(255,255,0)
+	};
+
+	int width = src.cols;
+	int height = src.rows;
+	int dims = src.channels();
+
+	// 初始化定义
+	int sampleCount = width * height;
+	int clusterCount = 3;
+	cv::Mat points(sampleCount, dims, CV_32F, cv::Scalar(10));
+	cv::Mat labels;
+	cv::Mat centers(clusterCount, 1, points.type());
+
+	// RGB 数据转换到样本数据
+	int index = 0;
+	for (int row = 0; row < height; row++) {
+		cv::Vec3b* bgr_ptr = src.ptr<cv::Vec3b>(row);
+		for (int col = 0; col < width; col++) {
+			index = row * width + col;
+			points.at<float>(index, 0) = static_cast<int>(bgr_ptr[col][0]);
+			points.at<float>(index, 1) = static_cast<int>(bgr_ptr[col][1]);
+			points.at<float>(index, 2) = static_cast<int>(bgr_ptr[col][2]);
+		}
+	}
+
+	// 执行K-means聚类
+	cv::TermCriteria criteria = cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 0.1);
+
+	Methods methods;
+	methods.myKmeans(points, clusterCount, labels, criteria, 3, cv::KMEANS_PP_CENTERS, centers);
+
+	// 显示图像分割结果
+	cv::Mat result = cv::Mat::zeros(src.size(), src.type());
+	for (int row = 0; row < height; row++) {
+		cv::Vec3b* result_ptr = result.ptr<cv::Vec3b>(row);
+		for (int col = 0; col < width; col++) {
+			index = row * width + col;
+			int label = labels.at<int>(index, 0);
+			result_ptr[col][0] = colorTab[label][0];
+			result_ptr[col][1] = colorTab[label][1];
+			result_ptr[col][2] = colorTab[label][2];
+		}
+	}
+
+	//输出聚类中心
+	for (int i = 0; i < centers.rows; i++) {
+		int x = centers.at<float>(i, 0);
+		int y = centers.at<float>(i, 1);
+		std::cout << "[x, y] = " << x << ", " << y << std::endl;
+		// 聚类中心为：颜色的中心
+		//[x, y] = 194, 211
+		//[x, y] = 49, 43
+		//[x, y] = 146, 149
+	}
+
+
+	mywrite("img/test_kmeans.jpg", result);
+
+	if (Hint_wr != NULL)
+	{
+		FreeLibrary(Hint_wr);
+		Hint_wr = NULL;
+	}
+}
+
+void testHough() {
+
+
+	//检测直线
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r imread = (r)GetProcAddress(Hint_wr, "myread");
+	w imwrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat srcImage = imread("img/rectangle.jpg", 0);
+
+	Mat mid, dst;
+	//用了源码里面的，引用了附加依赖
+	Canny(srcImage, mid, 100, 200, 3);
+	cvtColor(mid, dst, COLOR_GRAY2BGR);
+
+	//【3】进行霍夫线变换
+	vector<Vec2f> lines;//定义一个矢量结构lines用于存放得到的线段矢量集合
+	Methods methods;
+	methods.myHoughLines(mid, lines, 1, CV_PI / 180, 150, 0, 0, 0, CV_PI);
+
+	//【4】依次在图中绘制出每条线段
+	for (size_t i = 0; i < lines.size(); i++)
+	{
+		float rho = lines[i][0], theta = lines[i][1];
+		Point pt1, pt2;
+		double a = cos(theta), b = sin(theta);
+		double x0 = a * rho, y0 = b * rho;
+		pt1.x = cvRound(x0 + 1000 * (-b));
+		pt1.y = cvRound(y0 + 1000 * (a));
+		pt2.x = cvRound(x0 - 1000 * (-b));
+		pt2.y = cvRound(y0 - 1000 * (a));
+
+		//用了源码里面的line方法，引用了附加依赖
+		cv::line(dst, pt1, pt2, Scalar(0, 245, 0), 1, LINE_AA);
+	}
+	imwrite("img/rectangle_houghlines.jpg", dst);
+
+
+	//检测圆形
+	cv::Mat src = imread("img/circle.jpg", 1);
+	cv::Mat src_gray;
+	/// Convert it to gray
+	cvtColor(src, src_gray, CV_BGR2GRAY);
+
+	vector<Vec3f> circles;
+
+	/// Apply the Hough Transform to find the circles
+	//HoughCircle(_image, _circles, method, dp, minDist, param1, param2, minRadius, maxRadius, maxCircles, param3);
+	methods.myHoughCircles(src_gray, circles, CV_HOUGH_GRADIENT, 1, src_gray.rows / 8, 200, 100, 0, 0, -1, 3);
+
+	/// Draw the circles detected
+	for (size_t i = 0; i < circles.size(); i++)
+	{
+		Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+		int radius = cvRound(circles[i][2]);
+		// circle center
+		circle(src, center, 3, Scalar(0, 255, 0), -1, 8, 0);
+		// circle outline
+		circle(src, center, radius, Scalar(0, 0, 255), 3, 8, 0);
+	}
+	imwrite("img/circle_houghcircle.png", src);
+
+
+	if (Hint_wr != NULL)
+	{
+		FreeLibrary(Hint_wr);
+		Hint_wr = NULL;
+	}
+}
+
+void testLeastSquares() {
+
+
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r imread = (r)GetProcAddress(Hint_wr, "myread");
+	w imwrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	vector<Point>points;
+	//(27 39) (8 5) (8 9) (16 22) (44 71) (35 44) (43 57) (19 24) (27 39) (37 52)
+
+	points.push_back(Point(27, 39));
+	points.push_back(Point(8, 5));
+	points.push_back(Point(8, 9));
+	points.push_back(Point(16, 22));
+	points.push_back(Point(44, 71));
+	points.push_back(Point(35, 44));
+	points.push_back(Point(43, 57));
+	points.push_back(Point(19, 24));
+	points.push_back(Point(27, 39));
+	points.push_back(Point(37, 52));
+	Mat src = Mat::zeros(400, 400, CV_8UC3);
+
+	for (int i = 0; i < points.size(); i++)
+	{
+		//在原图上画出点
+		circle(src, points[i], 3, Scalar(0, 0, 255), 1, 8);
+	}
+	//构建A矩阵 
+	int N = 2;
+	Mat A = Mat::zeros(N, N, CV_64FC1);
+
+	for (int row = 0; row < A.rows; row++)
+	{
+		for (int col = 0; col < A.cols; col++)
+		{
+			for (int k = 0; k < points.size(); k++)
+			{
+				A.at<double>(row, col) = A.at<double>(row, col) + pow(points[k].x, row + col);
+			}
+		}
+	}
+	//构建B矩阵
+	Mat B = Mat::zeros(N, 1, CV_64FC1);
+	for (int row = 0; row < B.rows; row++)
+	{
+
+		for (int k = 0; k < points.size(); k++)
+		{
+			B.at<double>(row, 0) = B.at<double>(row, 0) + pow(points[k].x, row)*points[k].y;
+		}
+	}
+	//A*X=B
+	Mat X;
+	//cout << A << endl << B << endl;
+
+	Methods methods;
+
+	methods.mySolve(A, B, X, DECOMP_LU);
+	cout << X << endl;
+	vector<Point>lines;
+	for (int x = 0; x < src.size().width; x++)
+	{				// y = b + ax;
+		double y = X.at<double>(0, 0) + X.at<double>(1, 0)*x;
+		printf("(%d,%lf)\n", x, y);
+		lines.push_back(Point(x, y));
+	}
+	polylines(src, lines, false, Scalar(255, 0, 0), 1, 8);
+	imwrite("img/test_leastSquare.jpg", src);
+}
+
+void detectLineWithHough() {
+
+	//检测直线
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r imread = (r)GetProcAddress(Hint_wr, "myread");
+	w imwrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat srcImage = imread("img/polygon.png", 1);
+
+	Mat mid, dst;
+	//用了源码里面的，引用了附加依赖
+	Canny(srcImage, mid, 100, 200, 3);
+	cvtColor(mid, dst, COLOR_GRAY2BGR);
+
+	//【3】进行霍夫线变换
+	vector<Vec2f> lines;//定义一个矢量结构lines用于存放得到的线段矢量集合
+	Methods methods;
+	methods.myHoughLines(mid, lines, 1, CV_PI / 180, 150, 0, 0, 0, CV_PI);
+
+	//【4】依次在图中绘制出每条线段
+	for (size_t i = 0; i < lines.size(); i++)
+	{
+		float rho = lines[i][0], theta = lines[i][1];
+		Point pt1, pt2;
+		double a = cos(theta), b = sin(theta);
+		double x0 = a * rho, y0 = b * rho;
+		pt1.x = cvRound(x0 + 1000 * (-b));
+		pt1.y = cvRound(y0 + 1000 * (a));
+		pt2.x = cvRound(x0 - 1000 * (-b));
+		pt2.y = cvRound(y0 - 1000 * (a));
+
+		//用了源码里面的line方法，引用了附加依赖
+		cv::line(dst, pt1, pt2, Scalar(0, 245, 0), 1, LINE_AA);
+	}
+	imwrite("img/polygon_houghlines.jpg", dst);
+
+	if (Hint_wr != NULL)
+	{
+		FreeLibrary(Hint_wr);
+		Hint_wr = NULL;
+	}
+}
+
 int main() {
-	testFillPoly();
-	testResizeFlipCrop();
-	testAffineTransform();
-	testErode();
-	testDilate();
-	testOpen();
-	testClose();
-	testGradient();
-	testBlackhat();
-	testTophat();
-	testGrabcCut();
-<<<<<<< HEAD
-	testHarris();
-	testImgOperation();
-=======
-	testFAST();
-	testBRISK();
-<<<<<<< HEAD
->>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
-=======
-	testMatchContourShape();
->>>>>>> 4c0a8692af7d1eeb1e402e4a6915a3b248aa5a8e
+	//testFillPoly();
+	//testResizeFlipCrop();
+	//testAffineTransform();
+	//testErode();
+	//testDilate();
+	//testOpen();
+	//testClose();
+	//testGradient();
+	//testBlackhat();
+	//testTophat();
+	//testGrabcCut();
+
+	//testHarris();
+	//testImgOperation();
+
+	//testFAST();
+	//testBRISK();
+
+	//testMatchContourShape();
+
+	//testKmeans();
+	//testHough();
+	detectLineWithHough();
 }
 
 
