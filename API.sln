@@ -49,13 +49,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tophat", "Tophat\Tophat.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RegionGrow", "RegionGrow\RegionGrow.vcxproj", "{0B510312-BB42-46A1-98ED-E2EF7B7276BF}"
 EndProject
-<<<<<<< HEAD
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImgOperation", "ImgOperation\ImgOperation.vcxproj", "{E7A61695-88D8-4F4D-B01B-8D15D5A303AE}"
-=======
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fast", "Fast\Fast.vcxproj", "{2E828D75-1D3F-4403-9719-EEDA228918FD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Brisk", "Brisk\Brisk.vcxproj", "{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}"
->>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatchContourShape", "MatchContourShape\MatchContourShape.vcxproj", "{4C54E07B-B236-49EC-8866-29706979602A}"
 EndProject
@@ -251,7 +249,6 @@ Global
 		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Release|x64.Build.0 = Release|x64
 		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Release|x86.ActiveCfg = Release|Win32
 		{0B510312-BB42-46A1-98ED-E2EF7B7276BF}.Release|x86.Build.0 = Release|Win32
-<<<<<<< HEAD
 		{E7A61695-88D8-4F4D-B01B-8D15D5A303AE}.Debug|x64.ActiveCfg = Debug|x64
 		{E7A61695-88D8-4F4D-B01B-8D15D5A303AE}.Debug|x64.Build.0 = Debug|x64
 		{E7A61695-88D8-4F4D-B01B-8D15D5A303AE}.Debug|x86.ActiveCfg = Debug|Win32
@@ -260,7 +257,6 @@ Global
 		{E7A61695-88D8-4F4D-B01B-8D15D5A303AE}.Release|x64.Build.0 = Release|x64
 		{E7A61695-88D8-4F4D-B01B-8D15D5A303AE}.Release|x86.ActiveCfg = Release|Win32
 		{E7A61695-88D8-4F4D-B01B-8D15D5A303AE}.Release|x86.Build.0 = Release|Win32
-=======
 		{2E828D75-1D3F-4403-9719-EEDA228918FD}.Debug|x64.ActiveCfg = Debug|x64
 		{2E828D75-1D3F-4403-9719-EEDA228918FD}.Debug|x64.Build.0 = Debug|x64
 		{2E828D75-1D3F-4403-9719-EEDA228918FD}.Debug|x86.ActiveCfg = Debug|Win32
@@ -277,9 +273,6 @@ Global
 		{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}.Release|x64.Build.0 = Release|x64
 		{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}.Release|x86.ActiveCfg = Release|Win32
 		{8FE4DC83-4E4A-4CD2-A599-3CB76260283E}.Release|x86.Build.0 = Release|Win32
-<<<<<<< HEAD
->>>>>>> 2550d1792d6341da9e5f00c89082fb12f284897d
-=======
 		{4C54E07B-B236-49EC-8866-29706979602A}.Debug|x64.ActiveCfg = Debug|x64
 		{4C54E07B-B236-49EC-8866-29706979602A}.Debug|x64.Build.0 = Debug|x64
 		{4C54E07B-B236-49EC-8866-29706979602A}.Debug|x86.ActiveCfg = Debug|Win32
@@ -288,7 +281,6 @@ Global
 		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x64.Build.0 = Release|x64
 		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x86.ActiveCfg = Release|Win32
 		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x86.Build.0 = Release|Win32
->>>>>>> 4c0a8692af7d1eeb1e402e4a6915a3b248aa5a8e
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
