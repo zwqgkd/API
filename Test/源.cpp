@@ -59,6 +59,17 @@ public:
 		HoughLines(_image, lines, rho, theta, threshold, srn, stn, min_theta, max_theta);
 	}
 
+	//HoughLinesP
+	virtual void myHoughLinesP(cv::InputArray _image, cv::OutputArray _lines, double rho, double theta, int threshold, double minLineLength, double maxGap) {
+		typedef double(*c) (cv::InputArray _image, cv::OutputArray _lines, double rho, double theta, int threshold, double minLineLength, double maxGap);
+
+		HINSTANCE Hint = LoadLibraryA("..\\Hough\\target\\Hough.dll");
+
+		c HoughLines = (c)GetProcAddress(Hint, "myHoughLinesP");
+
+		HoughLines( _image,  _lines,  rho,  theta,  threshold,  minLineLength,  maxGap);
+	}
+
 	//HoughCircles
 	virtual void myHoughCircles(cv::InputArray _image, cv::OutputArray _circles, int method, double dp, double minDist, double param1, double param2, int minRadius, int maxRadius, int maxCircles, double param3) {
 		typedef double(*c) (cv::InputArray _image, cv::OutputArray _circles, int method, double dp, double minDist, double param1, double param2, int minRadius, int maxRadius, int maxCircles, double param3);
@@ -934,16 +945,18 @@ void testHough() {
 
 	cv::Mat srcImage = imread("img/rectangle.jpg", 0);
 
-	Mat mid, dst;
+	Mat mid, dst, dst1;
 	//用了源码里面的，引用了附加依赖
 	Canny(srcImage, mid, 100, 200, 3);
-	cvtColor(mid, dst, COLOR_GRAY2BGR);
+	cv::cvtColor(mid, dst, COLOR_GRAY2BGR);
+	cv::cvtColor(mid, dst1, COLOR_GRAY2BGR);
 
 	//【3】进行霍夫线变换
 	vector<Vec2f> lines;//定义一个矢量结构lines用于存放得到的线段矢量集合
+	vector<Vec4f> lines1;
 	Methods methods;
 	methods.myHoughLines(mid, lines, 1, CV_PI / 180, 150, 0, 0, 0, CV_PI);
-
+	
 	//【4】依次在图中绘制出每条线段
 	for (size_t i = 0; i < lines.size(); i++)
 	{
@@ -961,12 +974,23 @@ void testHough() {
 	}
 	imwrite("img/rectangle_houghlines.jpg", dst);
 
+	methods.myHoughLinesP(mid, lines1, 1, CV_PI / 180, 10, 0, 10);
+	     //5. 显示检测到的直线
+    Scalar color = Scalar(0, 0, 255);//设置颜色
+    for (size_t i = 0; i < lines1.size(); i++)
+    {
+        Vec4f hline = lines1[i];
+        cv::line(dst1, Point(hline[0], hline[1]), Point(hline[2], hline[3]), color, 3, LINE_AA);//绘制直线
+    }
+
+	imwrite("img/rectangle_houghlinesP.jpg", dst1);
+
 
 	//检测圆形
 	cv::Mat src = imread("img/circle.jpg", 1);
 	cv::Mat src_gray;
 	/// Convert it to gray
-	cvtColor(src, src_gray, CV_BGR2GRAY);
+	cv::cvtColor(src, src_gray, CV_BGR2GRAY);
 
 	vector<Vec3f> circles;
 
@@ -1134,8 +1158,8 @@ int main() {
 	//testMatchContourShape();
 
 	//testKmeans();
-	//testHough();
-	detectLineWithHough();
+	testHough();
+	//detectLineWithHough();
 }
 
 
