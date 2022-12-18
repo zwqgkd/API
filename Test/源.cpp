@@ -67,7 +67,7 @@ public:
 
 		c HoughLines = (c)GetProcAddress(Hint, "myHoughLinesP");
 
-		HoughLines( _image,  _lines,  rho,  theta,  threshold,  minLineLength,  maxGap);
+		HoughLines(_image, _lines, rho, theta, threshold, minLineLength, maxGap);
 	}
 
 	//HoughCircles
@@ -110,16 +110,16 @@ void testAffineTransform() {
 		int,
 		int,
 		const cv::Scalar&
-	);
+		);
 	typedef cv::Mat(*b)(
 		cv::Point2f,
 		double,
 		double
-	);
+		);
 	typedef cv::Mat(*c)(
 		const cv::Point2f[],
 		const cv::Point2f[]
-	);
+		);
 	a warpAffineI = (a)GetProcAddress(h, "warpAffineI");
 	b getRotationMatrix2DI = (b)GetProcAddress(h, "getRotationMatrix2DI");
 	c getAffineTransformI = (c)GetProcAddress(h, "getAffineTransformI");
@@ -145,7 +145,7 @@ void testAffineTransform() {
 	double scale = 0.6;
 	cv::Mat rot_mat = getRotationMatrix2DI(center, angle, scale);
 	cv::Mat warp_rotate_dst;
-	warpAffineI(warp_dst, warp_rotate_dst, rot_mat, warp_dst.size(), 
+	warpAffineI(warp_dst, warp_rotate_dst, rot_mat, warp_dst.size(),
 		cv::INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar());
 
 	mywrite("foo_warp.png", warp_dst);
@@ -168,7 +168,7 @@ void testResizeFlipCrop() {
 		double,
 		double,
 		int
-	);
+		);
 
 	a resizeI = (a)GetProcAddress(h, "resizeI");
 	cv::Mat dst;
@@ -263,13 +263,13 @@ void testEdgeDetection() {
 	//myAdaptiveThreshold(src, result, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 11, -2);
 	//mywrite("C:/Users/zwq/Desktop/3.png", result);
 
-	//test for ���ڱ�Ե���ָ�
+	//test for 基于边缘检测分割
 	ed.myLaplacian(src, resultLaplacian, CV_8U);
 	myAdaptiveThreshold(resultLaplacian, result, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 11, -2);
 	mywrite("C:/Users/zwq/Desktop/4.png", resultLaplacian);
 }
 
-//��̬ѧ��ʴ����
+//形态学腐蚀操作
 void testErode() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -280,7 +280,7 @@ void testErode() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ���νṹ
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
 
 	typedef void(*erode)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -289,13 +289,13 @@ void testErode() {
 	//HINSTANCE erodeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/erode/bin/Release/opencv_imgproc343.dll");
 	if (erodeDll == NULL)
 	{
-		printf("����dllʧ��\n");
+		printf("加载dll失败\n");
 	}
 	erode myErode = (erode)GetProcAddress(erodeDll, "myErode");
 
 	if (myErode == NULL)
 	{
-		printf("����funcʧ��\n");
+		printf("加载func失败\n");
 	}
 
 	//typedef cv::Mat(*getStructuringElement)(int shape, cv::Size ksize, cv::Point anchor);
@@ -303,12 +303,12 @@ void testErode() {
 	//cv::Mat element = myGetStructuringElement(cv::MORPH_RECT, cv::Size(25, 25), cv::Point(-1, -1));
 
 	cv::Mat kernels = cv::Mat::ones(5, 5, CV_8UC1);
-	myErode(src, result, kernels, cv::Point(-1, -1),1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+	myErode(src, result, kernels, cv::Point(-1, -1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
 	mywrite("C:/Users/14839/Desktop/erodeRes.png", result);
 
 }
 
-//��̬ѧ���Ͳ���
+//形态学膨胀操作
 void testDilate() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -319,7 +319,7 @@ void testDilate() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ���νṹ
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
 
 	typedef void(*erode)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -328,13 +328,13 @@ void testDilate() {
 	//HINSTANCE erodeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/dilate/bin/Release/opencv_imgproc343.dll");
 	if (erodeDll == NULL)
 	{
-		printf("����dllʧ��\n");
+		printf("加载dll失败\n");
 	}
 	erode myDilate = (erode)GetProcAddress(erodeDll, "myDilate");
 
 	if (myDilate == NULL)
 	{
-		printf("����funcʧ��\n");
+		printf("加载func失败\n");
 	}
 
 
@@ -344,7 +344,7 @@ void testDilate() {
 
 }
 
-//��̬ѧ������
+//形态学开运算
 void testOpen() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -355,7 +355,7 @@ void testOpen() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/open.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ���νṹ
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
 
 	typedef void(*open)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -364,13 +364,13 @@ void testOpen() {
 	//HINSTANCE openDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (openDll == NULL)
 	{
-		printf("����dllʧ��\n");
+		printf("加载dll失败\n");
 	}
 	open myOpen = (open)GetProcAddress(openDll, "myOpen");
 
 	if (myOpen == NULL)
 	{
-		printf("����funcʧ��\n");
+		printf("加载func失败\n");
 	}
 
 
@@ -380,7 +380,7 @@ void testOpen() {
 
 }
 
-//��̬ѧ������
+//形态学闭运算
 void testClose() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -391,7 +391,7 @@ void testClose() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/close.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ���νṹ
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
 
 	typedef void(*close)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -400,13 +400,13 @@ void testClose() {
 	//HINSTANCE closeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (closeDll == NULL)
 	{
-		printf("����dllʧ��\n");
+		printf("加载dll失败\n");
 	}
 	close myClose = (close)GetProcAddress(closeDll, "myClose");
 
 	if (myClose == NULL)
 	{
-		printf("����funcʧ��\n");
+		printf("加载func失败\n");
 	}
 
 
@@ -416,7 +416,7 @@ void testClose() {
 
 }
 
-//��̬ѧ�ݶ�����
+//形态学梯度运算
 void testGradient() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -427,7 +427,7 @@ void testGradient() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ���νṹ
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
 
 	typedef void(*gradient)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -436,13 +436,13 @@ void testGradient() {
 	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (Dll == NULL)
 	{
-		printf("����dllʧ��\n");
+		printf("加载dll失败\n");
 	}
 	gradient myGradient = (gradient)GetProcAddress(Dll, "myGradient");
 
 	if (myGradient == NULL)
 	{
-		printf("����funcʧ��\n");
+		printf("加载func失败\n");
 	}
 
 
@@ -452,7 +452,7 @@ void testGradient() {
 
 }
 
-//��̬ѧ��ñ����
+//形态学黑帽操作
 void testBlackhat() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -463,7 +463,7 @@ void testBlackhat() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/open.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ���νṹ
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
 
 	typedef void(*blackhat)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -472,13 +472,13 @@ void testBlackhat() {
 	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (Dll == NULL)
 	{
-		printf("����dllʧ��\n");
+		printf("加载dll失败\n");
 	}
 	blackhat myBlackhat = (blackhat)GetProcAddress(Dll, "myBlackhat");
 
 	if (myBlackhat == NULL)
 	{
-		printf("����funcʧ��\n");
+		printf("加载func失败\n");
 	}
 
 
@@ -488,7 +488,7 @@ void testBlackhat() {
 
 }
 
-//��̬ѧ��ñ����
+//形态学顶帽操作
 void testTophat() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -499,7 +499,7 @@ void testTophat() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/close.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ���νṹ
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
 
 	typedef void(*tophat)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -508,13 +508,13 @@ void testTophat() {
 	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (Dll == NULL)
 	{
-		printf("����dllʧ��\n");
+		printf("加载dll失败\n");
 	}
 	tophat myTophat = (tophat)GetProcAddress(Dll, "myTophat");
 
 	if (myTophat == NULL)
 	{
-		printf("����funcʧ��\n");
+		printf("加载func失败\n");
 	}
 
 
@@ -524,7 +524,7 @@ void testTophat() {
 
 }
 
-//���Ի�������������ͼ��ָ�
+//测试基于区域增长的图像分割
 void testRegionGrow() {
 
 	//prepare for read and write
@@ -557,36 +557,36 @@ void testGrabcCut() {
 	typedef void(*w) (const char*filename, cv::Mat result);
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
-	//׼��ͼ������
+
 	HINSTANCE hintGrabCut = LoadLibraryA("../GrabCut/target/grabCut.dll");
-	typedef void(*func) (cv::InputArray _img, cv::InputOutputArray _mask, cv::Rect rect,cv::InputOutputArray _bgdModel, cv::InputOutputArray _fgdModel, int iterCount, int mode);
+	typedef void(*func) (cv::InputArray _img, cv::InputOutputArray _mask, cv::Rect rect, cv::InputOutputArray _bgdModel, cv::InputOutputArray _fgdModel, int iterCount, int mode);
 	func myGrabCut = (func)GetProcAddress(hintGrabCut, "myGrabCut");
 
 	Mat src = myread("img/grabcut.png", 1);
 	Mat mask, bgModel, fgModel, result;
-	mask.create(src.size(),CV_8U);
-	Point p1(50,10), p2(410,630);
+	mask.create(src.size(), CV_8U);
+	Point p1(50, 10), p2(410, 630);
 	Rect rect = Rect(p1, p2);
 
-	mask.setTo(Scalar::all(GC_BGD));//����
-	mask(rect).setTo(Scalar(GC_PR_FGD));//ǰ��	
+	mask.setTo(Scalar::all(GC_BGD));//背景
+	mask(rect).setTo(Scalar(GC_PR_FGD));//前景	
 
 
 	bool init = false;
 	int count = 4;
 	while (count--)
 	{
-		if (init)//��갴�£�init��Ϊfalse
-			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_EVAL);//�ڶ��ε�������mask��ʼ��grabcut
+		if (init)//鼠标按下，init变为false
+			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_EVAL);//第二次迭代，用mask初始化grabcut
 		else
 		{
-			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_INIT_WITH_RECT);//�þ��δ���ʼ��GrabCut
+			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_INIT_WITH_RECT);//用矩形窗初始化GrabCut
 			init = true;
 		}
 
 		Mat binmask;
-		binmask = mask & 1;				//��һ����Ĥ
-		if (init)						//��һ���ٳ���Ч������갴�£�init��Ϊfalse
+		binmask = mask & 1;				//进一步掩膜
+		if (init)						//进一步抠出无效区域。鼠标按下，init变为false
 		{
 			src.copyTo(result, binmask);
 		}
@@ -597,11 +597,11 @@ void testGrabcCut() {
 		rectangle(result, rect, Scalar(0, 0, 255), 2, 8);
 
 	}
-	mywrite("img/grabcut_result.png",result);
+	mywrite("img/grabcut_result.png", result);
 }
 
 
-//Harris�ǵ���
+//Harris角点检测
 void testHarris() {
 	//prepare for read and write
 }
@@ -618,7 +618,7 @@ void testFAST() {
 	Mat img = myread("img/lena.jpg", 1);
 	if (!img.data)
 	{
-		//cout << "��ȡͼ�������ȷ��ͼ���ļ��Ƿ���ȷ" << endl;
+		//cout << "读取图像错误，请确认图像文件是否正确" << endl;
 	}
 
 	Mat gray = myread("1.jpg", 0);
@@ -627,28 +627,28 @@ void testFAST() {
 	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (Dll == NULL)
 	{
-		printf("����dllʧ��\n");
+		printf("加载dll失败\n");
 	}
-	typedef void(*myCornerHarrisPointer)(cv::InputArray src, cv::OutputArray dst, int blockSize, int ksize, double k,int borderType);
+	typedef void(*myCornerHarrisPointer)(cv::InputArray src, cv::OutputArray dst, int blockSize, int ksize, double k, int borderType);
 	myCornerHarrisPointer myCornerHarris = (myCornerHarrisPointer)GetProcAddress(Dll, "myCornerHarris");
-	//����Harrisϵ��
+	//计算Harris系数
 	Mat harris;
-	int blockSize = 2;     // ����뾶
-	int apertureSize = 3;  // �����С
-	myCornerHarris(gray, harris, blockSize, apertureSize, 0.04,4);
-	//��һ�����ڽ�����ֵ�ȽϺͽ����ʾ
+	int blockSize = 2;     // 邻域半径
+	int apertureSize = 3;  // 邻域大小
+	myCornerHarris(gray, harris, blockSize, apertureSize, 0.04, 4);
+	//归一化便于进行数值比较和结果显示
 	Mat harrisn;
 	normalize(harris, harrisn, 0, 255, NORM_MINMAX);
-	//��ͼ����������ͱ��CV_8U
+	//将图像的数据类型变成CV_8U
 	convertScaleAbs(harrisn, harrisn);
-	//Ѱ��Harris�ǵ㲢��ʾͼ��
+	//寻找Harris角点并显示图像
 	Mat resultimg = img.clone();
-	
+
 	mywrite("img/harris.jpg", harris);
 	mywrite("img/harrisn.jpg", harrisn);
 }
 
-//ͼ������
+//图像运算
 void testImgOperation() {
 
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -666,7 +666,7 @@ void testImgOperation() {
 		int,
 		bool,
 		int
-	);
+		);
 	a FASTI = (a)GetProcAddress(h, "FASTI");
 
 	std::vector<cv::KeyPoint> keypoints;
@@ -688,46 +688,46 @@ void testBRISK() {
 	Mat img2 = myread("2.jpg", 1);
 	Mat result;
 	Mat result2;
-	//ͼ��ӷ�
+	//图像加法
 	imgOperationer.my_Add(img1, img2, result);
 	mywrite("result_add.jpg", result);
-	//ͼ�����
+	//图像减法
 	imgOperationer.my_Subtract(result, img1, result2);
 	mywrite("result_substract.jpg", result2);
-	//���Բ�
+	//绝对差
 	Mat img4 = myread("1.jpg", 0);
 	Mat img5 = myread("2.jpg", 0);
 
 	Mat result_absdiff;
 	imgOperationer.my_Absdiff(img4, img5, result_absdiff);
 	mywrite("result_absdiff.jpg", result_absdiff);
-	//ͼ���Ӧ���صļӷ�
+	//图像对应像素的加法
 	Mat result3 = img1 + Scalar(50, 50, 50);
 	mywrite("result_add_light.jpg", result3);
-	//ͼ��λ����
-	//��λ��
+	//图像位运算
+	//按位非
 	Mat result_bitwise_not;
 	imgOperationer.my_Bitwise_not(img1, result_bitwise_not);
 	mywrite("result_bitwise_not.jpg", result_bitwise_not);
-	//��λ��
+	//按位与
 	Mat result_bitwise_and;
 	imgOperationer.my_Bitwise_and(img1, img2, result_bitwise_and);
 	mywrite("result_bitwise_and.jpg", result_bitwise_and);
-	//��λ���
+	//按位异或
 	Mat result_bitwise_xor;
 	imgOperationer.my_Bitwise_xor(img1, img2, result_bitwise_xor);
 	mywrite("result_bitwise_xor.jpg", result_bitwise_xor);
-	//���ֵ��Сֵ
+	//最大值最小值
 	double minVal = 0.0;
 	double maxVal = 0.0;
 	imgOperationer.my_MinMaxLoc(img1, &minVal, &maxVal);
 	std::cout << minVal << "," << maxVal << std::endl;
-	//��ֵ
+	//均值
 	Scalar mean;
 	mean = imgOperationer.my_Mean(cv::mean(img1));
 	std::cout << mean[0] << "-" << mean[1] << "-" << mean[2] << std::endl;
 
-	//��һ��
+	//归一化
 	Mat result_normalize;
 	imgOperationer.my_Normalize(img1, result_normalize);
 	mywrite("result_normalize.jpg", result_normalize);
@@ -748,7 +748,7 @@ void testBRISK() {
 		int,
 		int,
 		float
-	);
+		);
 
 	a createBRISK = (a)GetProcAddress(h, "createBRISK");
 	cv::Ptr<cv::BRISK> b = createBRISK(30, 3, 1.0f);
@@ -758,81 +758,81 @@ void testBRISK() {
 
 }
 
-//�����ȶ�
-//������״����ģ��
+//轮廓比对
+//创建形状轮廓模板
 vector<Point> ImageTemplateContours(Mat img_template)
 {
-	//�ҶȻ�
-	Mat gray_img_template = img_template;//����ʱ������ǻҶ�ͼ
+	//灰度化
+	Mat gray_img_template = img_template;//测试时传入的是灰度图
 
-	//��ֵ�ָ�
+	//阈值分割
 	Mat thresh_img_template;
 	threshold(gray_img_template, thresh_img_template, 0, 255, THRESH_OTSU);
-	//���ʹ���
+	//膨胀处理
 	Mat ellipse = getStructuringElement(MORPH_ELLIPSE, Size(15, 15));
 	Mat erode_img_template;
 	erode(thresh_img_template, erode_img_template, ellipse);
 	morphologyEx(thresh_img_template, thresh_img_template, MORPH_OPEN, ellipse, Point(-1, -1), 1);
 
-	//Ѱ�ұ߽�
+	//寻找边界
 	vector<vector<Point>> contours_template;
 	vector<Vec4i> hierarchy;
 	findContours(thresh_img_template, contours_template, hierarchy, RETR_LIST, CHAIN_APPROX_NONE, Point());
 
-	//���Ʊ߽�
+	//绘制边界
 	drawContours(img_template, contours_template, 0, Scalar(0, 0, 255), 1, 8, hierarchy);
 
 
 	return contours_template[0];
 }
-//������״ģ��ƥ��
+//进行形状模板匹配
 vector<Point2d> ShapeTemplateMatch(Mat image, vector<Point> imgTemplatecontours, double minMatchValue)
 {
 	vector<Point2d> image_coordinates;
-	//�ҶȻ�
-	Mat gray_img = image;//����ʱ������ǻҶ�ͼ
+	//灰度化
+	Mat gray_img = image;//测试时传入的是灰度图
 
-	//��ֵ�ָ�
+	//阈值分割
 	Mat thresh_img;
 	threshold(gray_img, thresh_img, 0, 255, THRESH_OTSU);
 
-	//Ѱ�ұ߽�
+	//寻找边界
 	vector<vector<Point>> contours_img;
 	vector<Vec4i> hierarchy;
 	findContours(thresh_img, contours_img, hierarchy, RETR_LIST, CHAIN_APPROX_NONE, Point());
-	//������״ģ�����ƥ��
+	//根据形状模板进行匹配
 	int min_pos = -1;
-	double	min_value = minMatchValue;//ƥ���ֵ��С�ڸ�ֵ��ƥ��ɹ�
+	double	min_value = minMatchValue;//匹配分值，小于该值则匹配成功
 	for (int i = 0; i < contours_img.size(); i++)
 	{
-		//�������������ɸѡ��һЩû��Ҫ��С����
+		//计算轮廓面积，筛选掉一些没必要的小轮廓
 		if (contourArea(contours_img[i]) > 12000)
 		{
-			//�õ�ƥ���ֵ 
+			//得到匹配分值 
 			double value = matchShapes(contours_img[i], imgTemplatecontours, CONTOURS_MATCH_I3, 0.0);
-			//��ƥ���ֵ���趨��ֵ���бȽ� 
+			//将匹配分值与设定分值进行比较 
 			if (value < min_value)
 			{
 				min_pos = i;
-				//����Ŀ��߽�
+				//绘制目标边界
 				drawContours(image, contours_img, min_pos, Scalar(0, 0, 255), 1, 8, hierarchy, 0);
 
-				//��ȡ���ĵ�
+				//获取重心点
 				Moments M;
 				M = moments(contours_img[min_pos]);
 				double cX = double(M.m10 / M.m00);
 				double cY = double(M.m01 / M.m00);
-				//��ʾĿ�����Ĳ���ȡ�����
+				//显示目标中心并提取坐标点
 				circle(image, Point2d(cX, cY), 1, Scalar(0, 255, 0), 2, 8);
 				//putText(image, "center", Point2d(cX - 20, cY - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 0), 1, 8);
-							//��Ŀ����������궼���������� 
-				image_coordinates.push_back(Point2d(cX, cY));//�������д�ŵ������
+							//将目标的重心坐标都存在数组中 
+				image_coordinates.push_back(Point2d(cX, cY));//向数组中存放点的坐标
 			}
 		}
 	}
 	return image_coordinates;
 }
-//����
+//测试
 void testMatchContourShape() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -873,14 +873,14 @@ void testKmeans() {
 	int height = src.rows;
 	int dims = src.channels();
 
-	// ��ʼ������
+	// 初始化定义
 	int sampleCount = width * height;
 	int clusterCount = 3;
 	cv::Mat points(sampleCount, dims, CV_32F, cv::Scalar(10));
 	cv::Mat labels;
 	cv::Mat centers(clusterCount, 1, points.type());
 
-	// RGB ����ת������������
+	// RGB 数据转换到样本数据
 	int index = 0;
 	for (int row = 0; row < height; row++) {
 		cv::Vec3b* bgr_ptr = src.ptr<cv::Vec3b>(row);
@@ -892,13 +892,13 @@ void testKmeans() {
 		}
 	}
 
-	// ִ��K-means����
+	// 执行K-means聚类
 	cv::TermCriteria criteria = cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 0.1);
 
 	Methods methods;
 	methods.myKmeans(points, clusterCount, labels, criteria, 3, cv::KMEANS_PP_CENTERS, centers);
 
-	// ��ʾͼ��ָ���
+	// 显示图像分割结果
 	cv::Mat result = cv::Mat::zeros(src.size(), src.type());
 	for (int row = 0; row < height; row++) {
 		cv::Vec3b* result_ptr = result.ptr<cv::Vec3b>(row);
@@ -911,12 +911,12 @@ void testKmeans() {
 		}
 	}
 
-	//�����������
+	//输出聚类中心
 	for (int i = 0; i < centers.rows; i++) {
 		int x = centers.at<float>(i, 0);
 		int y = centers.at<float>(i, 1);
 		std::cout << "[x, y] = " << x << ", " << y << std::endl;
-		// ��������Ϊ����ɫ������
+		// 聚类中心为：颜色的中心
 		//[x, y] = 194, 211
 		//[x, y] = 49, 43
 		//[x, y] = 146, 149
@@ -935,7 +935,7 @@ void testKmeans() {
 void testHough() {
 
 
-	//���ֱ��
+	//检测直线
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
@@ -946,18 +946,18 @@ void testHough() {
 	cv::Mat srcImage = imread("img/rectangle.jpg", 0);
 
 	Mat mid, dst, dst1;
-	//����Դ������ģ������˸�������
+	//用了源码里面的，引用了附加依赖
 	Canny(srcImage, mid, 100, 200, 3);
 	cv::cvtColor(mid, dst, COLOR_GRAY2BGR);
 	cv::cvtColor(mid, dst1, COLOR_GRAY2BGR);
 
-	//��3�����л����߱任
-	vector<Vec2f> lines;//����һ��ʸ���ṹlines���ڴ�ŵõ����߶�ʸ������
+	//【3】进行霍夫线变换
+	vector<Vec2f> lines;//定义一个矢量结构lines用于存放得到的线段矢量集合
 	vector<Vec4f> lines1;
 	Methods methods;
 	methods.myHoughLines(mid, lines, 1, CV_PI / 180, 150, 0, 0, 0, CV_PI);
-	
-	//��4��������ͼ�л��Ƴ�ÿ���߶�
+
+	//【4】依次在图中绘制出每条线段
 	for (size_t i = 0; i < lines.size(); i++)
 	{
 		float rho = lines[i][0], theta = lines[i][1];
@@ -969,24 +969,24 @@ void testHough() {
 		pt2.x = cvRound(x0 - 1000 * (-b));
 		pt2.y = cvRound(y0 - 1000 * (a));
 
-		//����Դ�������line�����������˸�������
+		//用了源码里面的line方法，引用了附加依赖
 		cv::line(dst, pt1, pt2, Scalar(0, 245, 0), 1, LINE_AA);
 	}
 	imwrite("img/rectangle_houghlines.jpg", dst);
 
 	methods.myHoughLinesP(mid, lines1, 1, CV_PI / 180, 10, 0, 10);
-	     //5. ��ʾ��⵽��ֱ��
-    Scalar color = Scalar(0, 0, 255);//������ɫ
-    for (size_t i = 0; i < lines1.size(); i++)
-    {
-        Vec4f hline = lines1[i];
-        cv::line(dst1, Point(hline[0], hline[1]), Point(hline[2], hline[3]), color, 3, LINE_AA);//����ֱ��
-    }
+	//5. 显示检测到的直线
+	Scalar color = Scalar(0, 0, 255);//设置颜色
+	for (size_t i = 0; i < lines1.size(); i++)
+	{
+		Vec4f hline = lines1[i];
+		cv::line(dst1, Point(hline[0], hline[1]), Point(hline[2], hline[3]), color, 3, LINE_AA);//绘制直线
+	}
 
 	imwrite("img/rectangle_houghlinesP.jpg", dst1);
 
 
-	//���Բ��
+	//检测圆形
 	cv::Mat src = imread("img/circle.jpg", 1);
 	cv::Mat src_gray;
 	/// Convert it to gray
@@ -1044,10 +1044,10 @@ void testLeastSquares() {
 
 	for (int i = 0; i < points.size(); i++)
 	{
-		//��ԭͼ�ϻ�����
+		//在原图上画出点
 		circle(src, points[i], 3, Scalar(0, 0, 255), 1, 8);
 	}
-	//����A���� 
+	//构建A矩阵 
 	int N = 2;
 	Mat A = Mat::zeros(N, N, CV_64FC1);
 
@@ -1061,7 +1061,7 @@ void testLeastSquares() {
 			}
 		}
 	}
-	//����B����
+	//构建B矩阵
 	Mat B = Mat::zeros(N, 1, CV_64FC1);
 	for (int row = 0; row < B.rows; row++)
 	{
@@ -1092,7 +1092,7 @@ void testLeastSquares() {
 
 void detectLineWithHough() {
 
-	//���ֱ��
+	//检测直线
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
@@ -1103,16 +1103,16 @@ void detectLineWithHough() {
 	cv::Mat srcImage = imread("img/polygon.png", 1);
 
 	Mat mid, dst;
-	//����Դ������ģ������˸�������
+	//用了源码里面的，引用了附加依赖
 	Canny(srcImage, mid, 100, 200, 3);
 	cvtColor(mid, dst, COLOR_GRAY2BGR);
 
-	//��3�����л����߱任
-	vector<Vec2f> lines;//����һ��ʸ���ṹlines���ڴ�ŵõ����߶�ʸ������
+	//【3】进行霍夫线变换
+	vector<Vec2f> lines;//定义一个矢量结构lines用于存放得到的线段矢量集合
 	Methods methods;
 	methods.myHoughLines(mid, lines, 1, CV_PI / 180, 150, 0, 0, 0, CV_PI);
 
-	//��4��������ͼ�л��Ƴ�ÿ���߶�
+	//【4】依次在图中绘制出每条线段
 	for (size_t i = 0; i < lines.size(); i++)
 	{
 		float rho = lines[i][0], theta = lines[i][1];
@@ -1124,7 +1124,7 @@ void detectLineWithHough() {
 		pt2.x = cvRound(x0 - 1000 * (-b));
 		pt2.y = cvRound(y0 - 1000 * (a));
 
-		//����Դ�������line�����������˸�������
+		//用了源码里面的line方法，引用了附加依赖
 		cv::line(dst, pt1, pt2, Scalar(0, 245, 0), 1, LINE_AA);
 	}
 	imwrite("img/polygon_houghlines.jpg", dst);
@@ -1143,7 +1143,7 @@ void testCvColor() {
 	typedef void(*w) (const char*filename, cv::Mat result);
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
-	
+
 	//准备cvtColor算子
 	HINSTANCE hintCvtColor = LoadLibraryA("../CvtColor/target/cvtColor.dll");
 	typedef void(*func) (cv::InputArray _src, cv::OutputArray _dst, int code, int dcn);
@@ -1151,15 +1151,15 @@ void testCvColor() {
 	//测试RGB转灰度图
 	//读一个彩色图像
 	enum ColorConversionCodes {
-		COLOR_RGB2GRAY=7,
-		COLOR_RGB2HSV=41,
-		COLOR_RGB2YUV=83
+		COLOR_RGB2GRAY = 7,
+		COLOR_RGB2HSV = 41,
+		COLOR_RGB2YUV = 83
 	};
-	Mat src=myread("img/1.png", 1);
+	Mat src = myread("img/1.png", 1);
 	Mat result;
 	myCvtColor(src, result, COLOR_RGB2HSV, 0);
 	mywrite("img/RGB2HSV.png", result);
-	
+
 }
 
 int main() {
