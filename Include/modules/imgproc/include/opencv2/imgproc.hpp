@@ -4861,6 +4861,7 @@ extern "C" {
 		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
 	__declspec(dllexport) void myTophat(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
+	__declspec(dllexport) void myCvtColor(cv::InputArray _src, cv::OutputArray _dst, int code, int dcn);
 #ifdef __cplusplus
 }
 #endif

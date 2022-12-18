@@ -263,13 +263,13 @@ void testEdgeDetection() {
 	//myAdaptiveThreshold(src, result, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 11, -2);
 	//mywrite("C:/Users/zwq/Desktop/3.png", result);
 
-	//test for »ùÓÚ±ßÔµ¼ì²â·Ö¸î
+	//test for ï¿½ï¿½ï¿½Ú±ï¿½Ôµï¿½ï¿½ï¿½Ö¸ï¿½
 	ed.myLaplacian(src, resultLaplacian, CV_8U);
 	myAdaptiveThreshold(resultLaplacian, result, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 11, -2);
 	mywrite("C:/Users/zwq/Desktop/4.png", resultLaplacian);
 }
 
-//ÐÎÌ¬Ñ§¸¯Ê´²Ù×÷
+//ï¿½ï¿½Ì¬Ñ§ï¿½ï¿½Ê´ï¿½ï¿½ï¿½ï¿½
 void testErode() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -280,7 +280,7 @@ void testErode() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ¾ØÐÎ½á¹¹
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ï¿½ï¿½ï¿½Î½á¹¹
 
 	typedef void(*erode)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -289,13 +289,13 @@ void testErode() {
 	//HINSTANCE erodeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/erode/bin/Release/opencv_imgproc343.dll");
 	if (erodeDll == NULL)
 	{
-		printf("¼ÓÔØdllÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½dllÊ§ï¿½ï¿½\n");
 	}
 	erode myErode = (erode)GetProcAddress(erodeDll, "myErode");
 
 	if (myErode == NULL)
 	{
-		printf("¼ÓÔØfuncÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½funcÊ§ï¿½ï¿½\n");
 	}
 
 	//typedef cv::Mat(*getStructuringElement)(int shape, cv::Size ksize, cv::Point anchor);
@@ -308,7 +308,7 @@ void testErode() {
 
 }
 
-//ÐÎÌ¬Ñ§ÅòÕÍ²Ù×÷
+//ï¿½ï¿½Ì¬Ñ§ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½
 void testDilate() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -319,7 +319,7 @@ void testDilate() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ¾ØÐÎ½á¹¹
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ï¿½ï¿½ï¿½Î½á¹¹
 
 	typedef void(*erode)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -328,13 +328,13 @@ void testDilate() {
 	//HINSTANCE erodeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/dilate/bin/Release/opencv_imgproc343.dll");
 	if (erodeDll == NULL)
 	{
-		printf("¼ÓÔØdllÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½dllÊ§ï¿½ï¿½\n");
 	}
 	erode myDilate = (erode)GetProcAddress(erodeDll, "myDilate");
 
 	if (myDilate == NULL)
 	{
-		printf("¼ÓÔØfuncÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½funcÊ§ï¿½ï¿½\n");
 	}
 
 
@@ -344,7 +344,7 @@ void testDilate() {
 
 }
 
-//ÐÎÌ¬Ñ§¿ªÔËËã
+//ï¿½ï¿½Ì¬Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void testOpen() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -355,7 +355,7 @@ void testOpen() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/open.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ¾ØÐÎ½á¹¹
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ï¿½ï¿½ï¿½Î½á¹¹
 
 	typedef void(*open)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -364,13 +364,13 @@ void testOpen() {
 	//HINSTANCE openDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (openDll == NULL)
 	{
-		printf("¼ÓÔØdllÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½dllÊ§ï¿½ï¿½\n");
 	}
 	open myOpen = (open)GetProcAddress(openDll, "myOpen");
 
 	if (myOpen == NULL)
 	{
-		printf("¼ÓÔØfuncÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½funcÊ§ï¿½ï¿½\n");
 	}
 
 
@@ -380,7 +380,7 @@ void testOpen() {
 
 }
 
-//ÐÎÌ¬Ñ§±ÕÔËËã
+//ï¿½ï¿½Ì¬Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void testClose() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -391,7 +391,7 @@ void testClose() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/close.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ¾ØÐÎ½á¹¹
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ï¿½ï¿½ï¿½Î½á¹¹
 
 	typedef void(*close)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -400,13 +400,13 @@ void testClose() {
 	//HINSTANCE closeDll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (closeDll == NULL)
 	{
-		printf("¼ÓÔØdllÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½dllÊ§ï¿½ï¿½\n");
 	}
 	close myClose = (close)GetProcAddress(closeDll, "myClose");
 
 	if (myClose == NULL)
 	{
-		printf("¼ÓÔØfuncÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½funcÊ§ï¿½ï¿½\n");
 	}
 
 
@@ -416,7 +416,7 @@ void testClose() {
 
 }
 
-//ÐÎÌ¬Ñ§ÌÝ¶ÈÔËËã
+//ï¿½ï¿½Ì¬Ñ§ï¿½Ý¶ï¿½ï¿½ï¿½ï¿½ï¿½
 void testGradient() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -427,7 +427,7 @@ void testGradient() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/psma.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ¾ØÐÎ½á¹¹
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ï¿½ï¿½ï¿½Î½á¹¹
 
 	typedef void(*gradient)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -436,13 +436,13 @@ void testGradient() {
 	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (Dll == NULL)
 	{
-		printf("¼ÓÔØdllÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½dllÊ§ï¿½ï¿½\n");
 	}
 	gradient myGradient = (gradient)GetProcAddress(Dll, "myGradient");
 
 	if (myGradient == NULL)
 	{
-		printf("¼ÓÔØfuncÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½funcÊ§ï¿½ï¿½\n");
 	}
 
 
@@ -452,7 +452,7 @@ void testGradient() {
 
 }
 
-//ÐÎÌ¬Ñ§ºÚÃ±²Ù×÷
+//ï¿½ï¿½Ì¬Ñ§ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½
 void testBlackhat() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -463,7 +463,7 @@ void testBlackhat() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/open.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ¾ØÐÎ½á¹¹
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ï¿½ï¿½ï¿½Î½á¹¹
 
 	typedef void(*blackhat)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -472,13 +472,13 @@ void testBlackhat() {
 	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (Dll == NULL)
 	{
-		printf("¼ÓÔØdllÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½dllÊ§ï¿½ï¿½\n");
 	}
 	blackhat myBlackhat = (blackhat)GetProcAddress(Dll, "myBlackhat");
 
 	if (myBlackhat == NULL)
 	{
-		printf("¼ÓÔØfuncÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½funcÊ§ï¿½ï¿½\n");
 	}
 
 
@@ -488,7 +488,7 @@ void testBlackhat() {
 
 }
 
-//ÐÎÌ¬Ñ§¶¥Ã±²Ù×÷
+//ï¿½ï¿½Ì¬Ñ§ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½
 void testTophat() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -499,7 +499,7 @@ void testTophat() {
 
 	cv::Mat result;
 	cv::Mat src = myread("C:/Users/14839/Desktop/close.PNG", 0);
-	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ¾ØÐÎ½á¹¹
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // ï¿½ï¿½ï¿½Î½á¹¹
 
 	typedef void(*tophat)(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations,
@@ -508,13 +508,13 @@ void testTophat() {
 	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (Dll == NULL)
 	{
-		printf("¼ÓÔØdllÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½dllÊ§ï¿½ï¿½\n");
 	}
 	tophat myTophat = (tophat)GetProcAddress(Dll, "myTophat");
 
 	if (myTophat == NULL)
 	{
-		printf("¼ÓÔØfuncÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½funcÊ§ï¿½ï¿½\n");
 	}
 
 
@@ -524,7 +524,7 @@ void testTophat() {
 
 }
 
-//²âÊÔ»ùÓÚÇøÓòÔö³¤µÄÍ¼Ïñ·Ö¸î
+//ï¿½ï¿½ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Ö¸ï¿½
 void testRegionGrow() {
 
 	//prepare for read and write
@@ -557,7 +557,7 @@ void testGrabcCut() {
 	typedef void(*w) (const char*filename, cv::Mat result);
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
-
+	//×¼ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	HINSTANCE hintGrabCut = LoadLibraryA("../GrabCut/target/grabCut.dll");
 	typedef void(*func) (cv::InputArray _img, cv::InputOutputArray _mask, cv::Rect rect,cv::InputOutputArray _bgdModel, cv::InputOutputArray _fgdModel, int iterCount, int mode);
 	func myGrabCut = (func)GetProcAddress(hintGrabCut, "myGrabCut");
@@ -568,25 +568,25 @@ void testGrabcCut() {
 	Point p1(50,10), p2(410,630);
 	Rect rect = Rect(p1, p2);
 
-	mask.setTo(Scalar::all(GC_BGD));//±³¾°
-	mask(rect).setTo(Scalar(GC_PR_FGD));//Ç°¾°	
+	mask.setTo(Scalar::all(GC_BGD));//ï¿½ï¿½ï¿½ï¿½
+	mask(rect).setTo(Scalar(GC_PR_FGD));//Ç°ï¿½ï¿½	
 
 
 	bool init = false;
 	int count = 4;
 	while (count--)
 	{
-		if (init)//Êó±ê°´ÏÂ£¬init±äÎªfalse
-			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_EVAL);//µÚ¶þ´Îµü´ú£¬ÓÃmask³õÊ¼»¯grabcut
+		if (init)//ï¿½ï¿½ê°´ï¿½Â£ï¿½initï¿½ï¿½Îªfalse
+			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_EVAL);//ï¿½Ú¶ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½maskï¿½ï¿½Ê¼ï¿½ï¿½grabcut
 		else
 		{
-			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_INIT_WITH_RECT);//ÓÃ¾ØÐÎ´°³õÊ¼»¯GrabCut
+			grabCut(src, mask, rect, bgModel, fgModel, 1, GC_INIT_WITH_RECT);//ï¿½Ã¾ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½GrabCut
 			init = true;
 		}
 
 		Mat binmask;
-		binmask = mask & 1;				//½øÒ»²½ÑÚÄ¤
-		if (init)						//½øÒ»²½¿Ù³öÎÞÐ§ÇøÓò¡£Êó±ê°´ÏÂ£¬init±äÎªfalse
+		binmask = mask & 1;				//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ä¤
+		if (init)						//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ù³ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê°´ï¿½Â£ï¿½initï¿½ï¿½Îªfalse
 		{
 			src.copyTo(result, binmask);
 		}
@@ -601,7 +601,7 @@ void testGrabcCut() {
 }
 
 
-//Harris½Çµã¼ì²â
+//Harrisï¿½Çµï¿½ï¿½ï¿½
 void testHarris() {
 	//prepare for read and write
 }
@@ -618,7 +618,7 @@ void testFAST() {
 	Mat img = myread("img/lena.jpg", 1);
 	if (!img.data)
 	{
-		//cout << "¶ÁÈ¡Í¼Ïñ´íÎó£¬ÇëÈ·ÈÏÍ¼ÏñÎÄ¼þÊÇ·ñÕýÈ·" << endl;
+		//cout << "ï¿½ï¿½È¡Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Í¼ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·" << endl;
 	}
 
 	Mat gray = myread("1.jpg", 0);
@@ -627,28 +627,28 @@ void testFAST() {
 	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
 	if (Dll == NULL)
 	{
-		printf("¼ÓÔØdllÊ§°Ü\n");
+		printf("ï¿½ï¿½ï¿½ï¿½dllÊ§ï¿½ï¿½\n");
 	}
 	typedef void(*myCornerHarrisPointer)(cv::InputArray src, cv::OutputArray dst, int blockSize, int ksize, double k,int borderType);
 	myCornerHarrisPointer myCornerHarris = (myCornerHarrisPointer)GetProcAddress(Dll, "myCornerHarris");
-	//¼ÆËãHarrisÏµÊý
+	//ï¿½ï¿½ï¿½ï¿½HarrisÏµï¿½ï¿½
 	Mat harris;
-	int blockSize = 2;     // ÁÚÓò°ë¾¶
-	int apertureSize = 3;  // ÁÚÓò´óÐ¡
+	int blockSize = 2;     // ï¿½ï¿½ï¿½ï¿½ë¾¶
+	int apertureSize = 3;  // ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡
 	myCornerHarris(gray, harris, blockSize, apertureSize, 0.04,4);
-	//¹éÒ»»¯±ãÓÚ½øÐÐÊýÖµ±È½ÏºÍ½á¹ûÏÔÊ¾
+	//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½È½ÏºÍ½ï¿½ï¿½ï¿½ï¿½Ê¾
 	Mat harrisn;
 	normalize(harris, harrisn, 0, 255, NORM_MINMAX);
-	//½«Í¼ÏñµÄÊý¾ÝÀàÐÍ±ä³ÉCV_8U
+	//ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½CV_8U
 	convertScaleAbs(harrisn, harrisn);
-	//Ñ°ÕÒHarris½Çµã²¢ÏÔÊ¾Í¼Ïñ
+	//Ñ°ï¿½ï¿½Harrisï¿½Çµã²¢ï¿½ï¿½Ê¾Í¼ï¿½ï¿½
 	Mat resultimg = img.clone();
 	
 	mywrite("img/harris.jpg", harris);
 	mywrite("img/harrisn.jpg", harrisn);
 }
 
-//Í¼ÏñÔËËã
+//Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void testImgOperation() {
 
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -688,46 +688,46 @@ void testBRISK() {
 	Mat img2 = myread("2.jpg", 1);
 	Mat result;
 	Mat result2;
-	//Í¼Ïñ¼Ó·¨
+	//Í¼ï¿½ï¿½Ó·ï¿½
 	imgOperationer.my_Add(img1, img2, result);
 	mywrite("result_add.jpg", result);
-	//Í¼Ïñ¼õ·¨
+	//Í¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	imgOperationer.my_Subtract(result, img1, result2);
 	mywrite("result_substract.jpg", result2);
-	//¾ø¶Ô²î
+	//ï¿½ï¿½ï¿½Ô²ï¿½
 	Mat img4 = myread("1.jpg", 0);
 	Mat img5 = myread("2.jpg", 0);
 
 	Mat result_absdiff;
 	imgOperationer.my_Absdiff(img4, img5, result_absdiff);
 	mywrite("result_absdiff.jpg", result_absdiff);
-	//Í¼Ïñ¶ÔÓ¦ÏñËØµÄ¼Ó·¨
+	//Í¼ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ØµÄ¼Ó·ï¿½
 	Mat result3 = img1 + Scalar(50, 50, 50);
 	mywrite("result_add_light.jpg", result3);
-	//Í¼ÏñÎ»ÔËËã
-	//°´Î»·Ç
+	//Í¼ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	//ï¿½ï¿½Î»ï¿½ï¿½
 	Mat result_bitwise_not;
 	imgOperationer.my_Bitwise_not(img1, result_bitwise_not);
 	mywrite("result_bitwise_not.jpg", result_bitwise_not);
-	//°´Î»Óë
+	//ï¿½ï¿½Î»ï¿½ï¿½
 	Mat result_bitwise_and;
 	imgOperationer.my_Bitwise_and(img1, img2, result_bitwise_and);
 	mywrite("result_bitwise_and.jpg", result_bitwise_and);
-	//°´Î»Òì»ò
+	//ï¿½ï¿½Î»ï¿½ï¿½ï¿½
 	Mat result_bitwise_xor;
 	imgOperationer.my_Bitwise_xor(img1, img2, result_bitwise_xor);
 	mywrite("result_bitwise_xor.jpg", result_bitwise_xor);
-	//×î´óÖµ×îÐ¡Öµ
+	//ï¿½ï¿½ï¿½Öµï¿½ï¿½Ð¡Öµ
 	double minVal = 0.0;
 	double maxVal = 0.0;
 	imgOperationer.my_MinMaxLoc(img1, &minVal, &maxVal);
 	std::cout << minVal << "," << maxVal << std::endl;
-	//¾ùÖµ
+	//ï¿½ï¿½Öµ
 	Scalar mean;
 	mean = imgOperationer.my_Mean(cv::mean(img1));
 	std::cout << mean[0] << "-" << mean[1] << "-" << mean[2] << std::endl;
 
-	//¹éÒ»»¯
+	//ï¿½ï¿½Ò»ï¿½ï¿½
 	Mat result_normalize;
 	imgOperationer.my_Normalize(img1, result_normalize);
 	mywrite("result_normalize.jpg", result_normalize);
@@ -758,81 +758,81 @@ void testBRISK() {
 
 }
 
-//ÂÖÀª±È¶Ô
-//´´½¨ÐÎ×´ÂÖÀªÄ£°å
+//ï¿½ï¿½ï¿½ï¿½ï¿½È¶ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
 vector<Point> ImageTemplateContours(Mat img_template)
 {
-	//»Ò¶È»¯
-	Mat gray_img_template = img_template;//²âÊÔÊ±´«ÈëµÄÊÇ»Ò¶ÈÍ¼
+	//ï¿½Ò¶È»ï¿½
+	Mat gray_img_template = img_template;//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç»Ò¶ï¿½Í¼
 
-	//ãÐÖµ·Ö¸î
+	//ï¿½ï¿½Öµï¿½Ö¸ï¿½
 	Mat thresh_img_template;
 	threshold(gray_img_template, thresh_img_template, 0, 255, THRESH_OTSU);
-	//ÅòÕÍ´¦Àí
+	//ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½
 	Mat ellipse = getStructuringElement(MORPH_ELLIPSE, Size(15, 15));
 	Mat erode_img_template;
 	erode(thresh_img_template, erode_img_template, ellipse);
 	morphologyEx(thresh_img_template, thresh_img_template, MORPH_OPEN, ellipse, Point(-1, -1), 1);
 
-	//Ñ°ÕÒ±ß½ç
+	//Ñ°ï¿½Ò±ß½ï¿½
 	vector<vector<Point>> contours_template;
 	vector<Vec4i> hierarchy;
 	findContours(thresh_img_template, contours_template, hierarchy, RETR_LIST, CHAIN_APPROX_NONE, Point());
 
-	//»æÖÆ±ß½ç
+	//ï¿½ï¿½ï¿½Æ±ß½ï¿½
 	drawContours(img_template, contours_template, 0, Scalar(0, 0, 255), 1, 8, hierarchy);
 
 
 	return contours_template[0];
 }
-//½øÐÐÐÎ×´Ä£°åÆ¥Åä
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ä£ï¿½ï¿½Æ¥ï¿½ï¿½
 vector<Point2d> ShapeTemplateMatch(Mat image, vector<Point> imgTemplatecontours, double minMatchValue)
 {
 	vector<Point2d> image_coordinates;
-	//»Ò¶È»¯
-	Mat gray_img = image;//²âÊÔÊ±´«ÈëµÄÊÇ»Ò¶ÈÍ¼
+	//ï¿½Ò¶È»ï¿½
+	Mat gray_img = image;//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç»Ò¶ï¿½Í¼
 
-	//ãÐÖµ·Ö¸î
+	//ï¿½ï¿½Öµï¿½Ö¸ï¿½
 	Mat thresh_img;
 	threshold(gray_img, thresh_img, 0, 255, THRESH_OTSU);
 
-	//Ñ°ÕÒ±ß½ç
+	//Ñ°ï¿½Ò±ß½ï¿½
 	vector<vector<Point>> contours_img;
 	vector<Vec4i> hierarchy;
 	findContours(thresh_img, contours_img, hierarchy, RETR_LIST, CHAIN_APPROX_NONE, Point());
-	//¸ù¾ÝÐÎ×´Ä£°å½øÐÐÆ¥Åä
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ä£ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½
 	int min_pos = -1;
-	double	min_value = minMatchValue;//Æ¥Åä·ÖÖµ£¬Ð¡ÓÚ¸ÃÖµÔòÆ¥Åä³É¹¦
+	double	min_value = minMatchValue;//Æ¥ï¿½ï¿½ï¿½Öµï¿½ï¿½Ð¡ï¿½Ú¸ï¿½Öµï¿½ï¿½Æ¥ï¿½ï¿½É¹ï¿½
 	for (int i = 0; i < contours_img.size(); i++)
 	{
-		//¼ÆËãÂÖÀªÃæ»ý£¬É¸Ñ¡µôÒ»Ð©Ã»±ØÒªµÄÐ¡ÂÖÀª
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¸Ñ¡ï¿½ï¿½Ò»Ð©Ã»ï¿½ï¿½Òªï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½
 		if (contourArea(contours_img[i]) > 12000)
 		{
-			//µÃµ½Æ¥Åä·ÖÖµ 
+			//ï¿½Ãµï¿½Æ¥ï¿½ï¿½ï¿½Öµ 
 			double value = matchShapes(contours_img[i], imgTemplatecontours, CONTOURS_MATCH_I3, 0.0);
-			//½«Æ¥Åä·ÖÖµÓëÉè¶¨·ÖÖµ½øÐÐ±È½Ï 
+			//ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½è¶¨ï¿½ï¿½Öµï¿½ï¿½ï¿½Ð±È½ï¿½ 
 			if (value < min_value)
 			{
 				min_pos = i;
-				//»æÖÆÄ¿±ê±ß½ç
+				//ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ß½ï¿½
 				drawContours(image, contours_img, min_pos, Scalar(0, 0, 255), 1, 8, hierarchy, 0);
 
-				//»ñÈ¡ÖØÐÄµã
+				//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Äµï¿½
 				Moments M;
 				M = moments(contours_img[min_pos]);
 				double cX = double(M.m10 / M.m00);
 				double cY = double(M.m01 / M.m00);
-				//ÏÔÊ¾Ä¿±êÖÐÐÄ²¢ÌáÈ¡×ø±êµã
+				//ï¿½ï¿½Ê¾Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½
 				circle(image, Point2d(cX, cY), 1, Scalar(0, 255, 0), 2, 8);
 				//putText(image, "center", Point2d(cX - 20, cY - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 0), 1, 8);
-							//½«Ä¿±êµÄÖØÐÄ×ø±ê¶¼´æÔÚÊý×éÖÐ 
-				image_coordinates.push_back(Point2d(cX, cY));//ÏòÊý×éÖÐ´æ·ÅµãµÄ×ø±ê
+							//ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê¶¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+				image_coordinates.push_back(Point2d(cX, cY));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 		}
 	}
 	return image_coordinates;
 }
-//²âÊÔ
+//ï¿½ï¿½ï¿½ï¿½
 void testMatchContourShape() {
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
@@ -873,14 +873,14 @@ void testKmeans() {
 	int height = src.rows;
 	int dims = src.channels();
 
-	// ³õÊ¼»¯¶¨Òå
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int sampleCount = width * height;
 	int clusterCount = 3;
 	cv::Mat points(sampleCount, dims, CV_32F, cv::Scalar(10));
 	cv::Mat labels;
 	cv::Mat centers(clusterCount, 1, points.type());
 
-	// RGB Êý¾Ý×ª»»µ½Ñù±¾Êý¾Ý
+	// RGB ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int index = 0;
 	for (int row = 0; row < height; row++) {
 		cv::Vec3b* bgr_ptr = src.ptr<cv::Vec3b>(row);
@@ -892,13 +892,13 @@ void testKmeans() {
 		}
 	}
 
-	// Ö´ÐÐK-means¾ÛÀà
+	// Ö´ï¿½ï¿½K-meansï¿½ï¿½ï¿½ï¿½
 	cv::TermCriteria criteria = cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 0.1);
 
 	Methods methods;
 	methods.myKmeans(points, clusterCount, labels, criteria, 3, cv::KMEANS_PP_CENTERS, centers);
 
-	// ÏÔÊ¾Í¼Ïñ·Ö¸î½á¹û
+	// ï¿½ï¿½Ê¾Í¼ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½
 	cv::Mat result = cv::Mat::zeros(src.size(), src.type());
 	for (int row = 0; row < height; row++) {
 		cv::Vec3b* result_ptr = result.ptr<cv::Vec3b>(row);
@@ -911,12 +911,12 @@ void testKmeans() {
 		}
 	}
 
-	//Êä³ö¾ÛÀàÖÐÐÄ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (int i = 0; i < centers.rows; i++) {
 		int x = centers.at<float>(i, 0);
 		int y = centers.at<float>(i, 1);
 		std::cout << "[x, y] = " << x << ", " << y << std::endl;
-		// ¾ÛÀàÖÐÐÄÎª£ºÑÕÉ«µÄÖÐÐÄ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		//[x, y] = 194, 211
 		//[x, y] = 49, 43
 		//[x, y] = 146, 149
@@ -935,7 +935,7 @@ void testKmeans() {
 void testHough() {
 
 
-	//¼ì²âÖ±Ïß
+	//ï¿½ï¿½ï¿½Ö±ï¿½ï¿½
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
@@ -946,18 +946,18 @@ void testHough() {
 	cv::Mat srcImage = imread("img/rectangle.jpg", 0);
 
 	Mat mid, dst, dst1;
-	//ÓÃÁËÔ´ÂëÀïÃæµÄ£¬ÒýÓÃÁË¸½¼ÓÒÀÀµ
+	//ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	Canny(srcImage, mid, 100, 200, 3);
 	cv::cvtColor(mid, dst, COLOR_GRAY2BGR);
 	cv::cvtColor(mid, dst1, COLOR_GRAY2BGR);
 
-	//¡¾3¡¿½øÐÐ»ô·òÏß±ä»»
-	vector<Vec2f> lines;//¶¨ÒåÒ»¸öÊ¸Á¿½á¹¹linesÓÃÓÚ´æ·ÅµÃµ½µÄÏß¶ÎÊ¸Á¿¼¯ºÏ
+	//ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ß±ä»»
+	vector<Vec2f> lines;//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê¸ï¿½ï¿½ï¿½á¹¹linesï¿½ï¿½ï¿½Ú´ï¿½ÅµÃµï¿½ï¿½ï¿½ï¿½ß¶ï¿½Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	vector<Vec4f> lines1;
 	Methods methods;
 	methods.myHoughLines(mid, lines, 1, CV_PI / 180, 150, 0, 0, 0, CV_PI);
 	
-	//¡¾4¡¿ÒÀ´ÎÔÚÍ¼ÖÐ»æÖÆ³öÃ¿ÌõÏß¶Î
+	//ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ð»ï¿½ï¿½Æ³ï¿½Ã¿ï¿½ï¿½ï¿½ß¶ï¿½
 	for (size_t i = 0; i < lines.size(); i++)
 	{
 		float rho = lines[i][0], theta = lines[i][1];
@@ -969,24 +969,24 @@ void testHough() {
 		pt2.x = cvRound(x0 - 1000 * (-b));
 		pt2.y = cvRound(y0 - 1000 * (a));
 
-		//ÓÃÁËÔ´ÂëÀïÃæµÄline·½·¨£¬ÒýÓÃÁË¸½¼ÓÒÀÀµ
+		//ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lineï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		cv::line(dst, pt1, pt2, Scalar(0, 245, 0), 1, LINE_AA);
 	}
 	imwrite("img/rectangle_houghlines.jpg", dst);
 
 	methods.myHoughLinesP(mid, lines1, 1, CV_PI / 180, 10, 0, 10);
-	     //5. ÏÔÊ¾¼ì²âµ½µÄÖ±Ïß
-    Scalar color = Scalar(0, 0, 255);//ÉèÖÃÑÕÉ«
+	     //5. ï¿½ï¿½Ê¾ï¿½ï¿½âµ½ï¿½ï¿½Ö±ï¿½ï¿½
+    Scalar color = Scalar(0, 0, 255);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
     for (size_t i = 0; i < lines1.size(); i++)
     {
         Vec4f hline = lines1[i];
-        cv::line(dst1, Point(hline[0], hline[1]), Point(hline[2], hline[3]), color, 3, LINE_AA);//»æÖÆÖ±Ïß
+        cv::line(dst1, Point(hline[0], hline[1]), Point(hline[2], hline[3]), color, 3, LINE_AA);//ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½
     }
 
 	imwrite("img/rectangle_houghlinesP.jpg", dst1);
 
 
-	//¼ì²âÔ²ÐÎ
+	//ï¿½ï¿½ï¿½Ô²ï¿½ï¿½
 	cv::Mat src = imread("img/circle.jpg", 1);
 	cv::Mat src_gray;
 	/// Convert it to gray
@@ -1044,10 +1044,10 @@ void testLeastSquares() {
 
 	for (int i = 0; i < points.size(); i++)
 	{
-		//ÔÚÔ­Í¼ÉÏ»­³öµã
+		//ï¿½ï¿½Ô­Í¼ï¿½Ï»ï¿½ï¿½ï¿½ï¿½ï¿½
 		circle(src, points[i], 3, Scalar(0, 0, 255), 1, 8);
 	}
-	//¹¹½¨A¾ØÕó 
+	//ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ 
 	int N = 2;
 	Mat A = Mat::zeros(N, N, CV_64FC1);
 
@@ -1061,7 +1061,7 @@ void testLeastSquares() {
 			}
 		}
 	}
-	//¹¹½¨B¾ØÕó
+	//ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½
 	Mat B = Mat::zeros(N, 1, CV_64FC1);
 	for (int row = 0; row < B.rows; row++)
 	{
@@ -1092,7 +1092,7 @@ void testLeastSquares() {
 
 void detectLineWithHough() {
 
-	//¼ì²âÖ±Ïß
+	//ï¿½ï¿½ï¿½Ö±ï¿½ï¿½
 	//prepare for read and write
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
@@ -1103,16 +1103,16 @@ void detectLineWithHough() {
 	cv::Mat srcImage = imread("img/polygon.png", 1);
 
 	Mat mid, dst;
-	//ÓÃÁËÔ´ÂëÀïÃæµÄ£¬ÒýÓÃÁË¸½¼ÓÒÀÀµ
+	//ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	Canny(srcImage, mid, 100, 200, 3);
 	cvtColor(mid, dst, COLOR_GRAY2BGR);
 
-	//¡¾3¡¿½øÐÐ»ô·òÏß±ä»»
-	vector<Vec2f> lines;//¶¨ÒåÒ»¸öÊ¸Á¿½á¹¹linesÓÃÓÚ´æ·ÅµÃµ½µÄÏß¶ÎÊ¸Á¿¼¯ºÏ
+	//ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ß±ä»»
+	vector<Vec2f> lines;//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê¸ï¿½ï¿½ï¿½á¹¹linesï¿½ï¿½ï¿½Ú´ï¿½ÅµÃµï¿½ï¿½ï¿½ï¿½ß¶ï¿½Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	Methods methods;
 	methods.myHoughLines(mid, lines, 1, CV_PI / 180, 150, 0, 0, 0, CV_PI);
 
-	//¡¾4¡¿ÒÀ´ÎÔÚÍ¼ÖÐ»æÖÆ³öÃ¿ÌõÏß¶Î
+	//ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ð»ï¿½ï¿½Æ³ï¿½Ã¿ï¿½ï¿½ï¿½ß¶ï¿½
 	for (size_t i = 0; i < lines.size(); i++)
 	{
 		float rho = lines[i][0], theta = lines[i][1];
@@ -1124,7 +1124,7 @@ void detectLineWithHough() {
 		pt2.x = cvRound(x0 - 1000 * (-b));
 		pt2.y = cvRound(y0 - 1000 * (a));
 
-		//ÓÃÁËÔ´ÂëÀïÃæµÄline·½·¨£¬ÒýÓÃÁË¸½¼ÓÒÀÀµ
+		//ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lineï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		cv::line(dst, pt1, pt2, Scalar(0, 245, 0), 1, LINE_AA);
 	}
 	imwrite("img/polygon_houghlines.jpg", dst);
@@ -1134,6 +1134,32 @@ void detectLineWithHough() {
 		FreeLibrary(Hint_wr);
 		Hint_wr = NULL;
 	}
+}
+
+void testCvColor() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+	
+	//å‡†å¤‡cvtColorç®—å­
+	HINSTANCE hintCvtColor = LoadLibraryA("../CvtColor/target/cvtColor.dll");
+	typedef void(*func) (cv::InputArray _src, cv::OutputArray _dst, int code, int dcn);
+	func myCvtColor = (func)GetProcAddress(hintCvtColor, "myCvtColor");
+	//æµ‹è¯•RGBè½¬ç°åº¦å›¾
+	//è¯»ä¸€ä¸ªå½©è‰²å›¾åƒ
+	enum ColorConversionCodes {
+		COLOR_RGB2GRAY=7,
+		COLOR_RGB2HSV=41,
+		COLOR_RGB2YUV=83
+	};
+	Mat src=myread("img/1.png", 1);
+	Mat result;
+	myCvtColor(src, result, COLOR_RGB2HSV, 0);
+	mywrite("img/RGB2HSV.png", result);
+	
 }
 
 int main() {

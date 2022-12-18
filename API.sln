@@ -57,6 +57,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Brisk", "Brisk\Brisk.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatchContourShape", "MatchContourShape\MatchContourShape.vcxproj", "{4C54E07B-B236-49EC-8866-29706979602A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CvtColor", "CvtColor\CvtColor.vcxproj", "{76864583-EF74-47D2-B1C8-DA5453D5B851}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -281,6 +283,14 @@ Global
 		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x64.Build.0 = Release|x64
 		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x86.ActiveCfg = Release|Win32
 		{4C54E07B-B236-49EC-8866-29706979602A}.Release|x86.Build.0 = Release|Win32
+		{76864583-EF74-47D2-B1C8-DA5453D5B851}.Debug|x64.ActiveCfg = Debug|x64
+		{76864583-EF74-47D2-B1C8-DA5453D5B851}.Debug|x64.Build.0 = Debug|x64
+		{76864583-EF74-47D2-B1C8-DA5453D5B851}.Debug|x86.ActiveCfg = Debug|Win32
+		{76864583-EF74-47D2-B1C8-DA5453D5B851}.Debug|x86.Build.0 = Debug|Win32
+		{76864583-EF74-47D2-B1C8-DA5453D5B851}.Release|x64.ActiveCfg = Release|x64
+		{76864583-EF74-47D2-B1C8-DA5453D5B851}.Release|x64.Build.0 = Release|x64
+		{76864583-EF74-47D2-B1C8-DA5453D5B851}.Release|x86.ActiveCfg = Release|Win32
+		{76864583-EF74-47D2-B1C8-DA5453D5B851}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
