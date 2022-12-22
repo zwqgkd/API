@@ -5,6 +5,7 @@
 #include<opencv2/features2d.hpp>
 #include<vector>
 #include"../ImgOperation/ImgOperator.h"
+#include"../BlurDetectionByStd/BlurDetection.h"
 
 using namespace cv;
 using namespace std;
@@ -1161,6 +1162,27 @@ void testCvColor() {
 	mywrite("img/RGB2HSV.png", result);
 
 }
+void testBlurDetection() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r imread = (r)GetProcAddress(Hint_wr, "myread");
+	w imwrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat srcImage = imread("img/polygon.png", 0);
+
+	//清晰度检测
+	BlurDetectionByStd BlurDectOperator;
+	double result = BlurDectOperator.getBulrDetectionScore(srcImage);
+	stringstream meanValueStream;
+	meanValueStream << result;
+	string meanValueString;
+	  meanValueStream >> meanValueString;
+	cout << "Articulation(Variance Method) of image" + meanValueString << endl;
+}
+
+
 
 int main() {
 	//testFillPoly();
@@ -1177,6 +1199,7 @@ int main() {
 
 	//testHarris();
 	//testImgOperation();
+	//testBlurDetection();
 
 	//testFAST();
 	//testBRISK();
