@@ -1182,6 +1182,7 @@ void testBlurDetection() {
 	cout << "Articulation(Variance Method) of image" + meanValueString << endl;
 }
 
+
 //颜色转换RGB转HSI
 void testRgb2hsi() {
 	//prepare for read and write
@@ -1221,6 +1222,7 @@ void testInRange() {
 	inRange(src, Scalar(75, 75, 75), Scalar(85, 85, 85), dstImage);
 	mywrite("C:\\Users\\zwq\\Desktop\\API\\Test\\img\\1_range.png", dstImage);
 }
+
 
 int main() {
 	//testFillPoly();
