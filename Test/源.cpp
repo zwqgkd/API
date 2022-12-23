@@ -1182,7 +1182,45 @@ void testBlurDetection() {
 	cout << "Articulation(Variance Method) of image" + meanValueString << endl;
 }
 
+//颜色转换RGB转HSI
+void testRgb2hsi() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("C:/MyProgram/opencv/mywr/bin/Release/opencv_imgcodecs343.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
 
+	HINSTANCE hint = LoadLibraryA("C:\\Users\\zwq\\Desktop\\API\\Rgb2hsi\\target\\rgb2hsi.dll");
+	typedef void(*func)(Mat &image, Mat &hsi);
+	func rgb2hsi = (func)GetProcAddress(hint, "rgb2hsi");
+
+	Mat src = myread("C:\\Users\\zwq\\Desktop\\API\\Test\\img\\1.png", 1);
+	Mat result;
+	//result = Mat(Size(src.rows, src.cols), CV_8UC3);
+	result = Mat(Size(src.rows, src.cols), src.type());
+	rgb2hsi(src, result);
+	mywrite("C:\\Users\\zwq\\Desktop\\API\\Test\\img\\1_hsi.png", result);
+}
+//颜色抽取
+void testInRange() {
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("C:/MyProgram/opencv/mywr/bin/Release/opencv_imgcodecs343.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	HINSTANCE hint = LoadLibraryA("C:\\Users\\zwq\\Desktop\\API\\InRange\\target\\inRange.dll");
+	typedef void(*func)(InputArray src, InputArray lowerb, InputArray upperb, OutputArray dst);
+	func myInRange = (func)GetProcAddress(hint, "myInRange");
+
+	Mat src = myread("C:\\Users\\zwq\\Desktop\\API\\Test\\img\\1.png", 1);
+	Mat dstImage;
+	cout << src.size();
+	inRange(src, Scalar(75, 75, 75), Scalar(85, 85, 85), dstImage);
+	mywrite("C:\\Users\\zwq\\Desktop\\API\\Test\\img\\1_range.png", dstImage);
+}
 
 int main() {
 	//testFillPoly();
