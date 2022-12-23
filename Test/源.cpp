@@ -1184,7 +1184,7 @@ int main() {
 	//testMatchContourShape();
 
 	//testKmeans();
-	testHough();
+	//testHough();
 	//detectLineWithHough();
 }
 
