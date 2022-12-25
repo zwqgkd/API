@@ -6,6 +6,7 @@
 #include<vector>
 #include"../ImgOperation/ImgOperator.h"
 #include"../BlurDetectionByStd/BlurDetection.h"
+#include<opencv2/stitching.hpp>
 
 using namespace cv;
 using namespace std;
@@ -213,6 +214,39 @@ void testFillPoly() {
 	fillPolyI(src, pts, cv::Scalar(), cv::LINE_8, 0, cv::Point());
 
 	mywrite("foo_fillpoly.png", src);
+}
+
+void testStitching() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	std::vector<cv::Mat> imgs{
+		myread("1.png", 0),
+		myread("2.png", 0),
+		myread("3.png", 0),
+	};
+
+	HINSTANCE h = LoadLibraryA("Stitching.dll");
+	typedef cv::Ptr<cv::Stitcher>(*a)(
+		cv::Stitcher::Mode,
+		bool
+	);
+	a createStitcher = (a)GetProcAddress(h, "createStitcher");
+	cv::Ptr<cv::Stitcher> stitcher = createStitcher(cv::Stitcher::PANORAMA, false);
+
+	cv::Mat pano;
+	cv::Stitcher::Status status = stitcher->stitch(imgs, pano);
+	if (status != cv::Stitcher::OK)
+	{
+		cout << "Can't stitch images, error code = " << int(status) << endl;
+		return;
+	}
+	mywrite("pano.png", pano);
+	cout << "stitching completed successfully\n" << "pano.png" << " saved!";
+	getchar();
 }
 
 void testEdgeDetection() {
@@ -1174,11 +1208,11 @@ void testBlurDetection() {
 
 	//清晰度检测
 	BlurDetectionByStd BlurDectOperator;
-	double result = BlurDectOperator.getBulrDetectionScore(srcImage);
+	//double result = BlurDectOperator.getBulrDetectionScore(srcImage);
 	stringstream meanValueStream;
-	meanValueStream << result;
+	//meanValueStream << result;
 	string meanValueString;
-	  meanValueStream >> meanValueString;
+	meanValueStream >> meanValueString;
 	cout << "Articulation(Variance Method) of image" + meanValueString << endl;
 }
 
@@ -1249,6 +1283,7 @@ int main() {
 	//testKmeans();
 	//testHough();
 	//detectLineWithHough();
+	testStitching();
 }
 
 
