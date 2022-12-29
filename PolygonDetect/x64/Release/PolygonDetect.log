@@ -1,0 +1,17 @@
+﻿D:\VS2017Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+  polyDetect.cpp
+d:\documents\api\api-main\polygondetect\src\polydetect.cpp(63): warning C4244: “初始化”: 从“_Tp”转换到“float”，可能丢失数据
+          with
+          [
+              _Tp=int
+          ]
+d:\documents\api\api-main\polygondetect\src\polydetect.cpp(73): warning C4244: “初始化”: 从“_Tp”转换到“float”，可能丢失数据
+          with
+          [
+              _Tp=int
+          ]
+    正在创建库 target\PolygonDetect.lib 和对象 target\PolygonDetect.exp
+  正在生成代码
+  All 361 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  PolygonDetect.vcxproj -> D:\Documents\API\API-main\PolygonDetect\target\PolygonDetect.dll
