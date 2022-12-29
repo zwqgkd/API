@@ -674,6 +674,217 @@ void testMatchContourShape() {
 	std::cout << image_coordinates[0].x << std::endl;
 }
 
+// 高斯滤波测试
+void testGaussianBlur() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat src = myread("blur_test.jpg", 0);
+	HINSTANCE h = LoadLibraryA("GaussianBlur.dll");
+	typedef void(*a)(
+		cv::InputArray,
+		cv::OutputArray,
+		cv::Size,
+		double,
+		double,
+		int
+		);
+
+	a GaussianBlurI = (a)GetProcAddress(h, "GaussianBlurI");
+	cv::Mat dst;
+	GaussianBlurI(src, dst, cv::Size(3, 3), 0.5, 0.5, cv::INTER_LINEAR);
+}
+
+// 中值滤波测试
+void testMedianBlur() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat src = myread("blur_test.jpg", 0);
+	HINSTANCE h = LoadLibraryA("MedianBlur.dll");
+	typedef void(*a)(
+		cv::InputArray _src,
+		cv::OutputArray _dst,
+		cv::Size ksize
+		);
+
+	a MedianBlurI = (a)GetProcAddress(h, "MedianBlurI");
+	cv::Mat dst;
+	MedianBlurI(src, dst, cv::Size(3, 3));
+}
+
+// 方框滤波测试
+void testBoxFilter() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat src = myread("blur_test.jpg", 0);
+	HINSTANCE h = LoadLibraryA("BoxFilter.dll");
+	typedef void(*a)(
+		cv::InputArray _src, 
+		cv::OutputArray _dst, 
+		int ddepth,
+		cv::Size ksize, 
+		cv::Point anchor, 
+		bool normalize, 
+		int borderType
+		);
+
+	a BoxFilterI = (a)GetProcAddress(h, "BoxFilterI");
+	cv::Mat dst;
+	BoxFilterI(src, dst, -1, cv::Size(3, 3), cv::Point(-1, -1), true, cv::BORDER_DEFAULT);
+}
+
+// 双边滤波测试
+void testBilateralFilter() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat src = myread("blur_test.jpg", 0);
+	HINSTANCE h = LoadLibraryA("BilateralFilter.dll");
+	typedef void(*a)(
+		cv::InputArray _src,
+		cv::OutputArray _dst,
+		int d, 
+		double sigmaColor, 
+		double sigmaSpace, 
+		int borderType
+		);
+
+	a BilateralFilterI = (a)GetProcAddress(h, "BilateralFilterI");
+	cv::Mat dst;
+	BilateralFilterI(src, dst, 9, 50, 25 / 2, cv::BORDER_DEFAULT);
+}
+// 直线拟合测试
+void testLineFit() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	HINSTANCE h = LoadLibraryA("LineFit.dll");
+	typedef void(*a)(
+		cv::InputArray _points,  // 二维点的数组或vector 
+		cv::OutputArray _line,   // 输出直线,Vec4f (2d)或Vec6f (3d)的vector 
+		int distType,			 // 距离类型 
+		double param,			 // 距离参数
+		double reps,			 // 径向的精度参数  表示直线到原点距离的精度，建议取 0.01。设为0，则自动选用最优值
+		double aeps);			 // 角度精度参数  表示直线角度的精度，建议取 0.01
+
+
+	a LineFitI = (a)GetProcAddress(h, "LineFitI");
+
+	cv::Mat src = myread("blur_test.jpg", 0);
+	if (src.empty()) {
+		std::cout << "Couldn't open image!" << std::endl;
+		return ;
+	}
+
+	int width = src.cols; // 宽
+	int height = src.rows; // 高
+
+	cv::Mat gray_image, bool_image;
+	cv::cvtColor(src, gray_image, cv::COLOR_RGB2GRAY);
+	cv::threshold(gray_image, bool_image, 0, 255, cv::THRESH_OTSU);
+	
+	// 获取二维点集
+	vector<Point> PointSet;
+	Point point_temp;
+	for (int i = 0; i < height; ++i) {
+		for (int j = 0; j < width; ++j) {
+			if (bool_image.at<unsigned char>(i, j) < 255) {
+				point_temp.x = j;
+				point_temp.y = i;
+				PointSet.push_back(point_temp);
+			}
+		}
+	}
+
+	void cv::fitLine(
+		cv::InputArray points, // 二维点的数组或vector  
+		cv::OutputArray line, // 输出直线,Vec4f (2d)或Vec6f (3d)的vector  
+		int distType, // 距离类型  
+		double param, // 距离参数  
+		double reps, // 径向的精度参数  表示直线到原点距离的精度，建议取 0.01。设为0，则自动选用最优值
+		double aeps // 角度精度参数  表示直线角度的精度，建议取 0.01
+	);
+
+	// 直线拟合
+	Vec4f Line;
+	LineFitI(PointSet, Line, cv::DIST_L2, 0, 0.01, 0.01);
+}
+
+// 椭圆拟合测试
+void testEllipseFit() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	HINSTANCE h = LoadLibraryA("EllipseFit.dll");
+	typedef cv::RotatedRect(*a)(
+		cv::InputArray _points  // 二维点的数组或vector 
+		);
+
+	cv::RotatedRect myFitEllipse(cv::InputArray _points);
+
+	a EllipseFitI = (a)GetProcAddress(h, "EllipseFitI");
+
+
+	cv::Mat src_image = myread("blur_test.jpg", 0);
+	if (src_image.empty())
+	{
+		std::cout << "Couldn't open image!" << std::endl;
+		return ;
+	}
+
+	// 轮廓
+	vector<vector<Point>> contours;
+
+	//使用canny检测出边缘
+	Mat edge_image;
+	cv::Canny(src_image, edge_image, 30, 70);
+
+	//边缘追踪，没有存储边缘的组织结构
+	cv::findContours(edge_image, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+	Mat cimage = Mat::zeros(edge_image.size(), CV_8UC3);
+
+	for (size_t i = 0; i < contours.size(); i++)
+	{
+		//拟合的点至少为6
+		size_t count = contours[i].size();
+		if (count < 6)
+			continue;
+
+		//椭圆拟合
+		RotatedRect box = EllipseFitI(contours[i]);
+
+		//如果长宽比大于30，则排除，不做拟合
+		if (MAX(box.size.width, box.size.height) > MIN(box.size.width, box.size.height) * 30)
+			continue;
+
+		//画出追踪出的轮廓
+		cv::drawContours(cimage, contours, (int)i, Scalar::all(255), 1, 8);
+
+		//画出拟合的椭圆
+		cv::ellipse(cimage, box, Scalar(0, 0, 255), 1, CV_AA);
+	}
+}
+
 int main() {
 	testFillPoly();
 	testResizeFlipCrop();
@@ -689,6 +900,12 @@ int main() {
 	testFAST();
 	testBRISK();
 	testMatchContourShape();
+	testGaussianBlur();
+	testMedianBlur();
+	testBoxFilter();
+	testBilateralFilter();
+	testLineFit();
+	testEllipseFit();
 }
 
 
