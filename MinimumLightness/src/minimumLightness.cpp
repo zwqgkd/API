@@ -1,7 +1,5 @@
 #include"precomp.hpp"
 
-using namespace cv;
-
 double meanLightness(cv::Mat img) {
 	cv::Mat img_hls;
 	cv::cvtColor(img, img_hls, CV_BGR2HLS);
