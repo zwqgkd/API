@@ -118,7 +118,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\Include\modules\features2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\ImgOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\Include\modules\features2d;..\Include\modules\imgproc\src;..\Include\modules\stitching\;..\QrcodeDetect\ZBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +128,9 @@
       <AdditionalDependencies>../Lib/opencv_core343.lib;../Lib/opencv_imgproc343.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <Image Include="img\lena.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="源.cpp" />
   </ItemGroup>

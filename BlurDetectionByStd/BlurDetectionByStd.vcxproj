@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{4A7B9BC5-D609-4E3D-A581-5273EA1ED405}</ProjectGuid>
+    <RootNamespace>BlurDetectionByStd</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>BlurDetection</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\Include\modules\imgproc\include;Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\Lib\opencv_core343.lib;..\Lib\opencv_imgproc343.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BlurDetection.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BlurDetection.h" />
+    <ClInclude Include="include\opencv2\core.hpp" />
+    <ClInclude Include="include\opencv2\core\affine.hpp" />
+    <ClInclude Include="include\opencv2\core\base.hpp" />
+    <ClInclude Include="include\opencv2\core\bufferpool.hpp" />
+    <ClInclude Include="include\opencv2\core\check.hpp" />
+    <ClInclude Include="include\opencv2\core\core.hpp" />
+    <ClInclude Include="include\opencv2\core\core_c.h" />
+    <ClInclude Include="include\opencv2\core\cuda.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda.inl.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\block.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\border_interpolate.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\color.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\common.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\datamov_utils.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\detail\color_detail.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\detail\reduce.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\detail\reduce_key_val.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\detail\transform_detail.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\detail\type_traits_detail.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\detail\vec_distance_detail.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\dynamic_smem.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\emulation.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\filters.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\funcattrib.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\functional.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\limits.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\reduce.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\saturate_cast.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\scan.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\simd_functions.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\transform.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\type_traits.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\utility.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\vec_distance.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\vec_math.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\vec_traits.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\warp.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\warp_reduce.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda\warp_shuffle.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda_stream_accessor.hpp" />
+    <ClInclude Include="include\opencv2\core\cuda_types.hpp" />
+    <ClInclude Include="include\opencv2\core\cvdef.h" />
+    <ClInclude Include="include\opencv2\core\cvstd.hpp" />
+    <ClInclude Include="include\opencv2\core\cvstd.inl.hpp" />
+    <ClInclude Include="include\opencv2\core\cv_cpu_dispatch.h" />
+    <ClInclude Include="include\opencv2\core\cv_cpu_helper.h" />
+    <ClInclude Include="include\opencv2\core\directx.hpp" />
+    <ClInclude Include="include\opencv2\core\eigen.hpp" />
+    <ClInclude Include="include\opencv2\core\fast_math.hpp" />
+    <ClInclude Include="include\opencv2\core\hal\hal.hpp" />
+    <ClInclude Include="include\opencv2\core\hal\interface.h" />
+    <ClInclude Include="include\opencv2\core\hal\intrin.hpp" />
+    <ClInclude Include="include\opencv2\core\hal\intrin_avx.hpp" />
+    <ClInclude Include="include\opencv2\core\hal\intrin_cpp.hpp" />
+    <ClInclude Include="include\opencv2\core\hal\intrin_neon.hpp" />
+    <ClInclude Include="include\opencv2\core\hal\intrin_sse.hpp" />
+    <ClInclude Include="include\opencv2\core\hal\intrin_vsx.hpp" />
+    <ClInclude Include="include\opencv2\core\ippasync.hpp" />
+    <ClInclude Include="include\opencv2\core\mat.hpp" />
+    <ClInclude Include="include\opencv2\core\mat.inl.hpp" />
+    <ClInclude Include="include\opencv2\core\matx.hpp" />
+    <ClInclude Include="include\opencv2\core\neon_utils.hpp" />
+    <ClInclude Include="include\opencv2\core\ocl.hpp" />
+    <ClInclude Include="include\opencv2\core\ocl_genbase.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\ocl_defs.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\opencl_info.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\opencl_svm.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\autogenerated\opencl_clamdblas.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\autogenerated\opencl_clamdfft.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\autogenerated\opencl_core.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\autogenerated\opencl_core_wrappers.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\autogenerated\opencl_gl.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\autogenerated\opencl_gl_wrappers.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_clamdblas.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_clamdfft.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_core.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_core_wrappers.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_gl.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_gl_wrappers.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_svm_20.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_svm_definitions.hpp" />
+    <ClInclude Include="include\opencv2\core\opencl\runtime\opencl_svm_hsa_extension.hpp" />
+    <ClInclude Include="include\opencv2\core\opengl.hpp" />
+    <ClInclude Include="include\opencv2\core\operations.hpp" />
+    <ClInclude Include="include\opencv2\core\optim.hpp" />
+    <ClInclude Include="include\opencv2\core\ovx.hpp" />
+    <ClInclude Include="include\opencv2\core\persistence.hpp" />
+    <ClInclude Include="include\opencv2\core\ptr.inl.hpp" />
+    <ClInclude Include="include\opencv2\core\saturate.hpp" />
+    <ClInclude Include="include\opencv2\core\softfloat.hpp" />
+    <ClInclude Include="include\opencv2\core\sse_utils.hpp" />
+    <ClInclude Include="include\opencv2\core\traits.hpp" />
+    <ClInclude Include="include\opencv2\core\types.hpp" />
+    <ClInclude Include="include\opencv2\core\types_c.h" />
+    <ClInclude Include="include\opencv2\core\utility.hpp" />
+    <ClInclude Include="include\opencv2\core\utils\filesystem.hpp" />
+    <ClInclude Include="include\opencv2\core\utils\logger.defines.hpp" />
+    <ClInclude Include="include\opencv2\core\utils\logger.hpp" />
+    <ClInclude Include="include\opencv2\core\utils\trace.hpp" />
+    <ClInclude Include="include\opencv2\core\va_intel.hpp" />
+    <ClInclude Include="include\opencv2\core\version.hpp" />
+    <ClInclude Include="include\opencv2\core\vsx_utils.hpp" />
+    <ClInclude Include="include\opencv2\core\wimage.hpp" />
+    <ClInclude Include="include\opencv2\cvconfig.h" />
+    <ClInclude Include="include\opencv2\opencv.hpp" />
+    <ClInclude Include="include\opencv2\opencv_modules.hpp" />
+    <ClInclude Include="include\opencv\cv.h" />
+    <ClInclude Include="include\opencv\cv.hpp" />
+    <ClInclude Include="include\opencv\cvaux.h" />
+    <ClInclude Include="include\opencv\cvaux.hpp" />
+    <ClInclude Include="include\opencv\cvwimage.h" />
+    <ClInclude Include="include\opencv\cxcore.h" />
+    <ClInclude Include="include\opencv\cxcore.hpp" />
+    <ClInclude Include="include\opencv\cxeigen.hpp" />
+    <ClInclude Include="include\opencv\cxmisc.h" />
+    <ClInclude Include="include\opencv\highgui.h" />
+    <ClInclude Include="include\opencv\ml.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
