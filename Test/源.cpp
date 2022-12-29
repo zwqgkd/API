@@ -8,6 +8,9 @@
 #include"../BlurDetectionByStd/BlurDetection.h"
 #include<opencv2/stitching.hpp>
 
+//条形码测试引入
+#include "zbar.h"
+
 using namespace cv;
 using namespace std;
 
@@ -1257,6 +1260,168 @@ void testInRange() {
 	mywrite("C:\\Users\\zwq\\Desktop\\API\\Test\\img\\1_range.png", dstImage);
 }
 
+void testDetectPolygon() {
+
+	//检测直线
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r imread = (r)GetProcAddress(Hint_wr, "myread"); 
+	w imwrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat srcImage = imread("img/poly_closed.png", 1);
+
+	Mat dst = Mat::zeros(srcImage.size(), CV_8UC3);
+	
+	vector<vector<float>> lines;
+	
+	HINSTANCE Hint_poly = LoadLibraryA("../PolygonDetect/target/PolygonDetect.dll");
+	typedef void(*a) (Mat& srcImg, double epsilon, int minAcreage, vector<vector<float>>& lines, Mat& dst);
+
+	a polygonDetect = (a)GetProcAddress(Hint_poly, "polygoDetect");
+
+	polygonDetect(srcImage, 8, 2000, lines, dst);
+	
+	imwrite("img/polygon_houghlines.jpg", dst);
+
+	FreeLibrary(Hint_wr);
+	Hint_wr = NULL;
+	FreeLibrary(Hint_poly);
+	Hint_poly = NULL;
+}
+
+void testDetectParaLines() {
+
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r imread = (r)GetProcAddress(Hint_wr, "myread");
+	w imwrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+
+	Mat srcImage = imread("img/poly_unclosed.png", 1);
+
+	Mat mid, dst;
+	//用了源码里面的，引用了附加依赖
+	Canny(srcImage, mid, 100, 200, 3);
+	dst = Mat::zeros(srcImage.size(), CV_8UC3);
+
+	//【3】进行霍夫线变换
+	vector<Vec2f> lines;//定义一个矢量结构lines用于存放得到的线段矢量集合
+
+	Methods methods;
+	/*
+	第一个参数，InputArray类型的image，输入图像，即源图像，需为8位的单通道二进制图像，可以将任意的源图载入进来后由函数修改成此格式后，再填在这里。
+	第二个参数，InputArray类型的lines，经过调用HoughLines函数后储存了霍夫线变换检测到线条的输出矢量。每一条线由具有两个元素的矢量表示，其中，是离坐标原点((0,0)（也就是图像的左上角）的距离。 是弧度线条旋转角度（0~垂直线，π/2~水平线）。
+	第三个参数，double类型的rho，以像素为单位的距离精度。另一种形容方式是直线搜索时的进步尺寸的单位半径。PS:Latex中/rho就表示 。
+	第四个参数，double类型的theta，以弧度为单位的角度精度。另一种形容方式是直线搜索时的进步尺寸的单位角度。
+	第五个参数，int类型的threshold，累加平面的阈值参数，即识别某部分为图中的一条直线时它在累加平面中必须达到的值。大于阈值threshold的线段才可以被检测通过并返回到结果中。
+	第六个参数，double类型的srn，有默认值0。对于多尺度的霍夫变换，这是第三个参数进步尺寸rho的除数距离。粗略的累加器进步尺寸直接是第三个参数rho，而精确的累加器进步尺寸为rho/srn。
+	第七个参数，double类型的stn，有默认值0，对于多尺度霍夫变换，srn表示第四个参数进步尺寸的单位角度theta的除数距离。且如果srn和stn同时为0，就表示使用经典的霍夫变换。否则，这两个参数应该都为正数。
+	第八个参数，double类型的 min_theta，对于标准和多尺度Hough变换，检查线条的最小角度。必须介于0和max_theta之间。
+	第九个参数，double类型的 max_theta, 对于标准和多尺度Hough变换，检查线条的最大角度。必须介于min_theta和CV_PI之间.
+原文链接：https://blog.csdn.net/weixin_41906949/article/details/85049238
+	*/
+	methods.myHoughLines(mid, lines, 1, CV_PI / 180, 100, 0, 0, 0, CV_PI);
+
+	//【4】依次在图中绘制出每条线段
+
+	float min_theta = 0.01; //弧度制
+	for (size_t i = 0; i < lines.size(); i++)
+	{
+		for (size_t j = i + 1; j < lines.size(); j++) {
+			Vec2f hlinei = lines[i], hlinej = lines[j];
+			if (abs(hlinei[1] - hlinej[1]) < min_theta) {
+				float rho = hlinei[0], theta = hlinei[1];
+				Point pt1, pt2;
+				double a = cos(theta), b = sin(theta);
+				double x0 = a * rho, y0 = b * rho;
+				pt1.x = cvRound(x0 + 1000 * (-b));
+				pt1.y = cvRound(y0 + 1000 * (a));
+				pt2.x = cvRound(x0 - 1000 * (-b));
+				pt2.y = cvRound(y0 - 1000 * (a));
+				cv::line(dst, pt1, pt2, Scalar(0, 245, 0), 1, LINE_AA);
+
+				rho = hlinej[0];
+				theta = hlinej[1];
+				a = cos(theta);
+				b = sin(theta);
+				x0 = a * rho;
+				y0 = b * rho;
+				pt1.x = cvRound(x0 + 1000 * (-b));
+				pt1.y = cvRound(y0 + 1000 * (a));
+				pt2.x = cvRound(x0 - 1000 * (-b));
+				pt2.y = cvRound(y0 - 1000 * (a));
+				cv::line(dst, pt1, pt2, Scalar(0, 245, 0), 1, LINE_AA);
+
+				cout << hlinei[0] << "," << hlinei[1] << " : " << hlinej[0] << "," << hlinej[1] << endl;
+			}
+		}
+	}
+	imwrite("img/paralle_lines.jpg", dst);
+
+	FreeLibrary(Hint_wr);
+	Hint_wr = NULL;
+}
+
+void pixesStatistic() {
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r imread = (r)GetProcAddress(Hint_wr, "myread");
+	w imwrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat srcImage = imread("img/lena.jpg", 0);
+
+	//指定低阈值和高阈值
+	int lowthresHold = 100, highthresHold = 200, lowCount=0, midCount=0, highCount=0;
+	for (int i = 0; i < srcImage.rows; i++) {
+		for (int j = 0; j < srcImage.cols; j++) {
+			if (srcImage.at<int>(i, j) < lowthresHold)
+				lowCount += 1;
+			else if (srcImage.at<int>(i, j) < highthresHold)
+				midCount += 1;
+			else
+				highCount += 1;
+		}
+	}
+
+	cout << lowCount <<" " << midCount << " " << highCount << " " << endl;
+}
+
+void testQRdetect() {
+
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r imread = (r)GetProcAddress(Hint_wr, "myread");
+	w imwrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	//cv::Mat image = imread("img/qr_angle.jpg", 1);
+	cv::Mat image = imread("img/barcode.png", 1);
+
+	zbar::ImageScanner scanner;
+	scanner.set_config(zbar::ZBAR_NONE, zbar::ZBAR_CFG_ENABLE, 1);
+
+	cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+	int width = image.cols;
+	int height = image.rows;
+	uchar *raw = (uchar *)image.data;
+	zbar::Image imageZbar(width, height, "Y800", raw, width*height);
+	scanner.scan(imageZbar); //扫描条码  
+	zbar::Image::SymbolIterator symbol = imageZbar.symbol_begin();
+	if (imageZbar.symbol_begin() == imageZbar.symbol_end())
+	{
+		std::cout << "查询条码失败，请检查图片！" << std::endl;
+	}
+	for (; symbol != imageZbar.symbol_end(); ++symbol)
+	{
+		std::cout << "类型：" << symbol->get_type_name() << std::endl;
+		std::cout << "条码：" << symbol->get_data() << std::endl;
+	}
+}
 
 int main() {
 	//testFillPoly();
@@ -1284,6 +1449,11 @@ int main() {
 	//testHough();
 	//detectLineWithHough();
 	testStitching();
+	
+	//testDetectPolygon();
+	//pixesStatistic();
+	//testQRdetect();
+	//testDetectParaLines();
 }
 
 
