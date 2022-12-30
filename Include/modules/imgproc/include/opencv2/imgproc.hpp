@@ -4861,6 +4861,8 @@ extern "C" {
 		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
 	__declspec(dllexport) void myTophat(cv::InputArray src, cv::OutputArray dst, cv::InputArray kernel,
 		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
+	__declspec(dllexport) void myCvtColor(cv::InputArray _src, cv::OutputArray _dst, int code, int dcn);
+	__declspec(dllexport) double myContourArea1(cv::InputArray _contour, bool oriented);
 #ifdef __cplusplus
 }
 #endif

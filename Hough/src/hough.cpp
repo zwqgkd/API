@@ -1950,3 +1950,7 @@ void myHoughLines(cv::InputArray _image, cv::OutputArray lines, double rho, doub
 void myHoughCircles(cv::InputArray _image, cv::OutputArray _circles,	int method, double dp, double minDist,	double param1, double param2,	int minRadius, int maxRadius,	int maxCircles, double param3) {
 	cv::HoughCircles( _image,  _circles,		 method,  dp,  minDist,		 param1,  param2,		 minRadius,  maxRadius,		 maxCircles,  param3);
 }
+
+void myHoughLinesP(cv::InputArray _image, cv::OutputArray _lines,	double rho, double theta, int threshold,	double minLineLength, double maxGap) {
+	HoughLinesP(_image, _lines, rho, theta, threshold, minLineLength, maxGap);
+}
