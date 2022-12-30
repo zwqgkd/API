@@ -468,6 +468,75 @@ void testTophat() {
 
 }
 
+//阴影校正
+void testShadow()
+{
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/shadow.PNG",1);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	typedef cv::Mat(*shadow)(cv::Mat input, int light);
+	HINSTANCE Dll = LoadLibraryA("../ShadowCorrection/target/shadowcorrection.dll");
+	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/open/bin/Release/opencv_imgproc343.dll");
+	if (Dll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	shadow myShadowCorrection = (shadow)GetProcAddress(Dll, "myShadowCorrection");
+
+	if (myShadowCorrection == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+
+	result=myShadowCorrection(src,10);
+	mywrite("C:/Users/14839/Desktop/shadowRes.png", result);
+}
+
+//亮度和对比度
+void testBrightnessAndContrast()
+{
+	//prepare for read and write
+	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+	typedef cv::Mat(*r) (const char*filename, int flag);
+	typedef void(*w) (const char*filename, cv::Mat result);
+	r myread = (r)GetProcAddress(Hint_wr, "myread");
+	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+
+	cv::Mat result;
+	cv::Mat src = myread("C:/Users/14839/Desktop/shadow.PNG", 1);
+	cv::Mat kernel = cv::Mat::zeros(25, 25, CV_8UC1);   // 矩形结构
+
+	// clipHistPercent 剪枝（剪去总像素的多少百分比）
+	// histSize 最后将所有的灰度值归到多大的范围
+	// lowhist 最小的灰度值
+	typedef void(*brightnessandcontrast)(const cv::Mat &src, cv::Mat &dst, float clipHistPercent, int histSize, int lowhist);
+	HINSTANCE Dll = LoadLibraryA("../BrightnessAndContrast/target/brightnessandcontrast.dll");
+	//HINSTANCE Dll = LoadLibraryA("C:/Users/14839/Desktop/opencv/BrightnessAndContrast/bin/Release/opencv_imgproc343.dll");
+	if (Dll == NULL)
+	{
+		printf("加载dll失败\n");
+	}
+	brightnessandcontrast myBrightnessAndContrast = (brightnessandcontrast)GetProcAddress(Dll, "myBrightnessAndContrast");
+
+	if (myBrightnessAndContrast == NULL)
+	{
+		printf("加载func失败\n");
+	}
+
+
+	 myBrightnessAndContrast(src, result,0,255,55);
+	mywrite("C:/Users/14839/Desktop/brightnessandcontrastRes.png", result);
+}
+
 int main() {
 	testFillPoly();
 	testResizeFlipCrop();
@@ -479,6 +548,8 @@ int main() {
 	testGradient();
 	testBlackhat();
 	testTophat();
+	testShadow();
+	testBrightnessAndContrast();
 }
 
 

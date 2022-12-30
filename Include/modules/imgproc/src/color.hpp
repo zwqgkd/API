@@ -10,6 +10,7 @@
 #include "opencv2/core/hal/intrin.hpp"
 #include "opencv2/core/softfloat.hpp"
 
+
 #define  CV_DESCALE(x,n)     (((x) + (1 << ((n)-1))) >> (n))
 
 namespace cv
@@ -396,7 +397,7 @@ public:
 
     virtual void operator()(const Range& range) const CV_OVERRIDE
     {
-        CV_TRACE_FUNCTION();
+       // CV_TRACE_FUNCTION();
 
         const uchar* yS = src_data + static_cast<size_t>(range.start) * src_step;
         uchar* yD = dst_data + static_cast<size_t>(range.start) * dst_step;
