@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\ImgOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\Include\modules\features2d;..\Include\modules\imgproc\src;..\Include\modules\stitching\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;..\Include\modules\imgproc\include;..\Include\modules\features2d;..\Include\modules\imgproc\src;..\Include\modules\stitching\;..\QrcodeDetect\ZBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,10 +129,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="源.cpp" />
+    <Image Include="img\lena.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="img\lena.jpg" />
+    <ClCompile Include="源.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
