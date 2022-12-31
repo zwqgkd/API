@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="objects">
+      <UniqueIdentifier>{ac645d01-5c11-4f06-9ca0-672bd324c2e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FindContoursAll\src\approx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\filter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\opencl_kernels_imgproc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\shapedescr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\smooth.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\sumpixels.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\tables.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\templmatch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\thresh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FindContoursAll\src\utils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="findContoursTeh-Chin.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\FindContoursAll\src\filter.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FindContoursAll\src\opencl_kernels_imgproc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="..\FindContoursAll\obj\accum.avx.obj">
+      <Filter>objects</Filter>
+    </Object>
+    <Object Include="..\FindContoursAll\obj\corner.avx.obj">
+      <Filter>objects</Filter>
+    </Object>
+    <Object Include="..\FindContoursAll\obj\filter.avx2.obj">
+      <Filter>objects</Filter>
+    </Object>
+    <Object Include="..\FindContoursAll\obj\imgwarp.avx2.obj">
+      <Filter>objects</Filter>
+    </Object>
+    <Object Include="..\FindContoursAll\obj\imgwarp.sse4_1.obj">
+      <Filter>objects</Filter>
+    </Object>
+    <Object Include="..\FindContoursAll\obj\resize.avx2.obj">
+      <Filter>objects</Filter>
+    </Object>
+    <Object Include="..\FindContoursAll\obj\resize.sse4_1.obj">
+      <Filter>objects</Filter>
+    </Object>
+    <Object Include="..\FindContoursAll\obj\undistort.avx2.obj">
+      <Filter>objects</Filter>
+    </Object>
+  </ItemGroup>
+</Project>
