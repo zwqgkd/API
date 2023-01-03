@@ -1712,7 +1712,51 @@ void testEllipseFit() {
 		cv::ellipse(cimage, box, Scalar(0, 0, 255), 1, CV_AA);
 	}
 }
+void testContourArea() {
+	Mat A = Mat::zeros(500, 500, CV_8UC1);
+	circle(A, Point2i(100, 100), 3, 255, -1);
+	circle(A, Point2i(300, 400), 50, 255, -1);
+	circle(A, Point2i(250, 100), 100, 255, -1);
+	circle(A, Point2i(400, 300), 60, 255, -1);
 
+	rectangle(A, Point(10, 10), Point(80, 40), Scalar(255, 255, 255), 1);
+
+	std::vector<std::vector<cv::Point> > contours;  // 创建轮廓容器
+	std::vector<cv::Vec4i> 	hierarchy;
+
+	//测试findContoursAll
+	//HINSTANCE hint = LoadLibraryA("C:\\Users\\zwq\\Desktop\\API\\FindContoursAll\\target\\findContoursAll.dll");
+	//typedef double(*func)(cv::InputOutputArray _image, cv::OutputArrayOfArrays _contours,
+	//	cv::OutputArray _hierarchy, int mode, cv::Point offset);
+	//func findContoursAll = (func)GetProcAddress(hint, "findContoursAll");
+	//findContoursAll(A, contours, hierarchy, cv::RETR_EXTERNAL, cv::Point());
+
+	//测试findContoursSimple
+	HINSTANCE hint = LoadLibraryA("..\\FindContoursSimple\\target\\findContoursSimple.dll");
+	typedef double(*func)(cv::InputOutputArray _image, cv::OutputArrayOfArrays _contours,cv::OutputArray _hierarchy, int mode, cv::Point offset);
+	func findContoursSimple = (func)GetProcAddress(hint, "findContoursSimple");
+	findContoursSimple(A,contours,hierarchy,cv::RETR_EXTERNAL,cv::Point());
+
+	if(!contours.empty() && !hierarchy.empty())
+	{
+		std::vector<std::vector<cv::Point> >::const_iterator itc = contours.begin();
+		// 遍历所有轮廓
+		int i = 1;
+		while (itc != contours.end())
+		{
+
+			HINSTANCE hint = LoadLibraryA("..\\ContourArea\\target\\contourArea.dll");
+			typedef double(*func)(cv::InputArray _contour, bool oriented);
+			func myContourArea = (func)GetProcAddress(hint, "myContourArea");
+			cout << hint << endl << myContourArea;
+
+			double area = myContourArea(*itc, false);
+			cout << "第" << i << "个轮廓的面积为：" << area << endl;
+			i++;
+			itc++;
+		}
+	}
+}
 
 int main() {
 	//testFillPoly();

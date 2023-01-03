@@ -97,6 +97,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinimumLightness", "Minimum
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MaxmumLightness", "MaxmumLightness\MaxmumLightness.vcxproj", "{ED77BF4A-65A3-4BFF-9036-9A3B028A147E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EstimateAffine3D", "EstimateAffine3D\EstimateAffine3D.vcxproj", "{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EstimateAffine2D", "EstimateAffine2D\EstimateAffine2D.vcxproj", "{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -481,6 +485,22 @@ Global
 		{ED77BF4A-65A3-4BFF-9036-9A3B028A147E}.Release|x64.Build.0 = Release|x64
 		{ED77BF4A-65A3-4BFF-9036-9A3B028A147E}.Release|x86.ActiveCfg = Release|Win32
 		{ED77BF4A-65A3-4BFF-9036-9A3B028A147E}.Release|x86.Build.0 = Release|Win32
+		{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}.Debug|x64.ActiveCfg = Debug|x64
+		{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}.Debug|x64.Build.0 = Debug|x64
+		{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}.Debug|x86.ActiveCfg = Debug|Win32
+		{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}.Debug|x86.Build.0 = Debug|Win32
+		{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}.Release|x64.ActiveCfg = Release|x64
+		{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}.Release|x64.Build.0 = Release|x64
+		{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}.Release|x86.ActiveCfg = Release|Win32
+		{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}.Release|x86.Build.0 = Release|Win32
+		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Debug|x64.ActiveCfg = Debug|x64
+		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Debug|x64.Build.0 = Debug|x64
+		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Debug|x86.ActiveCfg = Debug|Win32
+		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Debug|x86.Build.0 = Debug|Win32
+		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Release|x64.ActiveCfg = Release|x64
+		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Release|x64.Build.0 = Release|x64
+		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Release|x86.ActiveCfg = Release|Win32
+		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
