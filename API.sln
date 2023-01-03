@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.33026.149
@@ -100,6 +99,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EstimateAffine3D", "EstimateAffine3D\EstimateAffine3D.vcxproj", "{C8A9C054-6ADD-4AEA-BBA5-ED02AD312207}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EstimateAffine2D", "EstimateAffine2D\EstimateAffine2D.vcxproj", "{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EllipseCircleFit", "EllipseCircleFit\EllipseCircleFit.vcxproj", "{8F398174-5BC7-46D6-AF97-C26E6E94F979}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -501,11 +502,19 @@ Global
 		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Release|x64.Build.0 = Release|x64
 		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Release|x86.ActiveCfg = Release|Win32
 		{F6083D0F-307F-45DA-80BA-F7F15E2E2C14}.Release|x86.Build.0 = Release|Win32
+		{8F398174-5BC7-46D6-AF97-C26E6E94F979}.Debug|x64.ActiveCfg = Debug|x64
+		{8F398174-5BC7-46D6-AF97-C26E6E94F979}.Debug|x64.Build.0 = Debug|x64
+		{8F398174-5BC7-46D6-AF97-C26E6E94F979}.Debug|x86.ActiveCfg = Debug|Win32
+		{8F398174-5BC7-46D6-AF97-C26E6E94F979}.Debug|x86.Build.0 = Debug|Win32
+		{8F398174-5BC7-46D6-AF97-C26E6E94F979}.Release|x64.ActiveCfg = Release|x64
+		{8F398174-5BC7-46D6-AF97-C26E6E94F979}.Release|x64.Build.0 = Release|x64
+		{8F398174-5BC7-46D6-AF97-C26E6E94F979}.Release|x86.ActiveCfg = Release|Win32
+		{8F398174-5BC7-46D6-AF97-C26E6E94F979}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2A3437AC-E08A-4356-B48E-F747710C45B5}
+		SolutionGuid = {189ED8C3-3E8F-3D8D-831B-3DD0D9230F32}
 	EndGlobalSection
 EndGlobal
