@@ -1357,11 +1357,35 @@ cvBoundingRect( CvArr* array, int update )
 
 /* End of file. */
 
-cv::RotatedRect myFitEllipse(cv::InputArray _points) {
-	return cv::fitEllipse(_points);
+cv::RotatedRect myFitEllipse(cv::InputArray points) {
+	// 中心点坐标 box.center.x, box.center.y
+	// 以及矩形的长度 box.size.width 和宽度 box.size.height 还有矩形的偏转角度 box.angle
+	cv::RotatedRect box = cv::fitEllipse(points);
+	return box;
 }
 
-void myFitCircle(cv::InputArray _points, cv::Point2f& _center, float& _radius) {
-	cv::minEnclosingCircle(_points, _center, _radius);
+cv::RotatedRect myFitCircle(cv::InputArray points) {
+	cv::Point2f center;
+	float radius;
+	cv::minEnclosingCircle(points, center, radius);
+	cv::RotatedRect box;
+	// 圆心坐标 box.center.x = center.x, box.center.y = center.y
+	// 半径 box.size.width = box.size.height = radius, 偏转角度 box.angle = 0
+	box.center.x = center.x;
+	box.center.y = center.y;
+	box.size.width = radius;
+	box.size.height = radius;
+	box.angle = 0;
+	return box;
 }
 
+cv::RotatedRect myFitEC(cv::InputArray points, bool isCircle) {
+	cv::RotatedRect box;
+	if (isCircle) {
+		box = myFitCircle(points);
+	} 	// isCircle = true, 拟合圆
+	else {
+		box = myFitEllipse(points);
+	} // isCircle = false, 拟合椭圆
+	return box;
+}
