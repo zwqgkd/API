@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{B73BE168-D645-4B6E-ABFC-C18561C4DBFF}</ProjectGuid>
+    <RootNamespace>Undistort</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>target/</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../Include/3rdparty/ippicv/ippicv_win/include/;../Include/modules/core/include;../Include/3rdparty/ippicv/ippiw_win/include/;src/;include/</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>../Lib/opencv_core343.lib;../Lib/ippicvmt.lib;../Lib/ippiw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\cvconfig.h" />
+    <ClInclude Include="include\opencv2\imgproc.hpp" />
+    <ClInclude Include="include\opencv2\imgproc\detail\distortion_model.hpp" />
+    <ClInclude Include="include\opencv2\imgproc\hal\hal.hpp" />
+    <ClInclude Include="include\opencv2\imgproc\hal\interface.h" />
+    <ClInclude Include="include\opencv2\imgproc\imgproc.hpp" />
+    <ClInclude Include="include\opencv2\imgproc\imgproc_c.h" />
+    <ClInclude Include="include\opencv2\imgproc\types_c.h" />
+    <ClInclude Include="include\opencv_modules.hpp" />
+    <ClInclude Include="src\accum.simd.hpp" />
+    <ClInclude Include="src\color.hpp" />
+    <ClInclude Include="src\corner.hpp" />
+    <ClInclude Include="src\filter.hpp" />
+    <ClInclude Include="src\filterengine.hpp" />
+    <ClInclude Include="src\fixedpoint.inl.hpp" />
+    <ClInclude Include="src\gcgraph.hpp" />
+    <ClInclude Include="src\hal_replacement.hpp" />
+    <ClInclude Include="src\imgwarp.hpp" />
+    <ClInclude Include="src\opencl_kernels_imgproc.hpp" />
+    <ClInclude Include="src\precomp.hpp" />
+    <ClInclude Include="src\resize.hpp" />
+    <ClInclude Include="src\undistort.hpp" />
+    <ClInclude Include="src\_geom.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\accum.cpp" />
+    <ClCompile Include="src\accum.dispatch.cpp" />
+    <ClCompile Include="src\approx.cpp" />
+    <ClCompile Include="src\blend.cpp" />
+    <ClCompile Include="src\canny.cpp" />
+    <ClCompile Include="src\clahe.cpp" />
+    <ClCompile Include="src\color.cpp" />
+    <ClCompile Include="src\colormap.cpp" />
+    <ClCompile Include="src\color_hsv.cpp" />
+    <ClCompile Include="src\color_lab.cpp" />
+    <ClCompile Include="src\color_rgb.cpp" />
+    <ClCompile Include="src\color_yuv.cpp" />
+    <ClCompile Include="src\connectedcomponents.cpp" />
+    <ClCompile Include="src\contours.cpp" />
+    <ClCompile Include="src\convhull.cpp" />
+    <ClCompile Include="src\corner.cpp" />
+    <ClCompile Include="src\cornersubpix.cpp" />
+    <ClCompile Include="src\demosaicing.cpp" />
+    <ClCompile Include="src\deriv.cpp" />
+    <ClCompile Include="src\distransform.cpp" />
+    <ClCompile Include="src\drawing.cpp" />
+    <ClCompile Include="src\emd.cpp" />
+    <ClCompile Include="src\featureselect.cpp" />
+    <ClCompile Include="src\filter.cpp" />
+    <ClCompile Include="src\floodfill.cpp" />
+    <ClCompile Include="src\gabor.cpp" />
+    <ClCompile Include="src\generalized_hough.cpp" />
+    <ClCompile Include="src\geometry.cpp" />
+    <ClCompile Include="src\grabcut.cpp" />
+    <ClCompile Include="src\hershey_fonts.cpp" />
+    <ClCompile Include="src\histogram.cpp" />
+    <ClCompile Include="src\hough.cpp" />
+    <ClCompile Include="src\imgwarp.cpp" />
+    <ClCompile Include="src\intersection.cpp" />
+    <ClCompile Include="src\linefit.cpp" />
+    <ClCompile Include="src\lsd.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\matchcontours.cpp" />
+    <ClCompile Include="src\min_enclosing_triangle.cpp" />
+    <ClCompile Include="src\moments.cpp" />
+    <ClCompile Include="src\morph.cpp" />
+    <ClCompile Include="src\opencl_kernels_imgproc.cpp" />
+    <ClCompile Include="src\opencv_imgproc_pch.cpp" />
+    <ClCompile Include="src\phasecorr.cpp" />
+    <ClCompile Include="src\pyramids.cpp" />
+    <ClCompile Include="src\resize.cpp" />
+    <ClCompile Include="src\rotcalipers.cpp" />
+    <ClCompile Include="src\samplers.cpp" />
+    <ClCompile Include="src\segmentation.cpp" />
+    <ClCompile Include="src\shapedescr.cpp" />
+    <ClCompile Include="src\smooth.cpp" />
+    <ClCompile Include="src\spatialgradient.cpp" />
+    <ClCompile Include="src\subdivision2d.cpp" />
+    <ClCompile Include="src\sumpixels.cpp" />
+    <ClCompile Include="src\tables.cpp" />
+    <ClCompile Include="src\templmatch.cpp" />
+    <ClCompile Include="src\thresh.cpp" />
+    <ClCompile Include="src\undistort.cpp" />
+    <ClCompile Include="src\utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="opencl\accumulate.cl" />
+    <None Include="opencl\bilateral.cl" />
+    <None Include="opencl\blend_linear.cl" />
+    <None Include="opencl\boxFilter.cl" />
+    <None Include="opencl\boxFilter3x3.cl" />
+    <None Include="opencl\calc_back_project.cl" />
+    <None Include="opencl\canny.cl" />
+    <None Include="opencl\clahe.cl" />
+    <None Include="opencl\color_hsv.cl" />
+    <None Include="opencl\color_lab.cl" />
+    <None Include="opencl\color_rgb.cl" />
+    <None Include="opencl\color_yuv.cl" />
+    <None Include="opencl\corner.cl" />
+    <None Include="opencl\covardata.cl" />
+    <None Include="opencl\filter2D.cl" />
+    <None Include="opencl\filter2DSmall.cl" />
+    <None Include="opencl\filterSepCol.cl" />
+    <None Include="opencl\filterSepRow.cl" />
+    <None Include="opencl\filterSep_singlePass.cl" />
+    <None Include="opencl\filterSmall.cl" />
+    <None Include="opencl\gaussianBlur3x3.cl" />
+    <None Include="opencl\gaussianBlur5x5.cl" />
+    <None Include="opencl\gftt.cl" />
+    <None Include="opencl\histogram.cl" />
+    <None Include="opencl\hough_lines.cl" />
+    <None Include="opencl\integral_sum.cl" />
+    <None Include="opencl\laplacian3.cl" />
+    <None Include="opencl\laplacian5.cl" />
+    <None Include="opencl\linearPolar.cl" />
+    <None Include="opencl\logPolar.cl" />
+    <None Include="opencl\match_template.cl" />
+    <None Include="opencl\medianFilter.cl" />
+    <None Include="opencl\moments.cl" />
+    <None Include="opencl\morph.cl" />
+    <None Include="opencl\morph3x3.cl" />
+    <None Include="opencl\precornerdetect.cl" />
+    <None Include="opencl\pyramid_up.cl" />
+    <None Include="opencl\pyr_down.cl" />
+    <None Include="opencl\pyr_up.cl" />
+    <None Include="opencl\remap.cl" />
+    <None Include="opencl\resize.cl" />
+    <None Include="opencl\sepFilter3x3.cl" />
+    <None Include="opencl\threshold.cl" />
+    <None Include="opencl\warp_affine.cl" />
+    <None Include="opencl\warp_perspective.cl" />
+    <None Include="opencl\warp_transform.cl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="obj\accum.avx.obj" />
+    <Object Include="obj\corner.avx.obj" />
+    <Object Include="obj\filter.avx2.obj" />
+    <Object Include="obj\imgwarp.avx2.obj" />
+    <Object Include="obj\imgwarp.sse4_1.obj" />
+    <Object Include="obj\resize.avx2.obj" />
+    <Object Include="obj\resize.sse4_1.obj" />
+    <Object Include="obj\undistort.avx2.obj" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

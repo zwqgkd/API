@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\opencl">
+      <UniqueIdentifier>{c472b9ca-155b-4db8-b844-bd9a66dfe2d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\opencv2">
+      <UniqueIdentifier>{84c68efa-4917-4d22-affa-0221c8925533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\opencv2\imgproc">
+      <UniqueIdentifier>{2e9753a5-e3c6-4b4c-9169-9c469af3341e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\opencv2\imgproc\detail">
+      <UniqueIdentifier>{01b2c9f8-3a85-420f-8074-132517b81bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\opencv2\imgproc\hal">
+      <UniqueIdentifier>{9ddfa5df-d4f8-4675-aca9-229e8684c955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="obj">
+      <UniqueIdentifier>{877297a4-3b25-48d7-9715-92e3b3ab5a11}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\_geom.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\color.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\corner.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filter.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filterengine.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fixedpoint.inl.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gcgraph.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hal_replacement.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgwarp.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opencl_kernels_imgproc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\precomp.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resize.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\undistort.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cvconfig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opencv_modules.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opencv2\imgproc.hpp">
+      <Filter>头文件\opencv2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opencv2\imgproc\imgproc.hpp">
+      <Filter>头文件\opencv2\imgproc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opencv2\imgproc\imgproc_c.h">
+      <Filter>头文件\opencv2\imgproc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opencv2\imgproc\types_c.h">
+      <Filter>头文件\opencv2\imgproc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opencv2\imgproc\detail\distortion_model.hpp">
+      <Filter>头文件\opencv2\imgproc\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opencv2\imgproc\hal\hal.hpp">
+      <Filter>头文件\opencv2\imgproc\hal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opencv2\imgproc\hal\interface.h">
+      <Filter>头文件\opencv2\imgproc\hal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\accum.simd.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\approx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\blend.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\canny.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\clahe.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\color.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\color_hsv.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\color_lab.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\color_rgb.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\color_yuv.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\colormap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connectedcomponents.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\contours.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\convhull.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\corner.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cornersubpix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\demosaicing.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\deriv.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\distransform.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\drawing.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\featureselect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\floodfill.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gabor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\generalized_hough.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\grabcut.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hershey_fonts.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\histogram.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hough.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgwarp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\intersection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\linefit.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lsd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\matchcontours.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\min_enclosing_triangle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\moments.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\morph.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opencl_kernels_imgproc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opencv_imgproc_pch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\phasecorr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pyramids.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resize.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rotcalipers.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samplers.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\segmentation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shapedescr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\smooth.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spatialgradient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\subdivision2d.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sumpixels.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tables.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\templmatch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thresh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\undistort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\accum.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\accum.dispatch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="opencl\accumulate.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\bilateral.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\blend_linear.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\boxFilter.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\boxFilter3x3.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\calc_back_project.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\canny.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\clahe.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\color_hsv.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\color_lab.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\color_rgb.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\color_yuv.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\corner.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\covardata.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\filter2D.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\filter2DSmall.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\filterSep_singlePass.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\filterSepCol.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\filterSepRow.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\filterSmall.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\gaussianBlur3x3.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\gaussianBlur5x5.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\gftt.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\histogram.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\hough_lines.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\integral_sum.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\laplacian3.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\laplacian5.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\linearPolar.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\logPolar.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\match_template.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\medianFilter.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\moments.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\morph.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\morph3x3.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\precornerdetect.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\pyr_down.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\pyr_up.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\pyramid_up.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\remap.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\resize.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\sepFilter3x3.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\threshold.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\warp_affine.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\warp_perspective.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+    <None Include="opencl\warp_transform.cl">
+      <Filter>源文件\opencl</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="obj\accum.avx.obj">
+      <Filter>obj</Filter>
+    </Object>
+    <Object Include="obj\corner.avx.obj">
+      <Filter>obj</Filter>
+    </Object>
+    <Object Include="obj\filter.avx2.obj">
+      <Filter>obj</Filter>
+    </Object>
+    <Object Include="obj\imgwarp.avx2.obj">
+      <Filter>obj</Filter>
+    </Object>
+    <Object Include="obj\imgwarp.sse4_1.obj">
+      <Filter>obj</Filter>
+    </Object>
+    <Object Include="obj\resize.avx2.obj">
+      <Filter>obj</Filter>
+    </Object>
+    <Object Include="obj\resize.sse4_1.obj">
+      <Filter>obj</Filter>
+    </Object>
+    <Object Include="obj\undistort.avx2.obj">
+      <Filter>obj</Filter>
+    </Object>
+  </ItemGroup>
+</Project>
