@@ -1916,7 +1916,7 @@ int main() {
 	//testBrightnessAndContrast();
 	//testShadow();
 
-	testColorIdentif();
+	//testColorIdentif();
 	
 	testPosturalEstimation();
 }
