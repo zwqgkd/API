@@ -1,6 +1,6 @@
-#include"precomp.hpp"
+#include "maxmumLightness.h"
 
-double meanLightness(cv::Mat img) {
+double maxmumLightness(cv::Mat img) {
 	cv::Mat img_hls;
 	cv::cvtColor(img, img_hls, CV_BGR2HLS);
 	std::vector<cv::Mat>images;

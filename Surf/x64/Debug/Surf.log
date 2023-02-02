@@ -1,17 +1,17 @@
 ﻿  affine_feature2d.cpp
-c:\myworkdata\gitcode\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
+c:\users\高增光\desktop\新建文件夹 (4)\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
   daisy.cpp
-c:\myworkdata\gitcode\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
+c:\users\高增光\desktop\新建文件夹 (4)\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
   ellipticKeyPoint.cpp
-c:\myworkdata\gitcode\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
+c:\users\高增光\desktop\新建文件夹 (4)\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
   opencl_kernels_xfeatures2d.cpp
-c:\myworkdata\gitcode\api\surf\src\opencl_kernels_xfeatures2d.cpp(3): fatal error C1083: 无法打开包括文件: “opencv2/core.hpp”: No such file or directory
+c:\users\高增光\desktop\新建文件夹 (4)\api\surf\src\opencl_kernels_xfeatures2d.cpp(3): fatal error C1083: 无法打开包括文件: “opencv2/core.hpp”: No such file or directory
   surf.cpp
-c:\myworkdata\gitcode\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
+c:\users\高增光\desktop\新建文件夹 (4)\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
   surf.cuda.cpp
-c:\myworkdata\gitcode\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
+c:\users\高增光\desktop\新建文件夹 (4)\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
   surf.ocl.cpp
-c:\myworkdata\gitcode\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
+c:\users\高增光\desktop\新建文件夹 (4)\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
   xfeatures2d_init.cpp
-c:\myworkdata\gitcode\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
+c:\users\高增光\desktop\新建文件夹 (4)\api\surf\src\precomp.hpp(46): fatal error C1083: 无法打开包括文件: “opencv2/xfeatures2d/cuda.hpp”: No such file or directory
   正在生成代码...

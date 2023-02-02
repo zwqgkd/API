@@ -86,6 +86,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>..\Lib\opencv_core343.lib;..\Lib\opencv_imgproc343.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -125,9 +126,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="BlurDetection.cpp" />
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlurDetection.h" />
     <ClInclude Include="include\opencv2\core.hpp" />
@@ -247,6 +245,9 @@
     <ClInclude Include="include\opencv\cxmisc.h" />
     <ClInclude Include="include\opencv\highgui.h" />
     <ClInclude Include="include\opencv\ml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BlurDetection.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
