@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{dbbc8be6-ef8e-4596-ae36-cb224cbb52a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{78b5664f-20ec-40fa-9bca-2740c62ffb63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\kaze">
+      <UniqueIdentifier>{beb3aea0-c7ac-4acb-8085-db8eb6276d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\opencl">
+      <UniqueIdentifier>{81b5413f-9158-43a9-b314-b778d3bac10f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\agast.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\agast_score.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\akaze.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bagofwords.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\blobdetector.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\brisk.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\draw.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fast.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fast_score.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\feature2d.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gftt.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kaze.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keypoint.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\matchers.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mser.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\orb.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kaze\AKAZEFeatures.cpp">
+      <Filter>Src\kaze</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kaze\fed.cpp">
+      <Filter>Src\kaze</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kaze\KAZEFeatures.cpp">
+      <Filter>Src\kaze</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kaze\nldiffusion_functions.cpp">
+      <Filter>Src\kaze</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opencl_kernels_features2d.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\agast_score.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fast.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fast_score.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaze\AKAZEConfig.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaze\AKAZEFeatures.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaze\fed.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaze\KAZEConfig.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaze\KAZEFeatures.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaze\nldiffusion_functions.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaze\TEvolution.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="src\kaze\utils.h">
+      <Filter>Src\kaze</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opencl_kernels_features2d.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\opencl\akaze.cl">
+      <Filter>Src\opencl</Filter>
+    </None>
+    <None Include="src\opencl\brute_force_match.cl">
+      <Filter>Src\opencl</Filter>
+    </None>
+    <None Include="src\opencl\fast.cl">
+      <Filter>Src\opencl</Filter>
+    </None>
+    <None Include="src\opencl\orb.cl">
+      <Filter>Src\opencl</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="obj\fast.avx2.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+</Project>

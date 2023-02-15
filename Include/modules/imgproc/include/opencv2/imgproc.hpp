@@ -4863,6 +4863,8 @@ extern "C" {
 		cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue);
 	__declspec(dllexport) void myCvtColor(cv::InputArray _src, cv::OutputArray _dst, int code, int dcn);
 	__declspec(dllexport) double myContourArea1(cv::InputArray _contour, bool oriented);
+	__declspec(dllexport) int myFloodFill(cv::InputOutputArray _image, cv::Point seedPoint,
+		cv::Scalar newVal, cv::Rect* rect,cv::Scalar loDiff, cv::Scalar upDiff, int flags);
 #ifdef __cplusplus
 }
 #endif
