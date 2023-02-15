@@ -4865,6 +4865,7 @@ extern "C" {
 	__declspec(dllexport) double myContourArea1(cv::InputArray _contour, bool oriented);
 	__declspec(dllexport) int myFloodFill(cv::InputOutputArray _image, cv::Point seedPoint,
 		cv::Scalar newVal, cv::Rect* rect,cv::Scalar loDiff, cv::Scalar upDiff, int flags);
+	__declspec(dllexport) void myCornerHarris(cv::InputArray _src, cv::OutputArray _dst, int blockSize, int ksize, double k, int borderType);
 #ifdef __cplusplus
 }
 #endif

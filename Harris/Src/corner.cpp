@@ -795,4 +795,9 @@ cvPreCornerDetect( const void* srcarr, void* dstarr, int aperture_size )
     cv::preCornerDetect( src, dst, aperture_size, cv::BORDER_REPLICATE );
 }
 
+void myCornerHarris(cv::InputArray _src, cv::OutputArray _dst, int blockSize, int ksize, double k, int borderType) {
+
+	cornerHarris(_src, _dst, blockSize, ksize, k, borderType);
+}
+
 /* End of file */
