@@ -6,5 +6,4 @@
   sumpixels.cpp
   templmatch.cpp
   正在生成代码...
-    正在创建库 target\sobel.lib 和对象 target\sobel.exp
-  Sobel.vcxproj -> C:\Users\高增光\Desktop\新建文件夹 (4)\API\Sobel\target\sobel.dll
+D:\ProgramFiles\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(720,5): error MSB6006: “link.exe”已退出，代码为 1。

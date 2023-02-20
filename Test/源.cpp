@@ -1883,8 +1883,18 @@ void testBrightness() {
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
 
-	cv::Mat src = myread("D:/aeolian.jpg", 1);
-	cout << BrightnessMeasurement().maximumBrightness(src) << endl;
+	HINSTANCE Hint = LoadLibraryA("../BrightnessMeasurement/target/BrightnessMeasurement.dll");
+	typedef double(*fun1)(Mat img);
+	fun1 minimumBrightness = (fun1)GetProcAddress(Hint, "minimumBrightness");
+	fun1 meanBrightness = (fun1)GetProcAddress(Hint, "meanBrightness");
+	fun1 maximumBrightness = (fun1)GetProcAddress(Hint, "maximumBrightness");
+	fun1 standardDeviation = (fun1)GetProcAddress(Hint, "standardDeviation");
+
+	cv::Mat src = myread("D:/2.png", 1);
+	cout << minimumBrightness(src) << endl;
+	cout << meanBrightness(src) << endl;
+	cout << maximumBrightness(src) << endl;
+	cout << standardDeviation(src) << endl;
 }
 
 int main() {

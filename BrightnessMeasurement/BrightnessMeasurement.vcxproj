@@ -108,9 +108,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\Include\3rdparty\ippicv\ippicv_win\include;..\Include\3rdparty\ippicv\ippiw_win\include;..\Include\modules\core\include;..\Include\modules\imgproc\include;..\Include\modules\imgproc\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>..\Lib\opencv_core343.lib;..\Lib\ippiw.lib;..\Lib\ippicvmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
