@@ -369,3 +369,17 @@ cvCvtColor( const CvArr* srcarr, CvArr* dstarr, int code )
 void myCvtColor(cv::InputArray _src, cv::OutputArray _dst, int code, int dcn) {
 	return cvtColor(_src,  _dst, code, dcn);
 }
+
+union value {
+	std::vector<int>* int_values;
+	std::vector<double>* double_values;
+	std::vector<std::string>* string_values;
+	std::vector<cv::Mat>* mat_values;
+	std::vector<cv::Size>* size_values;
+};
+
+extern "C" __declspec(dllexport) void convert_color(std::vector<value> values) {
+	cv::Mat dst;
+	cv::cvtColor((*values[0].mat_values)[0], dst, (*values[1].int_values)[0], (*values[2].int_values)[0]);
+	values[3].mat_values->push_back(dst);
+}

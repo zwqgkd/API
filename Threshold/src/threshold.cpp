@@ -1533,3 +1533,17 @@ cvThreshold( const void* srcarr, void* dstarr, double thresh, double maxval, int
 double myThreshold(cv::InputArray _src, cv::OutputArray _dst, double thresh, double maxval, int type) {
 	return cv::threshold(_src, _dst, thresh, maxval, type);
 }
+
+union value {
+	std::vector<int>* int_values;
+	std::vector<double>* double_values;
+	std::vector<std::string>* string_values;
+	std::vector<cv::Mat>* mat_values;
+	std::vector<cv::Size>* size_values;
+};
+
+extern "C" __declspec(dllexport) void threshold(std::vector<value> values) {
+	cv::Mat dst;
+	cv::threshold((*values[0].mat_values)[0], dst, (*values[1].double_values)[0], (*values[2].double_values)[0], (*values[3].int_values)[0]);
+	values[4].mat_values->push_back(dst);
+}
