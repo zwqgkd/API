@@ -118,6 +118,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MeanFilter", "MeanFilter\Me
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CameraCapture", "CameraCapture\CameraCapture.vcxproj", "{8B10831F-9BB1-49F3-AE92-BC7E83820D3B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "General", "General\General.vcxproj", "{E5D131B3-4310-4312-8B86-BA3603372793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -590,6 +592,14 @@ Global
 		{8B10831F-9BB1-49F3-AE92-BC7E83820D3B}.Release|x64.Build.0 = Release|x64
 		{8B10831F-9BB1-49F3-AE92-BC7E83820D3B}.Release|x86.ActiveCfg = Release|Win32
 		{8B10831F-9BB1-49F3-AE92-BC7E83820D3B}.Release|x86.Build.0 = Release|Win32
+		{E5D131B3-4310-4312-8B86-BA3603372793}.Debug|x64.ActiveCfg = Debug|x64
+		{E5D131B3-4310-4312-8B86-BA3603372793}.Debug|x64.Build.0 = Debug|x64
+		{E5D131B3-4310-4312-8B86-BA3603372793}.Debug|x86.ActiveCfg = Debug|Win32
+		{E5D131B3-4310-4312-8B86-BA3603372793}.Debug|x86.Build.0 = Debug|Win32
+		{E5D131B3-4310-4312-8B86-BA3603372793}.Release|x64.ActiveCfg = Release|x64
+		{E5D131B3-4310-4312-8B86-BA3603372793}.Release|x64.Build.0 = Release|x64
+		{E5D131B3-4310-4312-8B86-BA3603372793}.Release|x86.ActiveCfg = Release|Win32
+		{E5D131B3-4310-4312-8B86-BA3603372793}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
