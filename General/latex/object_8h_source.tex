@@ -1,0 +1,76 @@
+\hypertarget{object_8h_source}{}\doxysection{object.\+h}
+\mbox{\hyperlink{object_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include<string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include<vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include<opencv2/opencv.hpp>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_object_base}{ObjectBase}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{struct_object_base}{\string~ObjectBase}}()\ \{\}}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_object}{Object}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_object_base}{ObjectBase}}\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{struct_object}{Object}}(T*\ ptr);}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{struct_object_a76a965ef29237a6c9a20689d1b2d94cf}{\string~Object}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ T\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_object_ac38871dc7fe98150d5456c389f98cf53}{inner}}();}
+\DoxyCodeLine{00033\ \ \ \ \ T\&\ \ \ \ \ \ \ \mbox{\hyperlink{struct_object_a0818b8c3dc4c1f1447548b2f2a7981df}{inner\_ref}}();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{struct_object_acff34dc7398999f3befc401d4334cf8d}{inner\_const\_ref}}();}
+\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ T*\ ptr;}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00046\ \mbox{\hyperlink{struct_object_a088289e66d54118fab19bc14562e984a}{Object<T>::Object}}(T*\ ptr)\ :\ ptr(ptr)\ \{\}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \mbox{\hyperlink{struct_object_a76a965ef29237a6c9a20689d1b2d94cf}{Object<T>::\string~Object}}()\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{delete}\ ptr;}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00064\ T\ \mbox{\hyperlink{struct_object_ac38871dc7fe98150d5456c389f98cf53}{Object<T>::inner}}()\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ *ptr;}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{struct_object_acff34dc7398999f3befc401d4334cf8d}{Object<T>::inner\_const\_ref}}()\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ *ptr;}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00086\ T\&\ \mbox{\hyperlink{struct_object_a0818b8c3dc4c1f1447548b2f2a7981df}{Object<T>::inner\_ref}}()\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ *ptr;}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{using\ }ParamPtr\ =\ std::shared\_ptr<ObjectBase>;}
+\DoxyCodeLine{00091\ \textcolor{keyword}{using\ }ParamPtrArray\ =\ std::vector<ParamPtr>;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_object}{MatObject}}\ =\ \mbox{\hyperlink{struct_object}{Object<cv::Mat>}};}
+\DoxyCodeLine{00094\ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_object}{SizeObject}}\ =\ \mbox{\hyperlink{struct_object}{Object<cv::Size>}};}
+\DoxyCodeLine{00095\ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_object}{IntObject}}\ =\ \mbox{\hyperlink{struct_object}{Object<int>}};}
+\DoxyCodeLine{00096\ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_object}{DoubleObject}}\ =\ \mbox{\hyperlink{struct_object}{Object<double>}};}
+\DoxyCodeLine{00097\ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_object}{StringObject}}\ =\ \mbox{\hyperlink{struct_object}{Object<std::string>}};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00105\ T\ \mbox{\hyperlink{object_8h_a2e8678b359eb0c6e3ba4183b4513f6a3}{get\_inner}}(ParamPtr\ param\_ptr)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{struct_object}{Object<T>}}*\textcolor{keyword}{>}(param\_ptr.get())-\/>inner();}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00114\ T\&\ \mbox{\hyperlink{object_8h_a26bdf03d862a7d65750e510d51688865}{get\_inner\_ref}}(ParamPtr\ param\_ptr)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{struct_object}{Object<T>}}*\textcolor{keyword}{>}(param\_ptr.get())-\/>inner\_ref();}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00123\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{object_8h_af39aac265968f30cbafb1ab7c8a9eda7}{get\_inner\_const\_ref}}(ParamPtr\ param\_ptr)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{struct_object}{Object<T>}}*\textcolor{keyword}{>}(param\_ptr.get())-\/>inner\_const\_ref();}
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00132\ ParamPtr\ \mbox{\hyperlink{object_8h_aad5e1940c28790ef9089b75882dabb9f}{make\_param}}(T*\ value\_ptr)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ ParamPtr(\textcolor{keyword}{new}\ \mbox{\hyperlink{struct_object}{Object<T>}}(value\_ptr));}
+\DoxyCodeLine{00134\ \}}
+
+\end{DoxyCode}

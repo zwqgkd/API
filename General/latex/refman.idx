@@ -1,0 +1,38 @@
+\indexentry{Object$<$ T $>$@{Object$<$ T $>$}|hyperpage}{11}
+\indexentry{Object$<$ T $>$@{Object$<$ T $>$}!Object@{Object}|hyperpage}{12}
+\indexentry{Object@{Object}!Object$<$ T $>$@{Object$<$ T $>$}|hyperpage}{12}
+\indexentry{Object$<$ T $>$@{Object$<$ T $>$}!inner@{inner}|hyperpage}{12}
+\indexentry{inner@{inner}!Object$<$ T $>$@{Object$<$ T $>$}|hyperpage}{12}
+\indexentry{Object$<$ T $>$@{Object$<$ T $>$}!inner\_const\_ref@{inner\_const\_ref}|hyperpage}{12}
+\indexentry{inner\_const\_ref@{inner\_const\_ref}!Object$<$ T $>$@{Object$<$ T $>$}|hyperpage}{12}
+\indexentry{Object$<$ T $>$@{Object$<$ T $>$}!inner\_ref@{inner\_ref}|hyperpage}{12}
+\indexentry{inner\_ref@{inner\_ref}!Object$<$ T $>$@{Object$<$ T $>$}|hyperpage}{12}
+\indexentry{ObjectBase@{ObjectBase}|hyperpage}{13}
+\indexentry{general.cpp@{general.cpp}|hyperpage}{15}
+\indexentry{general.cpp@{general.cpp}!convert\_color@{convert\_color}|hyperpage}{16}
+\indexentry{convert\_color@{convert\_color}!general.cpp@{general.cpp}|hyperpage}{16}
+\indexentry{general.cpp@{general.cpp}!draw\_contours@{draw\_contours}|hyperpage}{16}
+\indexentry{draw\_contours@{draw\_contours}!general.cpp@{general.cpp}|hyperpage}{16}
+\indexentry{general.cpp@{general.cpp}!find\_contours@{find\_contours}|hyperpage}{16}
+\indexentry{find\_contours@{find\_contours}!general.cpp@{general.cpp}|hyperpage}{16}
+\indexentry{general.cpp@{general.cpp}!median\_blur@{median\_blur}|hyperpage}{17}
+\indexentry{median\_blur@{median\_blur}!general.cpp@{general.cpp}|hyperpage}{17}
+\indexentry{general.cpp@{general.cpp}!morph\_close@{morph\_close}|hyperpage}{17}
+\indexentry{morph\_close@{morph\_close}!general.cpp@{general.cpp}|hyperpage}{17}
+\indexentry{general.cpp@{general.cpp}!morph\_open@{morph\_open}|hyperpage}{17}
+\indexentry{morph\_open@{morph\_open}!general.cpp@{general.cpp}|hyperpage}{17}
+\indexentry{general.cpp@{general.cpp}!read@{read}|hyperpage}{18}
+\indexentry{read@{read}!general.cpp@{general.cpp}|hyperpage}{18}
+\indexentry{general.cpp@{general.cpp}!show@{show}|hyperpage}{18}
+\indexentry{show@{show}!general.cpp@{general.cpp}|hyperpage}{18}
+\indexentry{general.cpp@{general.cpp}!threshold@{threshold}|hyperpage}{19}
+\indexentry{threshold@{threshold}!general.cpp@{general.cpp}|hyperpage}{19}
+\indexentry{object.h@{object.h}|hyperpage}{19}
+\indexentry{object.h@{object.h}!get\_inner@{get\_inner}|hyperpage}{20}
+\indexentry{get\_inner@{get\_inner}!object.h@{object.h}|hyperpage}{20}
+\indexentry{object.h@{object.h}!get\_inner\_const\_ref@{get\_inner\_const\_ref}|hyperpage}{20}
+\indexentry{get\_inner\_const\_ref@{get\_inner\_const\_ref}!object.h@{object.h}|hyperpage}{20}
+\indexentry{object.h@{object.h}!get\_inner\_ref@{get\_inner\_ref}|hyperpage}{21}
+\indexentry{get\_inner\_ref@{get\_inner\_ref}!object.h@{object.h}|hyperpage}{21}
+\indexentry{object.h@{object.h}!make\_param@{make\_param}|hyperpage}{21}
+\indexentry{make\_param@{make\_param}!object.h@{object.h}|hyperpage}{21}

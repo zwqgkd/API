@@ -1,0 +1,308 @@
+\hypertarget{general_8cpp}{}\doxysection{general.\+cpp File Reference}
+\label{general_8cpp}\index{general.cpp@{general.cpp}}
+
+
+Contain functions for image processing.  
+
+
+{\ttfamily \#include \char`\"{}object.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{general_8cpp_ad10ef148ba8327bd530fc6c32c1e181c}\label{general_8cpp_ad10ef148ba8327bd530fc6c32c1e181c}} 
+\#define {\bfseries \+\_\+\+\_\+\+EXPORT}~extern \char`\"{}C\char`\"{} \+\_\+\+\_\+declspec(dllexport)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_aae06283b39be72aa3e846a5b08d9e185}{read}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Read an image from file. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_a640eeafcd30cd14f0eb671ffd9b281e5}{show}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Show an image. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_a60aaf77339364656d7ae54f4c2026c8a}{morph\+\_\+open}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Apply morphological opening to an image. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_a188c635a846c9d4e96bdb8fd9b7056c6}{morph\+\_\+close}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Apply morphological closing to an image. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_a9c28e6c9bea26ebb79221b20b2fe4a66}{threshold}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Apply morphological closing to an image. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_afe942dd588ef49866161a7a32a293ce2}{convert\+\_\+color}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Convert an input image to a different color space. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_ab43aea11fa4a9f4563c4514651fc96cb}{median\+\_\+blur}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Apply median blur to an input image. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_a73459987ea333d0a1013df307a617ae8}{find\+\_\+contours}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Find contours in a binary image. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_aad01a50711bfc6f6122f7ce9a49c5f35}{draw\+\_\+contours}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Draw contours in a binary image. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_a4ebfd235c8b874cc693a2cbf25d56799}{select\+\_\+contour}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Select a contour from contours. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_a6cf8ea5d77e5985572720ce271f9ffbe}{min\+\_\+area\+\_\+rect}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Find the minimum area circumscribing rectangle of a contour. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_af997dac05e352f5648788fb837688a9e}{box\+\_\+points}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Find the 4 vertices of a rotated rectangle. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+EXPORT void \mbox{\hyperlink{general_8cpp_a79f8362f51ce96091f1a35bc00e9a398}{contour\+\_\+to\+\_\+contours}} (Param\+Ptr\+Array \&params)
+\begin{DoxyCompactList}\small\item\em Turn a contour into an array of contours. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contain functions for image processing. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{general_8cpp_af997dac05e352f5648788fb837688a9e}\label{general_8cpp_af997dac05e352f5648788fb837688a9e}} 
+\index{general.cpp@{general.cpp}!box\_points@{box\_points}}
+\index{box\_points@{box\_points}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{box\_points()}{box\_points()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void box\+\_\+points (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Find the 4 vertices of a rotated rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Rotated\+Rect} object representing the rotated rectangle.
+\item {\bfseries{{\itshape output}}} A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}cv\+::\+Point\texorpdfstring{$>$}{>}} object representing the 4 vertices. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_a79f8362f51ce96091f1a35bc00e9a398}\label{general_8cpp_a79f8362f51ce96091f1a35bc00e9a398}} 
+\index{general.cpp@{general.cpp}!contour\_to\_contours@{contour\_to\_contours}}
+\index{contour\_to\_contours@{contour\_to\_contours}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{contour\_to\_contours()}{contour\_to\_contours()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void contour\+\_\+to\+\_\+contours (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Turn a contour into an array of contours. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}cv\+::\+Point\texorpdfstring{$>$}{>}} object representing the contour.
+\item {\bfseries{{\itshape output}}} A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}std\+::vector\texorpdfstring{$<$}{<}cv\+::\+Point\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} object representing the contours. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_afe942dd588ef49866161a7a32a293ce2}\label{general_8cpp_afe942dd588ef49866161a7a32a293ce2}} 
+\index{general.cpp@{general.cpp}!convert\_color@{convert\_color}}
+\index{convert\_color@{convert\_color}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{convert\_color()}{convert\_color()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void convert\+\_\+color (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Convert an input image to a different color space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Mat} object representing the image.
+\item {\bfseries{{\itshape input}}} A {\ttfamily int} representing the conversion type.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Mat} object representing the processed image. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_aad01a50711bfc6f6122f7ce9a49c5f35}\label{general_8cpp_aad01a50711bfc6f6122f7ce9a49c5f35}} 
+\index{general.cpp@{general.cpp}!draw\_contours@{draw\_contours}}
+\index{draw\_contours@{draw\_contours}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{draw\_contours()}{draw\_contours()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void draw\+\_\+contours (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Draw contours in a binary image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Mat} object representing the input binary image.
+\item {\bfseries{{\itshape input}}} A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}std\+::vector\texorpdfstring{$<$}{<}cv\+::\+Point\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} object representing the contours.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Mat} object representing the image with drawn countours. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_a73459987ea333d0a1013df307a617ae8}\label{general_8cpp_a73459987ea333d0a1013df307a617ae8}} 
+\index{general.cpp@{general.cpp}!find\_contours@{find\_contours}}
+\index{find\_contours@{find\_contours}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{find\_contours()}{find\_contours()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void find\+\_\+contours (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Find contours in a binary image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Mat} object representing the input binary image.
+\item {\bfseries{{\itshape output}}} A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}std\+::vector\texorpdfstring{$<$}{<}cv\+::\+Point\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} object representing the found contours. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_ab43aea11fa4a9f4563c4514651fc96cb}\label{general_8cpp_ab43aea11fa4a9f4563c4514651fc96cb}} 
+\index{general.cpp@{general.cpp}!median\_blur@{median\_blur}}
+\index{median\_blur@{median\_blur}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{median\_blur()}{median\_blur()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void median\+\_\+blur (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Apply median blur to an input image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Mat} object representing the image.
+\item {\bfseries{{\itshape input}}} A {\ttfamily int} representing the kernel size.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Mat} object representing the processed image. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_a6cf8ea5d77e5985572720ce271f9ffbe}\label{general_8cpp_a6cf8ea5d77e5985572720ce271f9ffbe}} 
+\index{general.cpp@{general.cpp}!min\_area\_rect@{min\_area\_rect}}
+\index{min\_area\_rect@{min\_area\_rect}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{min\_area\_rect()}{min\_area\_rect()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void min\+\_\+area\+\_\+rect (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Find the minimum area circumscribing rectangle of a contour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}cv\+::\+Point\texorpdfstring{$>$}{>}} object representing the contour.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Rotated\+Rect} object representing the minimum area circumscribing rectangle. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_a188c635a846c9d4e96bdb8fd9b7056c6}\label{general_8cpp_a188c635a846c9d4e96bdb8fd9b7056c6}} 
+\index{general.cpp@{general.cpp}!morph\_close@{morph\_close}}
+\index{morph\_close@{morph\_close}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{morph\_close()}{morph\_close()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void morph\+\_\+close (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Apply morphological closing to an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Mat} object representing the image.
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Size} object representing the kernel size for the operation.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Mat} object representing the processed image. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_a60aaf77339364656d7ae54f4c2026c8a}\label{general_8cpp_a60aaf77339364656d7ae54f4c2026c8a}} 
+\index{general.cpp@{general.cpp}!morph\_open@{morph\_open}}
+\index{morph\_open@{morph\_open}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{morph\_open()}{morph\_open()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void morph\+\_\+open (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Apply morphological opening to an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Mat} object representing the image.
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Size} object representing the kernel size for the operation.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Mat} object representing the processed image. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_aae06283b39be72aa3e846a5b08d9e185}\label{general_8cpp_aae06283b39be72aa3e846a5b08d9e185}} 
+\index{general.cpp@{general.cpp}!read@{read}}
+\index{read@{read}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void read (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Read an image from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily string} representing the file path of the image.
+\item {\bfseries{{\itshape input}}} An {\ttfamily integer} representing the desired color type of the image.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Mat} object representing the read image. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_a4ebfd235c8b874cc693a2cbf25d56799}\label{general_8cpp_a4ebfd235c8b874cc693a2cbf25d56799}} 
+\index{general.cpp@{general.cpp}!select\_contour@{select\_contour}}
+\index{select\_contour@{select\_contour}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{select\_contour()}{select\_contour()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void select\+\_\+contour (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Select a contour from contours. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}std\+::vector\texorpdfstring{$<$}{<}cv\+::\+Point\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} object representing the contours.
+\item {\bfseries{{\itshape input}}} A {\ttfamily int} object representing the index of the contour.
+\item {\bfseries{{\itshape output}}} A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}cv\+::\+Point\texorpdfstring{$>$}{>}} object representing the selected contour. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_a640eeafcd30cd14f0eb671ffd9b281e5}\label{general_8cpp_a640eeafcd30cd14f0eb671ffd9b281e5}} 
+\index{general.cpp@{general.cpp}!show@{show}}
+\index{show@{show}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void show (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Show an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Mat} object representing the image.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Mat} object representing the image. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{general_8cpp_a9c28e6c9bea26ebb79221b20b2fe4a66}\label{general_8cpp_a9c28e6c9bea26ebb79221b20b2fe4a66}} 
+\index{general.cpp@{general.cpp}!threshold@{threshold}}
+\index{threshold@{threshold}!general.cpp@{general.cpp}}
+\doxysubsubsection{\texorpdfstring{threshold()}{threshold()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+EXPORT void threshold (\begin{DoxyParamCaption}\item[{Param\+Ptr\+Array \&}]{params }\end{DoxyParamCaption})}
+
+
+
+Apply morphological closing to an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & An array of parameters containing\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{{\itshape input}}} A {\ttfamily cv\+::\+Mat} object representing the image.
+\item {\bfseries{{\itshape input}}} A {\ttfamily double} representing the threshold.
+\item {\bfseries{{\itshape input}}} A {\ttfamily double} representing the max value.
+\item {\bfseries{{\itshape input}}} A {\ttfamily int} representing the threshold type.
+\item {\bfseries{{\itshape output}}} A {\ttfamily cv\+::\+Mat} object representing the processed image. 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
