@@ -142,6 +142,30 @@ __EXPORT void median_blur(ParamPtrArray& params) {
 }
 
 /**
+* @brief Apply gaussian blur to an input image.
+* @param params An array of parameters containing:
+*  1. <b><em>input</em></b> A `cv::Mat` object representing the image.
+*  2. <b><em>input</em></b> A `int` representing the kernel size.
+*  3. <b><em>input</em></b> A `double` representing the sigma X.
+*  4. <b><em>input</em></b> A `double` representing the sigma Y.
+*  5. <b><em>input</em></b> A `int` representing the border type.
+*  6. <b><em>output</em></b> A `cv::Mat` object representing the processed image.
+*/
+
+__EXPORT void gaussian_blur(ParamPtrArray& params) {
+    cv::Mat* dst = new cv::Mat;
+    cv::GaussianBlur(
+        get_inner_const_ref<cv::Mat>(params[0]),
+        *dst,
+        get_inner<cv::Size>(params[1]),
+        get_inner<double>(params[2]),
+        get_inner<double>(params[3]),
+        get_inner<int>(params[4])
+    );
+    params.push_back(make_param(dst));
+}
+
+/**
 * @brief Find contours in a binary image.
 * @param params An array of parameters containing:
 *  1. <b><em>input</em></b> A `cv::Mat` object representing the input binary image.
@@ -170,7 +194,8 @@ __EXPORT void find_contours(ParamPtrArray& params) {
 
 __EXPORT void draw_contours(ParamPtrArray& params) {
     using ContoursType = std::vector<std::vector<cv::Point>>;
-    cv::Mat* dst = new cv::Mat(get_inner_const_ref<cv::Mat>(params[0]));
+    cv::Mat* dst = new cv::Mat;
+    get_inner_const_ref<cv::Mat>(params[0]).copyTo(*dst);
     cv::drawContours(
         *dst,
         get_inner_const_ref<ContoursType>(params[1]),
@@ -246,4 +271,40 @@ __EXPORT void contour_to_contours(ParamPtrArray& params) {
     ContoursType* contours = new ContoursType;
     contours->push_back(get_inner_const_ref<ContourType>(params[0]));
     params.push_back(make_param(contours));
+}
+
+/**
+* @brief Apply warp affine to an input image.
+* @param params An array of parameters containing:
+*  1. <b><em>input</em></b> A `cv::Mat` object representing the input image.
+*  2. <b><em>input</em></b> A `cv::Mat` object representing the affine matrix.
+*  3. <b><em>input</em></b> A `cv::Size` object representing the size of the output image.
+*  4. <b><em>output</em></b> A `cv::Mat` object representing the output image.
+*/
+
+__EXPORT void warp_affine(ParamPtrArray& params) {
+    cv::Mat* dst = new cv::Mat;
+    cv::warpAffine(get_inner_const_ref<cv::Mat>(params[0]),
+                   *dst,
+                   get_inner_const_ref<cv::Mat>(params[1]),
+                   get_inner<cv::Size>(params[2]));
+
+    params.push_back(make_param(dst));
+}
+
+/**
+* @brief Get a 2D rotation matrix.
+* @param params An array of parameters containing:
+*  1. <b><em>input</em></b> A `cv::Point2f` object representing the center of rotation in the source image.
+*  2. <b><em>input</em></b> A `double` representing the rotation angle in degrees.
+*  3. <b><em>input</em></b> A `double` representing the isotropic scale factor.
+*  4. <b><em>output</em></b> A `cv::Mat` object representing the rotation matrix.
+*/
+
+__EXPORT void get_rotation_matrix_2D(ParamPtrArray& params) {
+    cv::Mat *dst = new cv::Mat(cv::getRotationMatrix2D(get_inner<cv::Point2f>(params[0]),
+                                                       get_inner<double>(params[1]),
+                                                       get_inner<double>(params[2])));
+
+    params.push_back(make_param(dst));
 }

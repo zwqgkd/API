@@ -26,5 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />
+    <None Include="cpp.hint" />
+    <None Include=".clang-format" />
   </ItemGroup>
 </Project>
