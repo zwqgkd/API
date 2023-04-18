@@ -2,7 +2,8 @@
 #include<string>
 #include<vector>
 #include<opencv2/opencv.hpp>
-
+#include<fmt/format.h>
+#include "base64.h"
 /**
 * @file
 * @brief Contains container for various types of data.
@@ -15,6 +16,7 @@
 struct ObjectBase {
 public:
 	virtual ~ObjectBase() {}
+	virtual std::string to_string() = 0;
 };
 
 /**
@@ -32,6 +34,8 @@ public:
 	T        inner();
 	T&		 inner_ref();
 	const T& inner_const_ref();
+
+	virtual std::string to_string();
 private:
 	T* ptr;
 };
@@ -87,6 +91,11 @@ T& Object<T>::inner_ref() {
 	return *ptr;
 }
 
+template<typename T>
+std::string Object<T>::to_string(){
+	return R"({"type":"Object<T>", "content":""})";
+}
+
 using ParamPtr = std::shared_ptr<ObjectBase>;
 using ParamPtrArray = std::vector<ParamPtr>;
 
@@ -123,6 +132,7 @@ template<typename T>
 const T& get_inner_const_ref(ParamPtr param_ptr) {
 	return dynamic_cast<Object<T>*>(param_ptr.get())->inner_const_ref();
 }
+
 /**
  * @brief Creates a ParamPtr of an inner object.
  * @param value_ptr a pointer to the inner object.
@@ -131,4 +141,32 @@ const T& get_inner_const_ref(ParamPtr param_ptr) {
 template<typename T>
 ParamPtr make_param(T* value_ptr) {
 	return ParamPtr(new Object<T>(value_ptr));
+}
+
+inline std::string mat_to_base64(const cv::Mat& img){
+	std::vector<uchar> buf;
+	cv::imencode(".jpg", img, buf);
+	auto *enc_msg = reinterpret_cast<unsigned char *>(buf.data());
+	return base64_encode(enc_msg, buf.size());
+}
+
+template <> inline std::string Object<cv::Mat>::to_string() {
+	return fmt::format(R"({{"type": "Mat", "content": "{}"}})", mat_to_base64(this->inner_const_ref()));
+}
+
+template <> inline std::string Object<std::string>::to_string() {
+	return fmt::format(R"({{"type": "string", "content": "{}"}})", this->inner_const_ref());
+}
+
+template <> inline std::string Object<int>::to_string() {
+	return fmt::format(R"({{"type": "int", "content": "{}"}})", this->inner());
+}
+
+template <> inline std::string Object<double>::to_string() {
+	return fmt::format(R"({{"type": "double", "content": "{}"}})", this->inner());
+}
+
+template <> inline std::string Object<cv::Size>::to_string() {
+        return fmt::format(R"({{"type": "Size", "content": "{},{}"}})",
+                           this->inner().width, this->inner().height);
 }

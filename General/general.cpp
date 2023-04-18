@@ -1,4 +1,7 @@
 #include "object.h"
+#include <rapidjson/document.h>
+#include <rapidjson/writer.h>
+#include <rapidjson/stringbuffer.h>
 /**
 * @file
 * @brief Contain functions for image processing.
@@ -33,7 +36,26 @@ __EXPORT void read(ParamPtrArray& params) {
 */
 
 __EXPORT void show(ParamPtrArray& params) {
-    params.push_back(params[0]);
+    using namespace rapidjson;
+    Document doc;
+    auto &allocator = doc.GetAllocator();
+
+    doc.SetArray();
+    Value value;
+
+    for (const auto &param : params) {
+        const std::string param_str = param->to_string();
+        value.SetString(param_str.c_str(), param_str.size(), allocator);
+        doc.PushBack(value, allocator);
+    }
+
+    StringBuffer buf;
+    Writer<StringBuffer> writer(buf);
+    doc.Accept(writer);
+
+    auto result = new std::string(buf.GetString());
+
+    params.push_back(make_param(result));
 }
 
 
