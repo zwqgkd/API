@@ -1,172 +1,78 @@
 #pragma once
 #include<string>
-#include<vector>
 #include<opencv2/opencv.hpp>
-#include<fmt/format.h>
-#include "base64.h"
-/**
-* @file
-* @brief Contains container for various types of data.
-*/
-
-/**
-* @brief base class for all objects
-*/
-
-struct ObjectBase {
+#include<vector>
+struct OperatorInterfaceBase {
 public:
-	virtual ~ObjectBase() {}
-	virtual std::string to_string() = 0;
+	virtual ~OperatorInterfaceBase() {}
 };
 
-/**
- * @brief A template class for wrapping objects of type T.
- *
- * @tparam T The type of object to wrap.
- */
-
 template<typename T>
-struct Object : public ObjectBase {
+struct OperatorInterface : public OperatorInterfaceBase {
 public:
-	Object(T* ptr);
-	~Object();
+	OperatorInterface(const std::string &name, const std::string &type, T* ptr);
+	~OperatorInterface();
 
-	T        inner();
-	T&		 inner_ref();
-	const T& inner_const_ref();
-
-	virtual std::string to_string();
+	T		 data();
+	T&		 data_ref();
+	const T& data_const_ref();
+	const std::string type() { return type_; }
+	const std::string name() { return name_; }
 private:
+	std::string	name_;
+	std::string	type_;
 	T* ptr;
 };
 
-/**
-* @brief Constructs an Object from a pointer to an object of type T.
-*
-* @param ptr A pointer to the object to wrap.
-*/
+using MatObject = OperatorInterface<cv::Mat>;
+using SizeObject = OperatorInterface<cv::Size>;
+using IntObject = OperatorInterface<int>;
+using DoubleObject = OperatorInterface<double>;
+using StringObject = OperatorInterface<std::string>;
+
+using ParamPtr = std::shared_ptr<OperatorInterfaceBase>;
+using ParamPtrArray = std::vector<ParamPtr>;
 
 template<typename T>
-Object<T>::Object(T* ptr) : ptr(ptr) {}
-
-/**
- * @brief The destructor.
- */
+OperatorInterface<T>::OperatorInterface(const std::string &name, const std::string &type, T* ptr) :
+	name_(name), type_(type), ptr(ptr) {}
 
 template<typename T>
-Object<T>::~Object() {
+OperatorInterface<T>::~OperatorInterface() {
 	delete ptr;
 }
 
-/**
-* @brief Gets the inner object.
-*
-* @return The inner object.
-*/
-
 template<typename T>
-T Object<T>::inner() {
-	return *ptr;
-}
-
-/**
-* @brief Gets a const reference to the inner object.
-*
-* @return A const reference to the inner object.
-*/
-
-template<typename T>
-const T& Object<T>::inner_const_ref() {
-	return *ptr;
-}
-
-/**
- * @brief Gets a reference to the inner object.
- *
- * @return A reference to the inner object.
- */
-
-template<typename T>
-T& Object<T>::inner_ref() {
+T OperatorInterface<T>::data() {
 	return *ptr;
 }
 
 template<typename T>
-std::string Object<T>::to_string(){
-	return R"({"type":"Object<T>", "content":""})";
+const T& OperatorInterface<T>::data_const_ref() {
+	return *ptr;
 }
 
-using ParamPtr = std::shared_ptr<ObjectBase>;
-using ParamPtrArray = std::vector<ParamPtr>;
-
-using MatObject = Object<cv::Mat>;
-using SizeObject = Object<cv::Size>;
-using IntObject = Object<int>;
-using DoubleObject = Object<double>;
-using StringObject = Object<std::string>;
-
-/**
- * @brief Gets a copy of the inner object.
- * @param param_ptr pointer to the object.
- * @return A copy of the inner object.
- */
 template<typename T>
-T get_inner(ParamPtr param_ptr) {
-	return dynamic_cast<Object<T>*>(param_ptr.get())->inner();
+T& OperatorInterface<T>::data_ref() {
+	return *ptr;
 }
-/**
- * @brief Gets a reference of the inner object.
- * @param param_ptr pointer to the object.
- * @return A reference of the inner object.
- */
+
 template<typename T>
-T& get_inner_ref(ParamPtr param_ptr) {
-	return dynamic_cast<Object<T>*>(param_ptr.get())->inner_ref();
+T get_data(ParamPtr param_ptr) {
+	return dynamic_cast<OperatorInterface<T>*>(param_ptr.get())->data();
 }
-/**
- * @brief Gets a const reference of the inner object.
- * @param param_ptr pointer to the object.
- * @return A const reference of the inner object.
- */
+
 template<typename T>
-const T& get_inner_const_ref(ParamPtr param_ptr) {
-	return dynamic_cast<Object<T>*>(param_ptr.get())->inner_const_ref();
+T& get_data_ref(ParamPtr param_ptr) {
+	return dynamic_cast<OperatorInterface<T>*>(param_ptr.get())->data_ref();
 }
 
-/**
- * @brief Creates a ParamPtr of an inner object.
- * @param value_ptr a pointer to the inner object.
- * @return A ParamPtr of the object.
- */
 template<typename T>
-ParamPtr make_param(T* value_ptr) {
-	return ParamPtr(new Object<T>(value_ptr));
+const T& get_data_const_ref(ParamPtr param_ptr) {
+	return dynamic_cast<OperatorInterface<T>*>(param_ptr.get())->data_const_ref();
 }
 
-inline std::string mat_to_base64(const cv::Mat& img){
-	std::vector<uchar> buf;
-	cv::imencode(".jpg", img, buf);
-	auto *enc_msg = reinterpret_cast<unsigned char *>(buf.data());
-	return base64_encode(enc_msg, buf.size());
-}
-
-template <> inline std::string Object<cv::Mat>::to_string() {
-	return fmt::format(R"({{"type": "Mat", "content": "{}"}})", mat_to_base64(this->inner_const_ref()));
-}
-
-template <> inline std::string Object<std::string>::to_string() {
-	return fmt::format(R"({{"type": "string", "content": "{}"}})", this->inner_const_ref());
-}
-
-template <> inline std::string Object<int>::to_string() {
-	return fmt::format(R"({{"type": "int", "content": "{}"}})", this->inner());
-}
-
-template <> inline std::string Object<double>::to_string() {
-	return fmt::format(R"({{"type": "double", "content": "{}"}})", this->inner());
-}
-
-template <> inline std::string Object<cv::Size>::to_string() {
-        return fmt::format(R"({{"type": "Size", "content": "{},{}"}})",
-                           this->inner().width, this->inner().height);
+template<typename T>
+ParamPtr make_param(std::string name, std::string type, T* value_ptr) {
+	return ParamPtr( new OperatorInterface<T>(name, type,value_ptr));
 }
