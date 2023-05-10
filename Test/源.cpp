@@ -8,6 +8,7 @@
 #include"../BlurDetectionByStd/BlurDetection.h"
 #include<opencv2/stitching.hpp>
 #include"../BrightnessMeasurement/brightnessMeasurement.h"
+#include "object.h"
 
 
 //条形码测试引入
@@ -1876,25 +1877,71 @@ using namespace std;
 //
 //}
 
-void testBrightness() {
+//void testBrightness() {
+//	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
+//	typedef cv::Mat(*r) (const char*filename, int flag);
+//	typedef void(*w) (const char*filename, cv::Mat result);
+//	r myread = (r)GetProcAddress(Hint_wr, "myread");
+//	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
+//
+//	HINSTANCE Hint = LoadLibraryA("../BrightnessMeasurement/target/BrightnessMeasurement.dll");
+//	typedef double(*fun1)(Mat img);
+//	fun1 minimumBrightness = (fun1)GetProcAddress(Hint, "minimumBrightness");
+//	fun1 meanBrightness = (fun1)GetProcAddress(Hint, "meanBrightness");
+//	fun1 maximumBrightness = (fun1)GetProcAddress(Hint, "maximumBrightness");
+//	fun1 standardDeviation = (fun1)GetProcAddress(Hint, "standardDeviation");
+//
+//	cv::Mat src = myread("D:/2.png", 1);
+//	cout << minimumBrightness(src) << endl;
+//	cout << meanBrightness(src) << endl;
+//	cout << maximumBrightness(src) << endl;
+//	cout << standardDeviation(src) << endl;
+//}
+
+void testContourMatch() {
 	HINSTANCE Hint_wr = LoadLibraryA("wr.dll");
 	typedef cv::Mat(*r) (const char*filename, int flag);
 	typedef void(*w) (const char*filename, cv::Mat result);
 	r myread = (r)GetProcAddress(Hint_wr, "myread");
 	w mywrite = (w)GetProcAddress(Hint_wr, "mywrite");
 
-	HINSTANCE Hint = LoadLibraryA("../BrightnessMeasurement/target/BrightnessMeasurement.dll");
-	typedef double(*fun1)(Mat img);
-	fun1 minimumBrightness = (fun1)GetProcAddress(Hint, "minimumBrightness");
-	fun1 meanBrightness = (fun1)GetProcAddress(Hint, "meanBrightness");
-	fun1 maximumBrightness = (fun1)GetProcAddress(Hint, "maximumBrightness");
-	fun1 standardDeviation = (fun1)GetProcAddress(Hint, "standardDeviation");
+	HINSTANCE Hint = LoadLibraryA("../MatchContourShape/target/MatchContourShape.dll");
+	typedef void(*fun)(ParamPtrArray& params);
+	fun contourMatch = (fun)GetProcAddress(Hint, "contourMatch");
+	cv::Mat standard_img = myread("D:/zaqizaba/images/test0001.png", 1);
+	cv::Mat detect_img = myread("D:/zaqizaba/images/test0002.png", 1);
+	ParamPtrArray params;
+	params.push_back(make_param("", "cv::Mat", new cv::Mat(standard_img)));
+	params.push_back(make_param("", "cv::Mat", new cv::Mat(detect_img)));
+	params.push_back(make_param("", "double", new double(20.0)));
+	contourMatch(params);
+	std::vector<cv::RotatedRect> rects = get_data<std::vector<cv::RotatedRect>>(params[3]);
+	cv::Scalar color(0, 0, 255);
+	rects[0];
+	//将矩形信息转为轮廓信息
+	std::vector<std::vector<cv::Point>> contours;
+	//for (auto& e : rects) {
+	//	cv::RotatedRect cur = e;
+	//	// 2. 将 RotatedRect 转化为 vector<Point>
+	//	std::vector<cv::Point> points;
+	//	cv::boxPoints(cur, points);
+	//	contours.push_back(points);
+	//}
+	for (const auto& rect : rects) {
+		std::vector<cv::Point> points; // 定义存储点的向量
+		cv::Point2f vertices[4];
+		rect.points(vertices); // 获取旋转矩形的四个顶点
+		for (int i = 0; i < 4; ++i) {
+			points.push_back(vertices[i]); // 将顶点存入点向量
+		}
+		contours.push_back(points); // 将点向量存入轮廓向量
+	}
 
-	cv::Mat src = myread("D:/2.png", 1);
-	cout << minimumBrightness(src) << endl;
-	cout << meanBrightness(src) << endl;
-	cout << maximumBrightness(src) << endl;
-	cout << standardDeviation(src) << endl;
+	for (int i = 0; i < contours.size(); ++i) {
+		cv::drawContours(detect_img, contours, i, color, 2);
+	}
+
+	mywrite("D:/zaqizaba/images/img0001.png", detect_img);
 }
 
 int main() {
@@ -1942,6 +1989,6 @@ int main() {
 	//testColorIdentif();
 	
 	//testPosturalEstimation();
-
-	testBrightness();
+	//testBrightness();
+	testContourMatch();
 }
