@@ -342,4 +342,16 @@ __EXPORT void hist_statistics(ParamPtrArray& params) {
 
 	params.push_back(make_param("std_dev", "Scalar", std_dev));
 	params.push_back(make_param("contrast", "double", contrast));
+
+	int hist_w = 512, hist_h = 400;
+	int bin_w = cvRound((double)hist_w / histSize);
+	Mat* hist_image = new Mat(hist_h, hist_w, CV_8UC1, Scalar(0));
+	normalize(hist, hist, 0, hist_image->rows, NORM_MINMAX, -1, Mat());
+	for (int i = 1; i < histSize; i++) {
+		line(*hist_image, Point(bin_w * (i - 1), hist_h - cvRound(hist.at<float>(i - 1))),
+			Point(bin_w * (i), hist_h - cvRound(hist.at<float>(i))),
+			Scalar(255), 2, LINE_AA);
+	}
+
+	params.push_back(make_param("hist_image", "Mat", hist_image));
 }
