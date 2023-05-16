@@ -297,3 +297,49 @@ __EXPORT void crop(ParamPtrArray& params) {
 	get_data<cv::Mat>(params[0])(rect).copyTo(*dst);
 	params.push_back(make_param("dst", "Mat", dst));
 }
+
+__EXPORT void hist_statistics(ParamPtrArray& params) {
+	using namespace cv;
+	// 确定目标区域，例如这里是左上角的100x100像素区域
+	Rect roi_rect(
+		get_data<int>(params[1]),
+		get_data<int>(params[2]),
+		get_data<int>(params[3]),
+		get_data<int>(params[4])
+	);
+	Mat roi = get_data_const_ref<Mat>(params[0])(roi_rect);
+
+	// 统计目标区域中的像素个数、灰度值均值、最小值、最大值、峰值、标准差、像素数量和对比度
+	int* num_pixels = new int(roi.total());
+	params.push_back(make_param("num_pixels", "int", num_pixels));
+
+	Scalar* mean_gray = new Scalar(mean(roi));
+	params.push_back(make_param("mean_gray", "Scalar", mean_gray));
+
+	double* min_gray = new double;
+	double* max_gray = new double;
+	minMaxLoc(roi, min_gray, max_gray);
+	params.push_back(make_param("min_gray", "double", min_gray));
+	params.push_back(make_param("max_gray", "double", max_gray));
+
+	Mat hist;
+	float range[] = { 0, 256 };
+	const float* histRange = { range };
+	int histSize = 256;
+	bool uniform = true, accumulate = false;
+	calcHist(&roi, 1, 0, Mat(), hist, 1, &histSize, &histRange, uniform, accumulate);
+
+	double* hist_max_val = new double;
+	Point* hist_max_loc = new Point;
+
+	minMaxLoc(hist, 0, hist_max_val, 0, hist_max_loc);
+	params.push_back(make_param("hist_max_val", "double", hist_max_val));
+	params.push_back(make_param("hist_max_loc", "Point", hist_max_loc));
+
+	Scalar* std_dev = new Scalar;
+	meanStdDev(roi, *mean_gray, *std_dev);
+	double* contrast = new double((*max_gray - *min_gray) / (*max_gray + *min_gray));
+
+	params.push_back(make_param("std_dev", "Scalar", std_dev));
+	params.push_back(make_param("contrast", "double", contrast));
+}
