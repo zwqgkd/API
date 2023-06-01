@@ -3,7 +3,7 @@
 #define __EXPORT extern "C" __declspec(dllexport)
 
 __EXPORT void intIO(ParamPtrArray& params) {
-	int *dst = new int(get_data<int>(params[0]));
+	int* dst = new int(get_data<int>(params[0]));
 	params.push_back(make_param("dst", "int", dst));
 }
 
@@ -20,7 +20,7 @@ __EXPORT void read(ParamPtrArray& params) {
 		get_data<int>(params[1])
 	);
 
-	params.push_back(make_param("dst","Mat",dst));
+	params.push_back(make_param("dst", "Mat", dst));
 }
 
 
@@ -37,7 +37,7 @@ __EXPORT void morph_open(ParamPtrArray& params) {
 		cv::MORPH_OPEN,
 		kernel
 	);
-	params.push_back(make_param("dst","Mat",dst));
+	params.push_back(make_param("dst", "Mat", dst));
 }
 
 __EXPORT void morph_close(ParamPtrArray& params) {
@@ -52,7 +52,7 @@ __EXPORT void morph_close(ParamPtrArray& params) {
 		cv::MORPH_CLOSE,
 		kernel
 	);
-	params.push_back(make_param("dst","Mat",dst));
+	params.push_back(make_param("dst", "Mat", dst));
 }
 
 __EXPORT void threshold(ParamPtrArray& params) {
@@ -69,7 +69,7 @@ __EXPORT void threshold(ParamPtrArray& params) {
 
 __EXPORT void convert_color(ParamPtrArray& params) {
 	cv::Mat* dst = new cv::Mat;
-	
+
 	cv::cvtColor(
 		get_data_const_ref<cv::Mat>(params[0]),
 		*dst,
@@ -97,7 +97,7 @@ __EXPORT void find_contours(ParamPtrArray& params) {
 		cv::RETR_TREE,
 		cv::CHAIN_APPROX_SIMPLE
 	);
-	params.push_back(make_param("contours","vector<vector<Point>>",contours));
+	params.push_back(make_param("contours", "vector<vector<Point>>", contours));
 }
 
 __EXPORT void draw_contours(ParamPtrArray& params) {
@@ -130,7 +130,7 @@ __EXPORT void select_contour(ParamPtrArray& params) {
 	const ContoursType& contours = get_data_const_ref<ContoursType>(params[0]);
 	int index = get_data<int>(params[1]);
 	auto contour = new ContourType(contours[index]);
-	params.push_back(make_param("contour","vector<vector<Point>>",contour));
+	params.push_back(make_param("contour", "vector<vector<Point>>", contour));
 }
 
 /**
@@ -145,7 +145,7 @@ __EXPORT void min_area_rect(ParamPtrArray& params) {
 
 	const ContourType& contour = get_data_const_ref<ContourType>(params[0]);
 	cv::RotatedRect* result = new cv::RotatedRect(cv::minAreaRect(contour));
-	params.push_back(make_param("rect","RotatedRect",result));
+	params.push_back(make_param("rect", "RotatedRect", result));
 }
 
 /**
@@ -163,7 +163,7 @@ __EXPORT void box_points(ParamPtrArray& params) {
 	for (int i = 0; i < 4; ++i) {
 		vertices_vector->emplace_back(vertices_array[i].x, vertices_array[i].y);
 	}
-	params.push_back(make_param("points","vector<Point>",vertices_vector));
+	params.push_back(make_param("points", "vector<Point>", vertices_vector));
 }
 
 /**
@@ -179,7 +179,7 @@ __EXPORT void contour_to_contours(ParamPtrArray& params) {
 
 	ContoursType* contours = new ContoursType;
 	contours->push_back(get_data_const_ref<ContourType>(params[0]));
-	params.push_back(make_param("contours","vector<vector<Point>>",contours));
+	params.push_back(make_param("contours", "vector<vector<Point>>", contours));
 }
 
 /**
@@ -198,7 +198,7 @@ __EXPORT void warp_affine(ParamPtrArray& params) {
 		get_data_const_ref<cv::Mat>(params[1]),
 		get_data<cv::Size>(params[2]));
 
-	params.push_back(make_param("dst","Mat",dst));
+	params.push_back(make_param("dst", "Mat", dst));
 }
 
 /**
@@ -215,7 +215,7 @@ __EXPORT void get_rotation_matrix_2D(ParamPtrArray& params) {
 		get_data<double>(params[1]),
 		get_data<double>(params[2])));
 
-	params.push_back(make_param("dst","Mat",dst));
+	params.push_back(make_param("dst", "Mat", dst));
 }
 
 __EXPORT void total_pixels(ParamPtrArray& params) {
@@ -269,8 +269,8 @@ __EXPORT void max_value(ParamPtrArray& params) {
 __EXPORT void flip(ParamPtrArray& params) {
 	cv::Mat* dst = new cv::Mat;
 	cv::flip(
-		get_data<cv::Mat>(params[0]), 
-		*dst, 
+		get_data<cv::Mat>(params[0]),
+		*dst,
 		get_data<int>(params[1])
 	);
 	params.push_back(make_param("dst", "Mat", dst));
@@ -354,4 +354,48 @@ __EXPORT void hist_statistics(ParamPtrArray& params) {
 	}
 
 	params.push_back(make_param("hist_image", "Mat", hist_image));
+}
+
+__EXPORT void match_template_grayscale(ParamPtrArray& params) {
+	cv::Mat dst;
+	auto result = new cv::Mat;
+	cv::cvtColor(
+		get_data_const_ref<cv::Mat>(params[0]),
+		dst,
+		cv::COLOR_BGR2GRAY
+	);
+	cv::matchTemplate(dst,
+		get_data_const_ref<cv::Mat>(params[1]),
+		*result,
+		get_data<int>(params[2]),
+		get_data_const_ref<cv::Mat>(params[3]));
+	params.push_back(make_param("result", "Mat", result));
+}
+
+__EXPORT void match_template_gradient(ParamPtrArray& params) {
+	cv::Mat dst;
+	auto result = new cv::Mat;
+	cv::cvtColor(get_data_const_ref<cv::Mat>(params[0]),
+		dst,
+		cv::COLOR_BGR2GRAY);
+	cv::Sobel(dst, dst, 3, 1, 0);
+	cv::matchTemplate(dst,
+		get_data_const_ref<cv::Mat>(params[1]),
+		*result,
+		get_data<int>(params[2]),
+		get_data_const_ref < cv::Mat>(params[3]));
+	params.push_back(make_param("result", "Mat", result));
+}
+
+__EXPORT void match_template_edge(ParamPtrArray& params) {
+	cv::Mat dst;
+	auto result = new cv::Mat;
+	cv::cvtColor(get_data_const_ref<cv::Mat>(params[0]), dst, cv::COLOR_BGR2GRAY);
+	cv::Canny(dst, dst, 100, 200);
+	cv::matchTemplate(dst, 
+		get_data_const_ref<cv::Mat>(params[1]), 
+		*result, 
+		get_data<int>(params[2]), 
+		get_data_const_ref<cv::Mat>(params[3]));
+	params.push_back(make_param("result", "Mat", result));
 }
