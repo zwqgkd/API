@@ -415,7 +415,6 @@ __EXPORT void match_template_edge(ParamPtrArray& params) {
 
 __EXPORT void fast(ParamPtrArray& params) {
 	cv::Mat dst;
-	auto result = new cv::Mat;
 	get_data<cv::Mat>(params[0]).copyTo(*dst);
 	int threshold = get_data<int>(params[1]);
 	bool nonmaxSuppression = get_data<bool>(params[2]);
@@ -424,9 +423,32 @@ __EXPORT void fast(ParamPtrArray& params) {
 
 	// 检测关键点
 	std::vector<cv::KeyPoint> keypoints;
-	detector->detect(image, keypoints);
+	detector->detect(dst, keypoints);
 	// 绘制关键点
-	cv::Mat output;
-	cv::drawKeypoints(image, keypoints, output);
-	params.push_back(make_param("result", "Mat", result));
+	cv::drawKeypoints(dst, keypoints, dst);
+	params.push_back(make_param("result", "Mat", dst));
 }
+
+__EXPORT void canny(ParamPtrArray& params) {
+	cv::Mat img, edge, gray;
+	int threhold1, threhold2;
+	auto result = new cv::Mat;
+	get_data<cv::Mat>(params[0]).copyTo(*img);
+	get_data<cv::Mat>(params[1]).copyTo(*edge);
+	threhold1 = get_data<int>(params[2]);
+	threhold2 = get_data<int>(params[3]);
+	//创建一个与src1一样的矩阵
+	gray.create(img.size(), img.type());
+
+	//将原图像转为灰度
+	cvtColor(img, gray, COLOR_RGB2GRAY);
+
+	//滤波(降噪)
+	blur(gray, edge, Size(3, 3));
+
+	//canny
+	Mat dist;
+	Canny(edge, dist, threhold1, threhold2);
+	params.push_back(make_param("result", "Mat", dist));
+}
+
