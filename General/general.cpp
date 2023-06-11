@@ -300,7 +300,7 @@ __EXPORT void crop(ParamPtrArray& params) {
 
 __EXPORT void hist_statistics(ParamPtrArray& params) {
 	using namespace cv;
-	// È·¶¨Ä¿±êÇøÓò£¬ÀıÈçÕâÀïÊÇ×óÉÏ½ÇµÄ100x100ÏñËØÇøÓò
+	// ç¡®å®šç›®æ ‡åŒºåŸŸï¼Œä¾‹å¦‚è¿™é‡Œæ˜¯å·¦ä¸Šè§’çš„100x100åƒç´ åŒºåŸŸ
 	Rect roi_rect(
 		get_data<int>(params[1]),
 		get_data<int>(params[2]),
@@ -309,7 +309,7 @@ __EXPORT void hist_statistics(ParamPtrArray& params) {
 	);
 	Mat roi = get_data_const_ref<Mat>(params[0])(roi_rect);
 
-	// Í³¼ÆÄ¿±êÇøÓòÖĞµÄÏñËØ¸öÊı¡¢»Ò¶ÈÖµ¾ùÖµ¡¢×îĞ¡Öµ¡¢×î´óÖµ¡¢·åÖµ¡¢±ê×¼²î¡¢ÏñËØÊıÁ¿ºÍ¶Ô±È¶È
+	// ç»Ÿè®¡ç›®æ ‡åŒºåŸŸä¸­çš„åƒç´ ä¸ªæ•°ã€ç°åº¦å€¼å‡å€¼ã€æœ€å°å€¼ã€æœ€å¤§å€¼ã€å³°å€¼ã€æ ‡å‡†å·®ã€åƒç´ æ•°é‡å’Œå¯¹æ¯”åº¦
 	int* num_pixels = new int(roi.total());
 	params.push_back(make_param("num_pixels", "int", num_pixels));
 
@@ -397,5 +397,36 @@ __EXPORT void match_template_edge(ParamPtrArray& params) {
 		*result, 
 		get_data<int>(params[2]), 
 		get_data_const_ref<cv::Mat>(params[3]));
+	params.push_back(make_param("result", "Mat", result));
+}
+
+__EXPORT void match_template_edge(ParamPtrArray& params) {
+	cv::Mat dst;
+	auto result = new cv::Mat;
+	cv::cvtColor(get_data_const_ref<cv::Mat>(params[0]), dst, cv::COLOR_BGR2GRAY);
+	cv::Canny(dst, dst, 100, 200);
+	cv::matchTemplate(dst,
+		get_data_const_ref<cv::Mat>(params[1]),
+		*result,
+		get_data<int>(params[2]),
+		get_data_const_ref<cv::Mat>(params[3]));
+	params.push_back(make_param("result", "Mat", result));
+}
+
+__EXPORT void fast(ParamPtrArray& params) {
+	cv::Mat dst;
+	auto result = new cv::Mat;
+	get_data<cv::Mat>(params[0]).copyTo(*dst);
+	int threshold = get_data<int>(params[1]);
+	bool nonmaxSuppression = get_data<bool>(params[2]);
+	// åˆ›å»ºFastç®—æ³•å¯¹è±¡ï¼Œè®¾ç½®é˜ˆå€¼ä¸º50
+	cv::Ptr<cv::FastFeatureDetector> detector = cv::FastFeatureDetector::create(threshold,nonmaxSuppression);
+
+	// æ£€æµ‹å…³é”®ç‚¹
+	std::vector<cv::KeyPoint> keypoints;
+	detector->detect(image, keypoints);
+	// ç»˜åˆ¶å…³é”®ç‚¹
+	cv::Mat output;
+	cv::drawKeypoints(image, keypoints, output);
 	params.push_back(make_param("result", "Mat", result));
 }
