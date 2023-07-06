@@ -1,4 +1,6 @@
 #include "object.h"
+#include <opencv2/xfeatures2d.hpp>
+#include <opencv2/xfeatures2d/nonfree.hpp>
 
 #define __EXPORT extern "C" __declspec(dllexport)
 
@@ -400,19 +402,6 @@ __EXPORT void match_template_edge(ParamPtrArray& params) {
 	params.push_back(make_param("result", "Mat", result));
 }
 
-__EXPORT void match_template_edge(ParamPtrArray& params) {
-	cv::Mat dst;
-	auto result = new cv::Mat;
-	cv::cvtColor(get_data_const_ref<cv::Mat>(params[0]), dst, cv::COLOR_BGR2GRAY);
-	cv::Canny(dst, dst, 100, 200);
-	cv::matchTemplate(dst,
-		get_data_const_ref<cv::Mat>(params[1]),
-		*result,
-		get_data<int>(params[2]),
-		get_data_const_ref<cv::Mat>(params[3]));
-	params.push_back(make_param("result", "Mat", result));
-}
-
 __EXPORT void fast(ParamPtrArray& params) {
 	cv::Mat *dst = new cv::Mat;
 	int threshold = get_data<int>(params[1]);
@@ -440,3 +429,70 @@ __EXPORT void canny(ParamPtrArray& params) {
 	params.push_back(make_param("result", "Mat", dst));
 }
 
+__EXPORT void surf(ParamPtrArray& params) {
+	using namespace cv::xfeatures2d;
+
+	int minHessian = get_data<int>(params[1]);
+	auto& src = get_data_const_ref<cv::Mat>(params[0]);
+	cv::Mat *dst = new cv::Mat;
+
+	auto detector = SURF::create(minHessian);
+	std::vector<cv::KeyPoint> keypoints;
+	detector->detect(src, keypoints, cv::Mat());//找出关键点
+
+	drawKeypoints(src, keypoints, *dst, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
+
+	params.push_back(make_param("result", "Mat", dst));
+}
+
+__EXPORT void sift(ParamPtrArray& params) {
+	auto& src = get_data_const_ref<cv::Mat>(params[0]);
+	auto sift = cv::SIFT::create();
+	std::vector<cv::KeyPoint> keypoints;
+	cv::Mat descriptors;
+	sift->detectAndCompute(src, cv::noArray(), keypoints, descriptors);
+
+	cv::Mat* dst = new cv::Mat;
+	cv::drawKeypoints(src, keypoints, *dst);
+	params.push_back(make_param("dst", "Mat", dst));
+}
+
+__EXPORT void brisk(ParamPtrArray& params) {
+	auto& src = get_data_const_ref<cv::Mat>(params[0]);
+	auto sift = cv::BRISK::create();
+	std::vector<cv::KeyPoint> keypoints;
+	cv::Mat descriptors;
+	sift->detectAndCompute(src, cv::noArray(), keypoints, descriptors);
+
+	cv::Mat* dst = new cv::Mat;
+	cv::drawKeypoints(src, keypoints, *dst);
+	params.push_back(make_param("dst", "Mat", dst));
+}
+
+__EXPORT void orb(ParamPtrArray& params) {
+	auto& src = get_data_const_ref<cv::Mat>(params[0]);
+	auto sift = cv::ORB::create();
+	std::vector<cv::KeyPoint> keypoints;
+	cv::Mat descriptors;
+	sift->detectAndCompute(src, cv::noArray(), keypoints, descriptors);
+
+	cv::Mat* dst = new cv::Mat;
+	cv::drawKeypoints(src, keypoints, *dst);
+	params.push_back(make_param("dst", "Mat", dst));
+}
+
+__EXPORT void freak(ParamPtrArray& params) {
+	using namespace cv::xfeatures2d;
+
+	int minHessian = get_data<int>(params[1]);
+	auto& src = get_data_const_ref<cv::Mat>(params[0]);
+	cv::Mat* dst = new cv::Mat;
+
+	auto detector = FREAK::create(minHessian);
+	std::vector<cv::KeyPoint> keypoints;
+	detector->detect(src, keypoints, cv::Mat());//找出关键点
+
+	drawKeypoints(src, keypoints, *dst, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
+
+	params.push_back(make_param("result", "Mat", dst));
+}
