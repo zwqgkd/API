@@ -370,7 +370,7 @@ __EXPORT void match_template_grayscale(ParamPtrArray& params) {
 		get_data_const_ref<cv::Mat>(params[1]),
 		*result,
 		get_data<int>(params[2]),
-		get_data_const_ref<cv::Mat>(params[3]));
+		cv::noArray());
 	params.push_back(make_param("result", "Mat", result));
 }
 
@@ -385,7 +385,7 @@ __EXPORT void match_template_gradient(ParamPtrArray& params) {
 		get_data_const_ref<cv::Mat>(params[1]),
 		*result,
 		get_data<int>(params[2]),
-		get_data_const_ref < cv::Mat>(params[3]));
+		cv::noArray());
 	params.push_back(make_param("result", "Mat", result));
 }
 
@@ -398,7 +398,7 @@ __EXPORT void match_template_edge(ParamPtrArray& params) {
 		get_data_const_ref<cv::Mat>(params[1]), 
 		*result, 
 		get_data<int>(params[2]), 
-		get_data_const_ref<cv::Mat>(params[3]));
+		cv::noArray());
 	params.push_back(make_param("result", "Mat", result));
 }
 

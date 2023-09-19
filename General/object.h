@@ -58,18 +58,27 @@ T& OperatorInterface<T>::data_ref() {
 }
 
 template<typename T>
+auto try_cast(ParamPtr param_ptr) -> OperatorInterface<T>* {
+	auto ptr = dynamic_cast<OperatorInterface<T>*>(param_ptr.get());
+	if (ptr == nullptr) {
+		throw std::runtime_error("Param type mismatch");
+	}
+	return ptr;
+}
+
+template<typename T>
 T get_data(ParamPtr param_ptr) {
-	return dynamic_cast<OperatorInterface<T>*>(param_ptr.get())->data();
+	return try_cast<T>(param_ptr)->data();
 }
 
 template<typename T>
 T& get_data_ref(ParamPtr param_ptr) {
-	return dynamic_cast<OperatorInterface<T>*>(param_ptr.get())->data_ref();
+	return try_cast<T>(param_ptr)->data_ref();
 }
 
 template<typename T>
 const T& get_data_const_ref(ParamPtr param_ptr) {
-	return dynamic_cast<OperatorInterface<T>*>(param_ptr.get())->data_const_ref();
+	return try_cast<T>(param_ptr)->data_const_ref();
 }
 
 template<typename T>
