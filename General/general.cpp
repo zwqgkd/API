@@ -359,47 +359,90 @@ __EXPORT void hist_statistics(ParamPtrArray& params) {
 }
 
 __EXPORT void match_template_grayscale(ParamPtrArray& params) {
-	cv::Mat dst;
-	auto result = new cv::Mat;
-	cv::cvtColor(
-		get_data_const_ref<cv::Mat>(params[0]),
-		dst,
-		cv::COLOR_BGR2GRAY
-	);
-	cv::matchTemplate(dst,
-		get_data_const_ref<cv::Mat>(params[1]),
-		*result,
-		get_data<int>(params[2]),
-		cv::noArray());
-	params.push_back(make_param("result", "Mat", result));
-}
+	auto src = get_data_const_ref<cv::Mat>(params[0]);
+	auto templ = get_data_const_ref<cv::Mat>(params[1]);
+	auto method = get_data<int>(params[2]);
 
-__EXPORT void match_template_gradient(ParamPtrArray& params) {
-	cv::Mat dst;
-	auto result = new cv::Mat;
-	cv::cvtColor(get_data_const_ref<cv::Mat>(params[0]),
-		dst,
-		cv::COLOR_BGR2GRAY);
-	cv::Sobel(dst, dst, 3, 1, 0);
-	cv::matchTemplate(dst,
-		get_data_const_ref<cv::Mat>(params[1]),
-		*result,
-		get_data<int>(params[2]),
-		cv::noArray());
-	params.push_back(make_param("result", "Mat", result));
+	cv::Mat src_gray, templ_gray, result;
+	auto dst = new cv::Mat;
+	src.copyTo(*dst);
+
+	cv::cvtColor(src,src_gray,cv::COLOR_BGR2GRAY);
+	cv::cvtColor(templ, templ_gray, cv::COLOR_BGR2GRAY);
+	cv::matchTemplate(src_gray,templ_gray,result, method);
+
+	cv::Point min_loc, max_loc, top_left;
+	minMaxLoc(result, nullptr, nullptr, &min_loc, &max_loc);
+
+	if (method == cv::TM_SQDIFF || method == cv::TM_SQDIFF_NORMED) {
+		top_left = min_loc;
+	}
+	else {
+		top_left = max_loc;
+	}
+
+	cv::Point bottom_right(top_left.x + templ.cols, top_left.y + templ.rows);
+	rectangle(*dst, top_left, bottom_right, cv::Scalar(0, 0, 255), 2, 8, 0);
+
+	params.push_back(make_param("dst", "Mat", dst));
 }
 
 __EXPORT void match_template_edge(ParamPtrArray& params) {
-	cv::Mat dst;
-	auto result = new cv::Mat;
-	cv::cvtColor(get_data_const_ref<cv::Mat>(params[0]), dst, cv::COLOR_BGR2GRAY);
-	cv::Canny(dst, dst, 100, 200);
-	cv::matchTemplate(dst, 
-		get_data_const_ref<cv::Mat>(params[1]), 
-		*result, 
-		get_data<int>(params[2]), 
-		cv::noArray());
-	params.push_back(make_param("result", "Mat", result));
+	auto src = get_data_const_ref<cv::Mat>(params[0]);
+	auto templ = get_data_const_ref<cv::Mat>(params[1]);
+	auto method = get_data<int>(params[2]);
+
+	cv::Mat src_gray, templ_gray, result;
+	auto dst = new cv::Mat;
+	src.copyTo(*dst);
+
+	cv::cvtColor(src, src_gray, cv::COLOR_BGR2GRAY);
+	cv::cvtColor(templ, templ_gray, cv::COLOR_BGR2GRAY);
+	cv::matchTemplate(src_gray, templ_gray, result, method);
+
+	cv::Point min_loc, max_loc, top_left;
+	minMaxLoc(result, nullptr, nullptr, &min_loc, &max_loc);
+
+	if (method == cv::TM_SQDIFF || method == cv::TM_SQDIFF_NORMED) {
+		top_left = min_loc;
+	}
+	else {
+		top_left = max_loc;
+	}
+
+	cv::Point bottom_right(top_left.x + templ.cols, top_left.y + templ.rows);
+	rectangle(*dst, top_left, bottom_right, cv::Scalar(0, 0, 255), 2, 8, 0);
+
+	params.push_back(make_param("dst", "Mat", dst));
+}
+
+__EXPORT void match_template_gradient(ParamPtrArray& params) {
+	auto src = get_data_const_ref<cv::Mat>(params[0]);
+	auto templ = get_data_const_ref<cv::Mat>(params[1]);
+	auto method = get_data<int>(params[2]);
+
+	cv::Mat src_gray, templ_gray, result;
+	auto dst = new cv::Mat;
+	src.copyTo(*dst);
+
+	cv::cvtColor(src, src_gray, cv::COLOR_BGR2GRAY);
+	cv::cvtColor(templ, templ_gray, cv::COLOR_BGR2GRAY);
+	cv::matchTemplate(src_gray, templ_gray, result, method);
+
+	cv::Point min_loc, max_loc, top_left;
+	minMaxLoc(result, nullptr, nullptr, &min_loc, &max_loc);
+
+	if (method == cv::TM_SQDIFF || method == cv::TM_SQDIFF_NORMED) {
+		top_left = min_loc;
+	}
+	else {
+		top_left = max_loc;
+	}
+
+	cv::Point bottom_right(top_left.x + templ.cols, top_left.y + templ.rows);
+	rectangle(*dst, top_left, bottom_right, cv::Scalar(0, 0, 255), 2, 8, 0);
+
+	params.push_back(make_param("dst", "Mat", dst));
 }
 
 __EXPORT void fast(ParamPtrArray& params) {
@@ -484,15 +527,68 @@ __EXPORT void orb(ParamPtrArray& params) {
 __EXPORT void freak(ParamPtrArray& params) {
 	using namespace cv::xfeatures2d;
 
-	int minHessian = get_data<int>(params[1]);
 	auto& src = get_data_const_ref<cv::Mat>(params[0]);
 	cv::Mat* dst = new cv::Mat;
 
-	auto detector = FREAK::create(minHessian);
+	auto detector = cv::ORB::create();
 	std::vector<cv::KeyPoint> keypoints;
 	detector->detect(src, keypoints, cv::Mat());//找出关键点
+
+	auto freak = FREAK::create();
+	cv::Mat descriptors;
+	freak->compute(src, keypoints, descriptors);
 
 	drawKeypoints(src, keypoints, *dst, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
 
 	params.push_back(make_param("result", "Mat", dst));
+}
+
+__EXPORT void chessboard_calibrate(ParamPtrArray& params) {
+	auto corners = new std::vector<cv::Point2f>;
+	cv::Mat src = get_data_const_ref<cv::Mat>(params[0]);
+	cv::Size boardSize = get_data<cv::Size>(params[1]);
+	const std::vector<cv::Vec3f>& object_points = get_data_const_ref<std::vector<cv::Vec3f>>(params[2]);
+	cv::Mat src_gray = src.clone();
+
+	cv::cvtColor(src_gray, src_gray, cv::COLOR_BGR2GRAY);
+
+	cv::findChessboardCorners(src, boardSize, *corners, cv::CALIB_CB_ADAPTIVE_THRESH | cv::CALIB_CB_NORMALIZE_IMAGE);
+	cv::cornerSubPix(src_gray, *corners, cv::Size(11, 11), cv::Size(-1, -1), cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 30, 0.1));
+
+	cv::Mat* dst = new cv::Mat;
+	src.copyTo(*dst);
+	cv::drawChessboardCorners(*dst, boardSize, *corners, true);
+
+	cv::Mat* mtx = new cv::Mat;
+	std::vector<float>* dist = new std::vector<float>;
+	std::vector<cv::Mat> rvecs, tvecs;
+	cv::calibrateCamera(std::vector<std::vector<cv::Vec3f>>{object_points}, std::vector<std::vector<cv::Point2f>>{*corners}, cv::Size(src.rows, src.cols), * mtx, * dist, rvecs, tvecs);
+
+	params.push_back(make_param("result", "Mat", dst));
+	params.push_back(make_param("corners", "vector<float>", corners));
+	params.push_back(make_param("mtx", "Mat", mtx));
+	params.push_back(make_param("dist", "vector<float>", dist));
+}
+
+__EXPORT void undistort(ParamPtrArray& params) {
+	auto src = get_data_const_ref<cv::Mat>(params[0]);
+	auto mtx = get_data_const_ref<cv::Mat>(params[1]);
+	auto dist = get_data_const_ref<std::vector<float>>(params[2]);
+
+	cv::Mat* dst = new cv::Mat;
+
+	cv::undistort(src, *dst, mtx, dist);
+
+	params.push_back(make_param("result", "Mat", dst));
+}
+
+__EXPORT void convert_unit(ParamPtrArray& params) {
+	const auto& object_points = get_data_const_ref<std::vector<cv::Vec3f>>(params[0]);
+	const auto& img_points = get_data_const_ref<std::vector<cv::Point2f>>(params[1]);
+
+	auto ratio = new double;
+
+	*ratio = cv::norm(object_points[0] - object_points[1]) / cv::norm(img_points[0] - img_points[1]);
+
+	params.push_back(make_param("ratio", "double", ratio));
 }
