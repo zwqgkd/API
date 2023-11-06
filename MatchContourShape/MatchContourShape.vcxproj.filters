@@ -9,30 +9,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="Object Libraries\accum.avx.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="Object Libraries\corner.avx.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="Object Libraries\filter.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="Object Libraries\imgwarp.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="Object Libraries\imgwarp.sse4_1.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="Object Libraries\resize.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="Object Libraries\resize.sse4_1.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
-    <Object Include="Object Libraries\undistort.avx2.obj">
-      <Filter>Object Libraries</Filter>
-    </Object>
+    <Object Include="..\Include\harris_obj\accum.avx.obj" />
+    <Object Include="..\Include\harris_obj\corner.avx.obj" />
+    <Object Include="..\Include\harris_obj\filter.avx2.obj" />
+    <Object Include="..\Include\harris_obj\imgwarp.avx2.obj" />
+    <Object Include="..\Include\harris_obj\imgwarp.sse4_1.obj" />
+    <Object Include="..\Include\harris_obj\resize.avx2.obj" />
+    <Object Include="..\Include\harris_obj\resize.sse4_1.obj" />
+    <Object Include="..\Include\harris_obj\undistort.avx2.obj" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\contourMatch.h">

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.33026.149
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sobel", "Sobel\Sobel.vcxproj", "{965BD0A7-5AA1-4B29-9AD7-23513EBB4B5C}"
 EndProject
@@ -119,6 +119,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CameraCapture", "CameraCapture\CameraCapture.vcxproj", "{8B10831F-9BB1-49F3-AE92-BC7E83820D3B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "General", "General\General.vcxproj", "{E5D131B3-4310-4312-8B86-BA3603372793}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "camera_demo", "..\..\Users\zwq\Desktop\camera_demo\camera_demo\camera_demo.vcxproj", "{F08A63E9-936B-4BAD-9515-E224B122AB14}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zwq_dll_export", "..\dllExport\zwq_dll_export\zwq_dll_export.vcxproj", "{1612417C-5C8B-43F3-8163-FE75B1F169AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -600,6 +604,22 @@ Global
 		{E5D131B3-4310-4312-8B86-BA3603372793}.Release|x64.Build.0 = Release|x64
 		{E5D131B3-4310-4312-8B86-BA3603372793}.Release|x86.ActiveCfg = Release|Win32
 		{E5D131B3-4310-4312-8B86-BA3603372793}.Release|x86.Build.0 = Release|Win32
+		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Debug|x64.ActiveCfg = Debug|x64
+		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Debug|x64.Build.0 = Debug|x64
+		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Debug|x86.ActiveCfg = Debug|Win32
+		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Debug|x86.Build.0 = Debug|Win32
+		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Release|x64.ActiveCfg = Release|x64
+		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Release|x64.Build.0 = Release|x64
+		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Release|x86.ActiveCfg = Release|Win32
+		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Release|x86.Build.0 = Release|Win32
+		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Debug|x64.ActiveCfg = Debug|x64
+		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Debug|x64.Build.0 = Debug|x64
+		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Debug|x86.ActiveCfg = Debug|Win32
+		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Debug|x86.Build.0 = Debug|Win32
+		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Release|x64.ActiveCfg = Release|x64
+		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Release|x64.Build.0 = Release|x64
+		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Release|x86.ActiveCfg = Release|Win32
+		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
