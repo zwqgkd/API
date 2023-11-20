@@ -122,7 +122,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "General", "General\General.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "camera_demo", "..\..\Users\zwq\Desktop\camera_demo\camera_demo\camera_demo.vcxproj", "{F08A63E9-936B-4BAD-9515-E224B122AB14}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zwq_dll_export", "..\dllExport\zwq_dll_export\zwq_dll_export.vcxproj", "{1612417C-5C8B-43F3-8163-FE75B1F169AD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zwq_dll_export", "zwq_dll_export\zwq_dll_export.vcxproj", "{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -612,14 +612,14 @@ Global
 		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Release|x64.Build.0 = Release|x64
 		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Release|x86.ActiveCfg = Release|Win32
 		{F08A63E9-936B-4BAD-9515-E224B122AB14}.Release|x86.Build.0 = Release|Win32
-		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Debug|x64.ActiveCfg = Debug|x64
-		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Debug|x64.Build.0 = Debug|x64
-		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Debug|x86.ActiveCfg = Debug|Win32
-		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Debug|x86.Build.0 = Debug|Win32
-		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Release|x64.ActiveCfg = Release|x64
-		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Release|x64.Build.0 = Release|x64
-		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Release|x86.ActiveCfg = Release|Win32
-		{1612417C-5C8B-43F3-8163-FE75B1F169AD}.Release|x86.Build.0 = Release|Win32
+		{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}.Debug|x64.ActiveCfg = Debug|x64
+		{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}.Debug|x64.Build.0 = Debug|x64
+		{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}.Debug|x86.ActiveCfg = Debug|Win32
+		{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}.Debug|x86.Build.0 = Debug|Win32
+		{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}.Release|x64.ActiveCfg = Release|x64
+		{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}.Release|x64.Build.0 = Release|x64
+		{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}.Release|x86.ActiveCfg = Release|Win32
+		{7FECDE81-D69C-425B-9EE5-C483C63F0B0D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
