@@ -80,3 +80,25 @@ template <typename T>
 inline ParamPtr make_param(std::string name, std::string type, T* value_ptr) {
 	return ParamPtr(new OperatorInterface<T>(name, type, value_ptr));
 }
+
+class ExecutionFailedException : public std::exception {
+private:
+	std::string error_kind_;
+	std::string description_;
+	std::string msg_;
+
+public:
+	/**
+	 * @brief 设置异常的描述信息
+	 * @param error_kind - 异常的种类
+	 * @param error_description - 异常的描述信息
+	 */
+	ExecutionFailedException(const std::string& error_kind,
+		const std::string& description)
+		: error_kind_(error_kind), description_(description),
+		msg_(error_kind + ": " + description) {}
+	virtual const char* what() const throw() { return msg_.c_str(); }
+
+	std::string get_error_kind() const { return error_kind_; }
+	std::string get_description() const { return description_; }
+};

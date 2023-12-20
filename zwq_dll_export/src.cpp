@@ -1,179 +1,199 @@
 #include "object.h"
 #include<vector>
 #include<opencv2/opencv.hpp>
+#include<exception>
 using namespace std;
 using namespace cv;
 
 #define __EXPORT extern "C" __declspec(dllexport)
 
+//__EXPORT void convert_color(ParamPtrArray& params) {
+//	try {
+//		cv::Mat* dst = new cv::Mat;
+//		cv::cvtColor(
+//			get_data_const_ref<cv::Mat>(params[0]),
+//			*dst,
+//			get_data<int>(params[1])
+//		);
+//		params.push_back(make_param("dst", "Mat", dst));
+//	}
+//	catch (cv::Exception& e) {
+//		throw ExecutionFailedException("è¿è¡Œé”™è¯¯", "é¢œè‰²è½¬æ¢çš„å›¾ç‰‡ä¸è½¬æ¢æ¨¡å¼å†²çª");
+//	}
+//}
 
-__EXPORT void g(ParamPtrArray& params) {
-	int num = get_data<int>(params[0]);
-	int* dst = new int{ num + 1 };
-	params.push_back(make_param("increase", "int", dst));
-}
-
-__EXPORT void f(ParamPtrArray& params) {
-	vector<int>* dst = new vector<int>{ 1,2,3 };
-	params.push_back(make_param("dst", "vector<int>", dst));
-}
-
-
+//__EXPORT void g(ParamPtrArray& params) {
+//	int num = get_data<int>(params[0]);
+//	int* dst = new int{ num + 1 };
+//	params.push_back(make_param("increase", "int", dst));
+//}
+//
+//__EXPORT void f(ParamPtrArray& params) {
+//	vector<int>* dst = new vector<int>{ 1,2,3 };
+//	params.push_back(make_param("dst", "vector<int>", dst));
+//}
+//
+//
 __EXPORT void threshold(ParamPtrArray& params) {
-	cv::Mat* dst = new cv::Mat();
-	cv::threshold(get_data_ref<cv::Mat>(params[0]), *dst, get_data_ref<double>(params[1]),
-		get_data_ref<double>(params[2]), get_data_ref<int>(params[3]));
-	params.push_back(make_param("dst", "Mat", dst));
-}
-
-__EXPORT void median_filter(ParamPtrArray& params) {
-	Mat src = get_data_ref<Mat>(params[0]);
-	int ksize = get_data_ref<int>(params[1]);
-
-	Mat* dst = new Mat();
-
-	cv::medianBlur(src, *dst, ksize);
-	params.push_back(make_param("dst", "Mat", dst));
-}
-
-__EXPORT void mean_blur(ParamPtrArray& params) {
-	Mat src = get_data_ref<Mat>(params[0]);
-	Size ksize = get_data_ref<Size>(params[1]);
-	int borderType = get_data<int>(params[2]);
-
-	Mat* dst = new Mat;
-	cv::blur(src, *dst, ksize, Point(-1, -1), borderType);
-
-	params.push_back(make_param("dst", "Mat", dst));
-}
-
-__EXPORT void measure_color(ParamPtrArray& params) {
-	//Ö¸¶¨ÇøÓòµÄ·¶Î§
-	Rect roi_rect(
-		get_data<int>(params[1]),
-		get_data<int>(params[2]),
-		get_data<int>(params[3]),
-		get_data<int>(params[4])
-	);
-	// ÌáÈ¡Ö¸¶¨ÇøÓòµÄÍ¼Ïñ
-	cv::Mat roi = get_data_ref<Mat>(params[0])(roi_rect);
-
-	// ¼ÆËãÃ¿¸öÍ¨µÀµÄ×î´óÖµ¡¢×îĞ¡Öµ¡¢¾ùÖµºÍ±ê×¼²î
-	cv::Scalar minValue, maxValue, meanValue, stdDevValue;
-	cv::meanStdDev(roi, meanValue, stdDevValue);
-
-	vector<Mat> channels;
-	cv::split(roi, channels);
-	for (int i = 0; i < channels.size(); ++i) {
-		cv::minMaxLoc(roi, &minValue[i], &maxValue[i]);
+	try {
+		cv::Mat* dst = new cv::Mat();
+		cv::threshold(get_data_ref<cv::Mat>(params[0]), *dst, get_data_ref<double>(params[1]),
+			get_data_ref<double>(params[2]), get_data_ref<int>(params[3]));
+		params.push_back(make_param("dst", "Mat", dst));
 	}
-	//¼ÆËãÖ±·½Í¼
-	int bins = 256;
-	int histSize[] = { bins };
-	float range[] = { 0,256 };
-	const float* histRange = { range };
-	bool uniform = true, accumulate = false;
-	Mat hista, histb, histc;
-	calcHist(&channels[0], 1, 0, Mat(), hista, 1, histSize, &histRange, uniform, accumulate);
-	calcHist(&channels[1], 1, 0, Mat(), histb, 1, histSize, &histRange, uniform, accumulate);
-	calcHist(&channels[2], 1, 0, Mat(), histc, 1, histSize, &histRange, uniform, accumulate);
-
-	int histWidth = 512, histHeight = 400;
-	int binWidth = cvRound((double)histWidth / bins);
-	Mat histImage(histHeight, histWidth, CV_8UC3, Scalar(0, 0, 0));
-
-	//Ö±·½Í¼¹éÒ»»¯µ½[0,histImage.rows]
-	normalize(hista, hista, 0, histImage.rows, NORM_MINMAX, -1, Mat());
-	normalize(histb, hista, 0, histImage.rows, NORM_MINMAX, -1, Mat());
-	normalize(histc, hista, 0, histImage.rows, NORM_MINMAX, -1, Mat());
-
-	//»æÖÆ
-	for (int i = 1; i < bins; i++) {
-		line(histImage, Point(binWidth * (i - 1), histHeight - cvRound(hista.at<float>(i - 1))), Point(binWidth * (i), histHeight - cvRound(hista.at<float>(i))), Scalar(255, 0, 0), 2, 8, 0);
-		line(histImage, Point(binWidth * (i - 1), histHeight - cvRound(histb.at<float>(i - 1))), Point(binWidth * (i), histHeight - cvRound(histb.at<float>(i))), Scalar(0, 255, 0), 2, 8, 0);
-		line(histImage, Point(binWidth * (i - 1), histHeight - cvRound(histc.at<float>(i - 1))), Point(binWidth * (i), histHeight - cvRound(histc.at<float>(i))), Scalar(0, 0, 255), 2, 8, 0);
-	}
-	params.push_back(make_param("minValue", "Scalar", new Scalar(minValue)));
-	params.push_back(make_param("maxValue", "Scalar", new Scalar(maxValue)));
-	params.push_back(make_param("meanValue", "Scalar", new Scalar(meanValue)));
-	params.push_back(make_param("stdDevValue", "Scalar", new Scalar(stdDevValue)));
-	params.push_back(make_param("histImage", "Mat", new Mat(histImage)));
-}
-
-__EXPORT void test_send_counters(ParamPtrArray& params) {
-	vector < vector<Point>>* dst = new vector<vector<Point>>();
-	vector<Point> data = vector<Point>{ {0,1} };
-	dst->push_back(data);
-
-	params.push_back(make_param("dst", "vector<vector<Point>>", dst));
-}
-
-__EXPORT void test_receive_counters(ParamPtrArray& params) {
-	vector<vector<Point>> src = get_data< vector<vector<Point>> >(params[0]);
-
-	if (src.size() == 1) {
-		params.push_back(make_param("dst", "string", new string{ "OK" }));
-	}
-	else {
-		params.push_back(make_param("dst", "string", new string{ "NG" }));
+	catch (cv::Exception& e) {
+		throw ExecutionFailedException("è¿è¡Œé”™è¯¯","è¯¥äºŒå€¼åŒ–æ¨¡å¼å¿…é¡»è¦ç°åº¦å›¾");
 	}
 }
-
-__EXPORT void edge_threshold(ParamPtrArray& params) {
-	//»Ò¶ÈÍ¼
-	Mat src = get_data_ref<Mat>(params[0]);
-	double threshold1 = get_data<double>(params[1]);
-	double threshold2 = get_data<double>(params[2]);
-
-	Mat dst;
-	Canny(src, dst, threshold1, threshold2);
-	params.push_back(make_param("dst", "Mat", new Mat(dst)));
-}
-
-__EXPORT void region_threshold(ParamPtrArray& params) {
-	Mat src = get_data_ref<Mat>(params[0]);//»Ò¶ÈÍ¼
-	int blockSize = get_data<int>(params[1]);//ÁìÓò´óĞ¡£¬Ó¦ÎªÆæÊı
-	int c = get_data<int>(params[2]);//Æ«ÒÆµ÷ÕûÁ¿
-	Mat dst;
-	cv::adaptiveThreshold(src, dst, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, blockSize, c);
-	params.push_back(make_param("dst", "Mat", new Mat(dst)));
-}
-
-__EXPORT void grab_cut_threshold(ParamPtrArray& params) {
-	Mat src = get_data_ref<Mat>(params[0]);//²ÊÉ«Í¼
-
-	Rect rectangle(
-		get_data<int>(params[1]),
-		get_data<int>(params[2]),
-		get_data<int>(params[3]),
-		get_data<int>(params[4])
-	);
-	// ¹¹½¨Í¼¸îÄ£ĞÍ
-	cv::Mat mask, bgModel, fgModel;
-	cv::grabCut(src, mask, rectangle, bgModel, fgModel, 5, cv::GC_INIT_WITH_RECT);
-
-	// ½«Í¼¸î½á¹û×ª»»Îª¶şÖµÍ¼Ïñ
-	cv::Mat binary = (mask == cv::GC_PR_FGD) | (mask == cv::GC_FGD);
-	binary = binary * 255;
-
-	params.push_back(make_param("dst", "Mat", new Mat(binary)));
-}
-
-__EXPORT void contour_area(ParamPtrArray& params) {
-	vector<Point> points = get_data_ref<vector<Point>>(params[0]);
-	params.push_back(make_param("area", "double", new double{ cv::contourArea(points) }));
-}
-
-__EXPORT void generate_points(ParamPtrArray& params) {
-	std::vector<cv::Point> points;
-	points.push_back(cv::Point(0, 0));
-	points.push_back(cv::Point(0, 10));
-	points.push_back(cv::Point(10, 10));
-	points.push_back(cv::Point(10, 0));
-	params.push_back(make_param("points", "vector<Point>", new vector<Point>(points)));
-}
-
-__EXPORT void generate_point(ParamPtrArray& params) {
-	params.push_back(make_param("point", "Point", new Point(3, 7)));
-}
+//
+//__EXPORT void median_filter(ParamPtrArray& params) {
+//	Mat src = get_data_ref<Mat>(params[0]);
+//	int ksize = get_data_ref<int>(params[1]);
+//
+//	Mat* dst = new Mat();
+//
+//	cv::medianBlur(src, *dst, ksize);
+//	params.push_back(make_param("dst", "Mat", dst));
+//}
+//
+//__EXPORT void mean_blur(ParamPtrArray& params) {
+//	Mat src = get_data_ref<Mat>(params[0]);
+//	Size ksize = get_data_ref<Size>(params[1]);
+//	int borderType = get_data<int>(params[2]);
+//
+//	Mat* dst = new Mat;
+//	cv::blur(src, *dst, ksize, Point(-1, -1), borderType);
+//
+//	params.push_back(make_param("dst", "Mat", dst));
+//}
+//
+//__EXPORT void measure_color(ParamPtrArray& params) {
+//	//æŒ‡å®šåŒºåŸŸçš„èŒƒå›´
+//	Rect roi_rect(
+//		get_data<int>(params[1]),
+//		get_data<int>(params[2]),
+//		get_data<int>(params[3]),
+//		get_data<int>(params[4])
+//	);
+//	// æå–æŒ‡å®šåŒºåŸŸçš„å›¾åƒ
+//	cv::Mat roi = get_data_ref<Mat>(params[0])(roi_rect);
+//
+//	// è®¡ç®—æ¯ä¸ªé€šé“çš„æœ€å¤§å€¼ã€æœ€å°å€¼ã€å‡å€¼å’Œæ ‡å‡†å·®
+//	cv::Scalar minValue, maxValue, meanValue, stdDevValue;
+//	cv::meanStdDev(roi, meanValue, stdDevValue);
+//
+//	vector<Mat> channels;
+//	cv::split(roi, channels);
+//	for (int i = 0; i < channels.size(); ++i) {
+//		cv::minMaxLoc(roi, &minValue[i], &maxValue[i]);
+//	}
+//	//è®¡ç®—ç›´æ–¹å›¾
+//	int bins = 256;
+//	int histSize[] = { bins };
+//	float range[] = { 0,256 };
+//	const float* histRange = { range };
+//	bool uniform = true, accumulate = false;
+//	Mat hista, histb, histc;
+//	calcHist(&channels[0], 1, 0, Mat(), hista, 1, histSize, &histRange, uniform, accumulate);
+//	calcHist(&channels[1], 1, 0, Mat(), histb, 1, histSize, &histRange, uniform, accumulate);
+//	calcHist(&channels[2], 1, 0, Mat(), histc, 1, histSize, &histRange, uniform, accumulate);
+//
+//	int histWidth = 512, histHeight = 400;
+//	int binWidth = cvRound((double)histWidth / bins);
+//	Mat histImage(histHeight, histWidth, CV_8UC3, Scalar(0, 0, 0));
+//
+//	//ç›´æ–¹å›¾å½’ä¸€åŒ–åˆ°[0,histImage.rows]
+//	normalize(hista, hista, 0, histImage.rows, NORM_MINMAX, -1, Mat());
+//	normalize(histb, hista, 0, histImage.rows, NORM_MINMAX, -1, Mat());
+//	normalize(histc, hista, 0, histImage.rows, NORM_MINMAX, -1, Mat());
+//
+//	//ç»˜åˆ¶
+//	for (int i = 1; i < bins; i++) {
+//		line(histImage, Point(binWidth * (i - 1), histHeight - cvRound(hista.at<float>(i - 1))), Point(binWidth * (i), histHeight - cvRound(hista.at<float>(i))), Scalar(255, 0, 0), 2, 8, 0);
+//		line(histImage, Point(binWidth * (i - 1), histHeight - cvRound(histb.at<float>(i - 1))), Point(binWidth * (i), histHeight - cvRound(histb.at<float>(i))), Scalar(0, 255, 0), 2, 8, 0);
+//		line(histImage, Point(binWidth * (i - 1), histHeight - cvRound(histc.at<float>(i - 1))), Point(binWidth * (i), histHeight - cvRound(histc.at<float>(i))), Scalar(0, 0, 255), 2, 8, 0);
+//	}
+//	params.push_back(make_param("minValue", "Scalar", new Scalar(minValue)));
+//	params.push_back(make_param("maxValue", "Scalar", new Scalar(maxValue)));
+//	params.push_back(make_param("meanValue", "Scalar", new Scalar(meanValue)));
+//	params.push_back(make_param("stdDevValue", "Scalar", new Scalar(stdDevValue)));
+//	params.push_back(make_param("histImage", "Mat", new Mat(histImage)));
+//}
+//
+//__EXPORT void test_send_counters(ParamPtrArray& params) {
+//	vector < vector<Point>>* dst = new vector<vector<Point>>();
+//	vector<Point> data = vector<Point>{ {0,1} };
+//	dst->push_back(data);
+//
+//	params.push_back(make_param("dst", "vector<vector<Point>>", dst));
+//}
+//
+//__EXPORT void test_receive_counters(ParamPtrArray& params) {
+//	vector<vector<Point>> src = get_data< vector<vector<Point>> >(params[0]);
+//
+//	if (src.size() == 1) {
+//		params.push_back(make_param("dst", "string", new string{ "OK" }));
+//	}
+//	else {
+//		params.push_back(make_param("dst", "string", new string{ "NG" }));
+//	}
+//}
+//
+//__EXPORT void edge_threshold(ParamPtrArray& params) {
+//	//ç°åº¦å›¾
+//	Mat src = get_data_ref<Mat>(params[0]);
+//	double threshold1 = get_data<double>(params[1]);
+//	double threshold2 = get_data<double>(params[2]);
+//
+//	Mat dst;
+//	Canny(src, dst, threshold1, threshold2);
+//	params.push_back(make_param("dst", "Mat", new Mat(dst)));
+//}
+//
+//__EXPORT void region_threshold(ParamPtrArray& params) {
+//	Mat src = get_data_ref<Mat>(params[0]);//ç°åº¦å›¾
+//	int blockSize = get_data<int>(params[1]);//é¢†åŸŸå¤§å°ï¼Œåº”ä¸ºå¥‡æ•°
+//	int c = get_data<int>(params[2]);//åç§»è°ƒæ•´é‡
+//	Mat dst;
+//	cv::adaptiveThreshold(src, dst, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, blockSize, c);
+//	params.push_back(make_param("dst", "Mat", new Mat(dst)));
+//}
+//
+//__EXPORT void grab_cut_threshold(ParamPtrArray& params) {
+//	Mat src = get_data_ref<Mat>(params[0]);//å½©è‰²å›¾
+//
+//	Rect rectangle(
+//		get_data<int>(params[1]),
+//		get_data<int>(params[2]),
+//		get_data<int>(params[3]),
+//		get_data<int>(params[4])
+//	);
+//	// æ„å»ºå›¾å‰²æ¨¡å‹
+//	cv::Mat mask, bgModel, fgModel;
+//	cv::grabCut(src, mask, rectangle, bgModel, fgModel, 5, cv::GC_INIT_WITH_RECT);
+//
+//	// å°†å›¾å‰²ç»“æœè½¬æ¢ä¸ºäºŒå€¼å›¾åƒ
+//	cv::Mat binary = (mask == cv::GC_PR_FGD) | (mask == cv::GC_FGD);
+//	binary = binary * 255;
+//
+//	params.push_back(make_param("dst", "Mat", new Mat(binary)));
+//}
+//
+//__EXPORT void contour_area(ParamPtrArray& params) {
+//	vector<Point> points = get_data_ref<vector<Point>>(params[0]);
+//	params.push_back(make_param("area", "double", new double{ cv::contourArea(points) }));
+//}
+//
+//__EXPORT void generate_points(ParamPtrArray& params) {
+//	std::vector<cv::Point> points;
+//	points.push_back(cv::Point(0, 0));
+//	points.push_back(cv::Point(0, 10));
+//	points.push_back(cv::Point(10, 10));
+//	points.push_back(cv::Point(10, 0));
+//	params.push_back(make_param("points", "vector<Point>", new vector<Point>(points)));
+//}
+//
+//__EXPORT void generate_point(ParamPtrArray& params) {
+//	params.push_back(make_param("point", "Point", new Point(3, 7)));
+//}
 
