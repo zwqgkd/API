@@ -79,7 +79,7 @@
         {
           "modelName": "model1",
           "helpMsg": "it is a help msg of model1",
-          "dllName": "*",
+          "dllName": "*.dll",
           "modelID": "func_name1",
           "inPara": [
             {
@@ -120,13 +120,13 @@
 | models                | 里面每一个model就是算子的每一种方法，如滤波里面可能有高斯、均值滤波... |
 | outPara               | 算子输出参数，注意每种类型格式固定，仅仅可修改所以的varLabel和最外层的varName,如对于GeliRect来说，仅仅只可修改"varName": "detect_area"的值，和所有内外层的varLabel的值。 |
 
-| mode内部属性名称 | 含义            |
-| ---------------- | --------------- |
-| dllName          | dll名，不含.dll |
-| modelName        | 方法中文名称    |
-| helpMsg          | 帮助信息        |
-| modelID          | 方法名          |
-| inPara           | 入参            |
+| mode内部属性名称 | 含义           |
+| ---------------- | -------------- |
+| dllName          | dll名，***.dll |
+| modelName        | 方法中文名称   |
+| helpMsg          | 帮助信息       |
+| modelID          | 方法名         |
+| inPara           | 入参           |
 
 | 参数内部属性名称  | 含义                                                         |
 | ----------------- | ------------------------------------------------------------ |
