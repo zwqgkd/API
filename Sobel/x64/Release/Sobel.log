@@ -1,4 +1,4 @@
-﻿D:\ProgramFiles\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
   filter.avx2.cpp
   sobel.cpp
   filter.cpp
@@ -6,4 +6,5 @@
   sumpixels.cpp
   templmatch.cpp
   正在生成代码...
-D:\ProgramFiles\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(720,5): error MSB6006: “link.exe”已退出，代码为 1。
+    正在创建库 target\sobel.lib 和对象 target\sobel.exp
+  Sobel.vcxproj -> C:\Projects\API\Sobel\target\sobel.dll
